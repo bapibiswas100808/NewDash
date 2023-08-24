@@ -5,6 +5,14 @@
 .header-content-right {
   color: #536485;
 }
+.header-content-right i {
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 1rem;
+  transition: all ease 50ms;
+  padding: 0.25rem;
+  border-radius: 50%;
+}
 
 .country-drop {
   border-radius: 20px;
@@ -16,6 +24,11 @@
   cursor: pointer;
   padding: 0;
   font-size: inherit;
+}
+.screen-button {
+  text-decoration: none;
+  border: none;
+  background: none;
 }
 .profile-heading {
   font-size: 15px;

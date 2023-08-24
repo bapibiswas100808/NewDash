@@ -10,3 +10,14 @@ p {
   margin-bottom: 0 !important;
   font-size: 10px;
 }
+.light {
+  --var-bg-color: aliceblue;
+}
+.dark {
+  --var-bg-color: #1a1c1e;
+}
+
+main,
+section {
+  background-color: var(--var-bg-color) !important;
+}
