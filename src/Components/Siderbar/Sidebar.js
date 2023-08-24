@@ -64,14 +64,17 @@ const Sidebar = ({ isOpen, children }) => {
             </div>
             <NavLink to={menu.path} onClick={() => handleMenuClick(index)}>
               <div
-                style={{ padding: isOpen ? "0px 15px" : "0" }}
-                className="d-flex align-items-center justify-content-between link py-1"
+                style={{ padding: isOpen ? "6px 15px" : "0" }}
+                className="d-flex align-items-center justify-content-between link"
               >
                 <div className="icon-text d-flex">
                   <div className="icon text-white">
                     {isOpen ? menu.icon : null}
                   </div>
-                  <div className="link-text ">
+                  <div
+                    style={{ fontSize: !isOpen ? "20px" : "14px" }}
+                    className="link-text "
+                  >
                     <b>{isOpen ? menu.name : menu.icon}</b>
                   </div>
                 </div>
@@ -104,9 +107,8 @@ const Sidebar = ({ isOpen, children }) => {
           </div>
         ))}
       </div>
-      <div className="container">
-        <main className="">{children}</main>
-      </div>
+
+      <main className="main-area">{children}</main>
     </div>
   );
 };
