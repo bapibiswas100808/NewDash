@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Dashboard from "./Pages/Dashboard/Dashboard";
 import Webpages from "./Pages/Webpages/Webpages";
 import Sidebar from "./Components/Siderbar/Sidebar";
 import Header from "./Components/Header/Header";
 import { useState } from "react";
 import { Themecontext } from "./Components/ThemeContext/ThemeContext";
+import CRM from "./Pages/SubPages/CRM/CRM";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -18,7 +18,8 @@ function App() {
           <Sidebar isOpen={isOpen}>
             <Header onClick={toggle} isOpen={isOpen} />
             <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard" element={<CRM />} />
+              <Route path="/dashboard1" element={<CRM />} />
               <Route path="/webpages" element={<Webpages />} />
             </Routes>
           </Sidebar>

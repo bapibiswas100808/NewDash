@@ -4,14 +4,13 @@
 }
 
 .sidebar {
-  background-color: #111c43;
   color: #ffffff;
 }
 .top-side {
   display: flex;
   justify-content: center;
   padding: 14px 0;
-  border-bottom: 1px solid #293356;
+  border-bottom: 1px solid #313335;
 }
 .bottom-side {
   padding: 0 15px;

@@ -10,7 +10,7 @@ import { BsFillSunFill } from "react-icons/bs";
 import "./Header.css";
 import { NavLink } from "react-router-dom";
 import { Themecontext } from "../ThemeContext/ThemeContext";
-import profileImage from "../../images/favicon.png";
+import profileImage from "../../images/favicon1.png";
 
 const Header = ({ onClick, isOpen }) => {
   const { theme, setTheme } = useContext(Themecontext);
@@ -53,79 +53,86 @@ const Header = ({ onClick, isOpen }) => {
   };
 
   return (
-    <div className="header-area d-flex justify-content-between align-items-center">
-      <div className="header-content-left ps-4">
-        <div className="bars">
-          {isOpen ? (
-            <FaBars onClick={onClick} />
-          ) : (
-            <RxCross1 onClick={onClick} />
-          )}
+    <section className="header-div">
+      <div
+        style={{ borderBottom: theme === "light" ? null : "1px solid #313335" }}
+        className="header-area d-flex justify-content-between align-items-center"
+      >
+        <div className="header-content-left">
+          <div className="bars">
+            {isOpen ? (
+              <FaBars onClick={onClick} />
+            ) : (
+              <RxCross1 onClick={onClick} />
+            )}
+          </div>
         </div>
-      </div>
-      <div className="header-content-right d-flex align-items-center">
-        <div className="ps-4">
-          <NavLink>
+        <div className="header-content-right d-flex align-items-center">
+          <div className="ps-4">
+            <NavLink>
+              <i>
+                <BsSearch style={{ color: "#536485" }} />
+              </i>
+            </NavLink>
+          </div>
+          <div className="ps-4">
+            <select style={{ color: "#536485" }} className="country-drop">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+            </select>
+          </div>
+          <div className="ps-4">
+            <div className="switch">
+              <button
+                style={{ color: "#536485" }}
+                className="theme-button"
+                onClick={handleMode}
+              >
+                <i> {theme === "light" ? <BsMoonFill /> : <BsFillSunFill />}</i>
+              </button>
+            </div>
+          </div>
+          <div className="ps-4">
             <i>
-              <BsSearch style={{ color: "#536485" }} />
+              <AiOutlineShoppingCart />
             </i>
-          </NavLink>
-        </div>
-        <div className="ps-4">
-          <select style={{ color: "#536485" }} className="country-drop">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-          </select>
-        </div>
-        <div className="ps-4">
-          <div className="switch">
-            <button
-              style={{ color: "#536485" }}
-              className="theme-button"
-              onClick={handleMode}
-            >
-              <i> {theme === "light" ? <BsMoonFill /> : <BsFillSunFill />}</i>
+          </div>
+          <div className="ps-4">
+            <i>
+              <IoIosNotificationsOutline />
+            </i>
+          </div>
+          <div className="ps-4">
+            <i>
+              <AiOutlineAppstore />
+            </i>
+          </div>
+          <div className="ps-4">
+            <button className="screen-button" onClick={handleFullscreen}>
+              <i style={{ color: "#536485" }}>
+                {fullScreen ? <BsFullscreen /> : <BsFullscreenExit />}
+              </i>
             </button>
           </div>
-        </div>
-        <div className="ps-4">
-          <i>
-            <AiOutlineShoppingCart />
-          </i>
-        </div>
-        <div className="ps-4">
-          <i>
-            <IoIosNotificationsOutline />
-          </i>
-        </div>
-        <div className="ps-4">
-          <i>
-            <AiOutlineAppstore />
-          </i>
-        </div>
-        <div className="ps-4">
-          <button className="screen-button" onClick={handleFullscreen}>
-            <i>{fullScreen ? <BsFullscreen /> : <BsFullscreenExit />}</i>
-          </button>
-        </div>
-        <div className="ps-4 d-flex justify-content-center align-items-center">
-          <div className="profile-image">
-            <img className="" src={profileImage} alt="" />
+          <div className="ps-4 d-flex justify-content-center align-items-center">
+            <div className="profile-image">
+              <img className="" src={profileImage} alt="" />
+            </div>
+            <div className="profile-text">
+              <h5 className="profile-heading">Name</h5>
+              <p>Web Developer</p>
+            </div>
           </div>
-          <div className="profile-text">
-            <h5 className="profile-heading">Name</h5>
-            <p>Web Developer</p>
+          <div className="ps-4">
+            <FiSettings className="settings-button" />
           </div>
-        </div>
-        <div className="ps-4 pe-4">
-          <FiSettings className="settings-button" />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

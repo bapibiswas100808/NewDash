@@ -10,14 +10,26 @@ p {
   margin-bottom: 0 !important;
   font-size: 10px;
 }
+.project-container {
+  padding: 0 30px;
+}
 .light {
   --var-bg-color: aliceblue;
+  --var-side-bg: #111c43;
+  --var-main-color: #f0f1f7;
 }
 .dark {
   --var-bg-color: #1a1c1e;
+  --var-main-color: #252729;
+  --var-side-bg: #1a1c1e;
 }
 
-main,
 section {
   background-color: var(--var-bg-color) !important;
+}
+main {
+  background-color: var(--var-main-color) !important;
+}
+.sidebar-div {
+  background-color: var(--var-side-bg) !important;
 }

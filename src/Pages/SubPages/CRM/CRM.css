@@ -1,0 +1,29 @@
+.crm-div {
+  margin-top: 30px;
+}
+.crm-intro-text h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.crm-intro-text p {
+  font-size: 13px;
+  font-weight: 400;
+}
+.filter-button {
+  background-color: #8f69e1;
+  border: none;
+  color: #ffffff;
+  font-size: 0.85rem;
+}
+.filter-button:hover {
+  background-color: #af8ef4;
+}
+.export-button {
+  background-color: transparent;
+  border: 1px solid #23b7e5;
+  color: #8f69e1;
+  font-size: 0.85rem;
+}
+.export-button:hover {
+  background-color: #23b7e5;
+}

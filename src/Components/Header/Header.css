@@ -1,6 +1,5 @@
 .header-area {
   padding: 13px 0;
-  background-color: #ffffff;
 }
 .header-content-right {
   color: #536485;
@@ -35,6 +34,10 @@
   font-weight: 700;
   margin-bottom: 0 !important;
   color: #536485;
+}
+.profile-image img {
+  height: 30px;
+  margin-right: 5px;
 }
 .settings-button {
   width: 20px;
