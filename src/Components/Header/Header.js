@@ -31,11 +31,11 @@ const Header = ({ onClick, isOpen }) => {
       <div className="header-content-right d-flex align-items-center">
         <div className="ps-4">
           <NavLink>
-            <BsSearch />
+            <BsSearch style={{ color: "#536485" }} />
           </NavLink>
         </div>
         <div className="ps-4">
-          <select className="country-drop">
+          <select style={{ color: "#536485" }} className="country-drop">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -46,7 +46,11 @@ const Header = ({ onClick, isOpen }) => {
         </div>
         <div className="ps-4">
           <div className="switch">
-            <button className="theme-button" onClick={handleMode}>
+            <button
+              style={{ color: "#536485" }}
+              className="theme-button"
+              onClick={handleMode}
+            >
               {theme === "light" ? <BsMoonFill /> : <BsFillSunFill />}
             </button>
           </div>
@@ -72,7 +76,7 @@ const Header = ({ onClick, isOpen }) => {
             <p>Web Developer</p>
           </div>
         </div>
-        <div className="ps-4 pe-3">
+        <div className="ps-4 pe-4">
           <FiSettings className="settings-button" />
         </div>
       </div>
