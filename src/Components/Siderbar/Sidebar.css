@@ -1,0 +1,56 @@
+.sidebar-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  background-color: #111c43;
+  color: #ffffff;
+}
+.top-side {
+  display: flex;
+  justify-content: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #293356;
+}
+.bottom-side {
+  padding: 0 15px;
+}
+.logo {
+  height: 32px;
+  width: auto;
+  position: relative;
+}
+.icon {
+  font-size: 1.15rem;
+  position: relative;
+}
+.side-heading p {
+  font-size: 0.6rem;
+  font-weight: 700;
+  margin-top: 30px;
+}
+
+.link-text {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+.dropdown {
+  font-size: 12px;
+}
+.link:hover {
+  background-color: #293356;
+  border-radius: 15px;
+}
+.link.active {
+  background: #293356;
+}
+.subitem:hover {
+  background-color: #293356;
+  border-radius: 15px;
+}
+.main-area {
+  background-color: #f0f1f7;
+}
