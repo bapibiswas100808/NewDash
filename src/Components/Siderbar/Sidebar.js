@@ -85,7 +85,7 @@ const Sidebar = ({ isOpen, children }) => {
                 </div>
 
                 {/* Siderbar Link */}
-                <NavLink to={menu.path} onClick={() => handleMenuClick(index)}>
+                <div to={menu.path} onClick={() => handleMenuClick(index)}>
                   <div
                     style={{ padding: isOpen || isHovered ? "6px 17px" : "0" }}
                     onClick={() => handleMenuClick(index)}
@@ -125,7 +125,7 @@ const Sidebar = ({ isOpen, children }) => {
                       ) : null}
                     </div>
                   </div>
-                </NavLink>
+                </div>
                 {/* Sub Menu */}
                 <div>
                   {activeMenu === index && (

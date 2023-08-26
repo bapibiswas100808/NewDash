@@ -10,10 +10,12 @@ import { BsFillSunFill } from "react-icons/bs";
 import "./Header.css";
 import { Themecontext } from "../ThemeContext/ThemeContext";
 import profileImage from "../../images/favicon1.png";
+import { NavLink } from "react-router-dom";
 
 const Header = ({ onClick, isOpen }) => {
   // Theme Selection
   const { theme, setTheme } = useContext(Themecontext);
+  const [isProfilopen, setIsProfileOpen] = useState(false);
   const handleMode = () => {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
   };
@@ -130,7 +132,10 @@ const Header = ({ onClick, isOpen }) => {
             </button>
           </div>
           {/* Profile */}
-          <div className="ps-4 d-flex justify-content-center align-items-center">
+          <div
+            onClick={(e) => setIsProfileOpen(!isProfilopen)}
+            className="ps-4 d-flex justify-content-center align-items-center header-profile"
+          >
             <div className="profile-image">
               <img className="" src={profileImage} alt="" />
             </div>
@@ -138,6 +143,14 @@ const Header = ({ onClick, isOpen }) => {
               <h5 className="profile-heading">Name</h5>
               <p>Web Developer</p>
             </div>
+            {isProfilopen && (
+              <ul className="profile-list">
+                <li className="profile-list-item">Profile</li>
+                <NavLink to="/signup">
+                  <li className="profile-list-item">Log out</li>
+                </NavLink>
+              </ul>
+            )}
           </div>
           {/* Settings */}
           <div className="ps-4">
