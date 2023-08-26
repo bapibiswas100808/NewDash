@@ -5,52 +5,73 @@
 
 .sidebar {
   color: #ffffff;
+  max-width: 240px;
+  height: 100vh;
 }
+
 .top-side {
   display: flex;
   justify-content: center;
   padding: 14px 0;
   border-bottom: 1px solid #313335;
+  border-right: 1px solid #313335;
+  margin-bottom: 8px;
+  max-height: 60px;
 }
-.bottom-side {
-  padding: 0 15px;
-}
+
 .logo {
   height: 32px;
   width: auto;
   position: relative;
+}
+.bottom-side {
+  padding: 0px 12px;
 }
 .icon {
   font-size: 1.15rem;
   position: relative;
 }
 .side-heading p {
-  font-size: 0.6rem;
-  font-weight: 700;
-  margin-top: 30px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.065rem;
+  color: #49547a;
+  padding: 12px 12px;
+}
+.link {
+  border-radius: 8px;
+}
+.link:hover {
+  background-color: #1d284d;
+}
+.active {
+  background-color: #1d284d;
 }
 
 .link-text {
   color: #ffffff;
   text-decoration: none;
-  padding: 5px 10px;
-  font-size: 14px;
+  padding: 5px 18px;
+  font-size: 1.15rem;
+  font-weight: 600;
 }
 .dropdown {
   font-size: 12px;
 }
-.link:hover {
-  background-color: #293356;
-  border-radius: 15px;
-}
-.link.active {
-  background: #293356;
+
+.subitem {
+  border-radius: 10px;
 }
 .subitem:hover {
-  background-color: #293356;
-  border-radius: 15px;
+  background-color: #1d284d;
 }
 .main-area {
   background-color: #f0f1f7;
   width: 100%;
+}
+
+@media (max-width: 767px) {
+  .main-area {
+    width: auto;
+  }
 }

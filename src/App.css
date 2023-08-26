@@ -9,27 +9,48 @@ ul {
 p {
   margin-bottom: 0 !important;
   font-size: 10px;
+  color: #8c99bc;
 }
 .project-container {
   padding: 0 30px;
 }
 .light {
-  --var-bg-color: aliceblue;
   --var-side-bg: #111c43;
   --var-main-color: #f0f1f7;
+  --var-header-bg: #ffffff;
+  --var-bar-bg: #252729;
+  --var-text-color: #8c99bc;
+  --var-heading-color: #333335;
 }
 .dark {
-  --var-bg-color: #1a1c1e;
   --var-main-color: #252729;
   --var-side-bg: #1a1c1e;
+  --var-header-bg: #1a1c1e;
+  --var-bar-bg: #a3a4a5;
+  --var-text-color: #929280;
+  --var-heading-color: #bebfbf;
 }
 
-section {
-  background-color: var(--var-bg-color) !important;
-}
 main {
   background-color: var(--var-main-color) !important;
 }
-.sidebar-div {
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--var-heading-color) !important;
+}
+p {
+  color: var(--var-text-color);
+}
+
+.sidebar {
   background-color: var(--var-side-bg) !important;
+}
+.header-area {
+  background-color: var(--var-header-bg);
+}
+.bars {
+  color: var(--var-bar-bg);
 }

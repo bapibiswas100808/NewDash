@@ -10,6 +10,7 @@ import Logo from "../../images/logo.png";
 import Logo2 from "../../images/favicon1.png";
 
 const Sidebar = ({ isOpen, children }) => {
+  // Menu Items
   const menuItem = [
     {
       path: "/dashboard",
@@ -32,84 +33,128 @@ const Sidebar = ({ isOpen, children }) => {
       ],
     },
   ];
-
+  // Menu and Hover
   const [activeMenu, setActiveMenu] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleMenuClick = (index) => {
+    console.log(index);
     if (activeMenu === index) {
       setActiveMenu(null);
     } else {
-      !isOpen ? setActiveMenu(null) : setActiveMenu(index);
+      if (isHovered || isOpen) {
+        setActiveMenu(index);
+      }
     }
   };
 
   return (
     <section className="sidebar-div">
-      <div className="sidebar-container">
+      <div className="sidebar-container w-100">
         <div
-          style={{
-            width: isOpen ? "300px" : "70px",
-            transition: "all 50ms ease-in-out",
-          }}
           className="sidebar"
+          style={{
+            backgroundColor: isHovered || isOpen ? "#111C43" : "",
+            width: isOpen || isHovered ? "300px" : "80px",
+            position: !isOpen && isHovered ? "absolute" : "",
+            // transition: "all 50ms ease-in-out",
+          }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="top-side d-flex justify-content-center">
-            <img className="logo" src={isOpen ? Logo : Logo2} alt="" />
+          <div className="top-side d-flex justify-content-center align-items-center">
+            <img
+              className="logo"
+              src={isOpen || isHovered ? Logo : Logo2}
+              alt=""
+            />
           </div>
-          {menuItem.map((menu, index) => (
-            <div className="bottom-side" key={index}>
-              <div style={{ color: "#49547A" }} className="side-heading">
-                <p style={{ textAlign: isOpen ? "left" : "center" }}>
-                  {isOpen ? menu.heading : <GoDot />}
-                </p>
-              </div>
-              <NavLink to={menu.path} onClick={() => handleMenuClick(index)}>
-                <div
-                  style={{ padding: isOpen ? "6px 15px" : "0" }}
-                  className="d-flex align-items-center justify-content-between link"
-                >
-                  <div className="icon-text d-flex">
-                    <div className="icon text-white">
-                      {isOpen ? menu.icon : null}
-                    </div>
-                    <div
-                      style={{ fontSize: !isOpen ? "20px" : "14px" }}
-                      className="link-text "
-                    >
-                      <b>{isOpen ? menu.name : menu.icon}</b>
-                    </div>
-                  </div>
-                  <div className="drop-icon text-white">
-                    {isOpen ? (
-                      activeMenu === index ? (
-                        <IoMdArrowDropdown style={{ fontSize: "20px" }} />
-                      ) : (
-                        <AiFillCaretRight style={{ fontSize: "14px" }} />
-                      )
-                    ) : null}
-                  </div>
+          {/* Menu Items */}
+          <div>
+            {menuItem.map((menu, index) => (
+              <div className="bottom-side" key={index}>
+                {/* Sidebar Heading */}
+                <div className="side-heading">
+                  <p
+                    style={{
+                      textAlign: isOpen || isHovered ? "left" : "center",
+                    }}
+                  >
+                    {isOpen || isHovered ? menu.heading : <GoDot />}
+                  </p>
                 </div>
-              </NavLink>
-              {activeMenu === index && (
-                <div className="dropdown">
-                  {menu.subitems.map((subitem, subindex) => (
-                    <NavLink to={subitem.path} key={subindex}>
-                      <div className="subitem px-3 py-2">
-                        <ul>
-                          {isOpen ? (
-                            <li className="text-white">{subitem.name}</li>
-                          ) : null}
-                        </ul>
-                      </div>
-                    </NavLink>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
 
-        <main className="main-area project-container">{children}</main>
+                {/* Siderbar Link */}
+                <NavLink to={menu.path} onClick={() => handleMenuClick(index)}>
+                  <div
+                    style={{ padding: isOpen || isHovered ? "6px 17px" : "0" }}
+                    onClick={() => handleMenuClick(index)}
+                    className={`d-flex align-items-center justify-content-between link ${
+                      (isOpen && activeMenu === index) ||
+                      (!isOpen && activeMenu === index)
+                        ? "active"
+                        : ""
+                    }`}
+                  >
+                    {/* Icon and Text in link */}
+                    <div className="icon-text d-flex align-items-center justify-content-center">
+                      {/*Icon  */}
+                      <div className="icon text-white">
+                        {isOpen || isHovered ? menu.icon : null}
+                      </div>
+
+                      {/* Text */}
+                      <div
+                        style={{
+                          fontSize: isOpen || isHovered ? "14px" : "20px",
+                        }}
+                        className="link-text "
+                      >
+                        <span>
+                          {isOpen || isHovered ? menu.name : menu.icon}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="drop-icon text-white">
+                      {isOpen || isHovered ? (
+                        activeMenu === index ? (
+                          <IoMdArrowDropdown style={{ fontSize: "20px" }} />
+                        ) : (
+                          <AiFillCaretRight style={{ fontSize: "14px" }} />
+                        )
+                      ) : null}
+                    </div>
+                  </div>
+                </NavLink>
+                {/* Sub Menu */}
+                <div>
+                  {activeMenu === index && (
+                    <div className="dropdown mt-1">
+                      {menu.subitems.map((subitem, subindex) => (
+                        <NavLink to={subitem.path} key={subindex}>
+                          <div className="subitem px-3 py-2">
+                            {isOpen || isHovered ? (
+                              <ul>
+                                <li className="text-white">{subitem.name}</li>
+                              </ul>
+                            ) : null}
+                          </div>
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Main Area */}
+        <main
+          className="main-area"
+          style={{ paddingLeft: isOpen || !isHovered ? "0px" : "80px" }}
+        >
+          {children}
+        </main>
       </div>
     </section>
   );

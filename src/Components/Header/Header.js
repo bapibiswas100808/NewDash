@@ -8,15 +8,16 @@ import { AiOutlineShoppingCart, AiOutlineAppstore } from "react-icons/ai";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { BsFillSunFill } from "react-icons/bs";
 import "./Header.css";
-import { NavLink } from "react-router-dom";
 import { Themecontext } from "../ThemeContext/ThemeContext";
 import profileImage from "../../images/favicon1.png";
 
 const Header = ({ onClick, isOpen }) => {
+  // Theme Selection
   const { theme, setTheme } = useContext(Themecontext);
   const handleMode = () => {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
   };
+  // Fullscreen Control
   const [fullScreen, setFullScreen] = useState();
   const handleFullscreen = () => {
     const isFullScreen = document.fullscreenElement;
@@ -58,6 +59,7 @@ const Header = ({ onClick, isOpen }) => {
         style={{ borderBottom: theme === "light" ? null : "1px solid #313335" }}
         className="header-area d-flex justify-content-between align-items-center"
       >
+        {/* Toogle Bar */}
         <div className="header-content-left">
           <div className="bars">
             {isOpen ? (
@@ -67,14 +69,18 @@ const Header = ({ onClick, isOpen }) => {
             )}
           </div>
         </div>
+
+        {/* Header links */}
         <div className="header-content-right d-flex align-items-center">
+          {/* Search Button */}
           <div className="ps-4">
-            <NavLink>
+            <div>
               <i>
                 <BsSearch style={{ color: "#536485" }} />
               </i>
-            </NavLink>
+            </div>
           </div>
+          {/* Country optios */}
           <div className="ps-4">
             <select style={{ color: "#536485" }} className="country-drop">
               <option>1</option>
@@ -85,6 +91,7 @@ const Header = ({ onClick, isOpen }) => {
               <option>6</option>
             </select>
           </div>
+          {/* Dark/light switch */}
           <div className="ps-4">
             <div className="switch">
               <button
@@ -96,21 +103,25 @@ const Header = ({ onClick, isOpen }) => {
               </button>
             </div>
           </div>
+          {/* Cart */}
           <div className="ps-4">
             <i>
               <AiOutlineShoppingCart />
             </i>
           </div>
+          {/* Notifications */}
           <div className="ps-4">
             <i>
               <IoIosNotificationsOutline />
             </i>
           </div>
+          {/* App Store */}
           <div className="ps-4">
             <i>
               <AiOutlineAppstore />
             </i>
           </div>
+          {/* Full Screen mode */}
           <div className="ps-4">
             <button className="screen-button" onClick={handleFullscreen}>
               <i style={{ color: "#536485" }}>
@@ -118,6 +129,7 @@ const Header = ({ onClick, isOpen }) => {
               </i>
             </button>
           </div>
+          {/* Profile */}
           <div className="ps-4 d-flex justify-content-center align-items-center">
             <div className="profile-image">
               <img className="" src={profileImage} alt="" />
@@ -127,6 +139,7 @@ const Header = ({ onClick, isOpen }) => {
               <p>Web Developer</p>
             </div>
           </div>
+          {/* Settings */}
           <div className="ps-4">
             <FiSettings className="settings-button" />
           </div>
