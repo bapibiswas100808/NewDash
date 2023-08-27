@@ -20,7 +20,10 @@ function App() {
       <div className={`App ${theme}`}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<WithLayout />} />
+            <Route
+              path="/"
+              element={<WithLayout isOpen={isOpen} toggle={toggle} />}
+            />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route
