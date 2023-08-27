@@ -1,0 +1,49 @@
+.sign-up-text h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.sign-up-text p {
+  font-size: 0.813rem;
+  color: #babdc1;
+}
+.sign-up-buttons button {
+  margin: 0 0.375rem 0.375rem;
+  font-size: 0.85rem;
+  border-radius: 0.35rem;
+  padding: 0.5rem 0.85rem;
+  box-shadow: none;
+  font-weight: 500;
+  border: 0.667px solid rgb(243, 246, 248);
+}
+.sign-up-buttons button:hover {
+  background-color: rgb(228, 236, 242);
+}
+.btn-icon {
+  font-size: 1rem;
+}
+.or-text {
+  font-size: 13px;
+  position: relative;
+}
+.or-text::before {
+  position: absolute;
+  content: "";
+  width: 45%;
+  height: 0.125rem;
+  background-image: linear-gradient(to left, transparent, rgb(243, 246, 248));
+  border-radius: 50%;
+  inset-inline-end: 0;
+  inset-block-start: 0.563rem;
+  z-index: 1;
+}
+.or-text::after {
+  position: absolute;
+  content: "";
+  width: 45%;
+  height: 0.125rem;
+  background-image: linear-gradient(to left, rgb(243, 246, 248), transparent);
+  border-radius: 50%;
+  inset-inline-start: 0;
+  inset-block-start: 0.563rem;
+  z-index: 1;
+}

@@ -1,0 +1,17 @@
+.form-input input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #333335;
+  background-color: #ffffff;
+  border: 1px solid #e9edf6;
+  border-radius: 5px;
+}
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.go-sign p span {
+  font-size: 12px;
+}

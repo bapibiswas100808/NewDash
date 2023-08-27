@@ -7,6 +7,8 @@ import { Themecontext } from "./Components/ThemeContext/ThemeContext";
 import CRM from "./Pages/SubPages/CRM/CRM";
 import SignUp from "./Components/SignUp/SignUp";
 import About from "./Pages/About/About";
+import "swiper/css";
+import SignIn from "./Components/SignIn/SignIn";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -18,6 +20,8 @@ function App() {
       <div className={`App ${theme}`}>
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<WithLayout />} />
+            <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route
               path="/dashboard1"

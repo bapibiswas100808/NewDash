@@ -1,0 +1,13 @@
+.sign-up-area {
+  background-color: #ffffff !;
+  z-index: 2;
+}
+.sign-submit button {
+  padding: 0.65rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background-color: rgb(132, 90, 223);
+  color: #ffffff;
+  border: 1px solid rgb(132, 90, 223);
+}
