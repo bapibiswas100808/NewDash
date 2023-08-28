@@ -9,6 +9,7 @@ import SignUp from "./Components/SignUp/SignUp";
 import About from "./Pages/About/About";
 import "swiper/css";
 import SignIn from "./Components/SignIn/SignIn";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -46,6 +47,7 @@ const WithLayout = ({ children, isOpen, toggle }) => {
     <Sidebar isOpen={isOpen}>
       <Header onClick={toggle} isOpen={isOpen} />
       {children}
+      <Footer onClick={toggle} isOpen={isOpen} />
     </Sidebar>
   );
 };

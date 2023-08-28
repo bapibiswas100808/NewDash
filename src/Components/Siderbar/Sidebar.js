@@ -52,12 +52,10 @@ const Sidebar = ({ isOpen, children }) => {
     <section className="sidebar-div">
       <div className="sidebar-container w-100">
         <div
-          className="sidebar"
+          className={`sidebar ${!isOpen && isHovered ? "absolute" : ""}`}
           style={{
             backgroundColor: isHovered || isOpen ? "#111C43" : "",
             width: isOpen || isHovered ? "300px" : "80px",
-            position: !isOpen && isHovered ? "absolute" : "",
-            // transition: "all 50ms ease-in-out",
           }}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -151,7 +149,7 @@ const Sidebar = ({ isOpen, children }) => {
         {/* Main Area */}
         <main
           className="main-area"
-          style={{ paddingLeft: isOpen || !isHovered ? "0px" : "80px" }}
+          style={{ paddingLeft: isOpen || !isHovered ? "0px" : "75px" }}
         >
           {children}
         </main>

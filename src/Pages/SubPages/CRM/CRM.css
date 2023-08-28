@@ -1,5 +1,6 @@
 .crm-div {
   margin-top: 30px;
+  z-index: 1;
 }
 .crm-area {
   margin: 0 30px;
@@ -30,4 +31,12 @@
 .export-button:hover {
   background-color: #23b7e5;
   color: #ffffff;
+}
+.card {
+  width: 100%;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 0.125rem 0 rgba(10, 10, 10, 0.04);
+  margin-bottom: 24px;
 }
