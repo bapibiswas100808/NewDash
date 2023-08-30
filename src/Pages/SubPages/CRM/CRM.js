@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CRM.css";
 import { Col, Row } from "react-bootstrap";
-import { BsFilterSquare } from "react-icons/bs";
-import { BiExport } from "react-icons/bi";
+import { BsFilterSquare, BsThreeDotsVertical } from "react-icons/bs";
+import { BiExport, BiPulse } from "react-icons/bi";
+import { HiOutlineBriefcase } from "react-icons/hi";
+import { NavLink } from "react-router-dom";
+import { GoPeople } from "react-icons/go";
+import { TbCalendarEvent } from "react-icons/tb";
+import BasicCard from "../../../Components/BasicCard/BasicCard";
+import targetImage from "../../../images/loading.png";
+import dealer1 from "../../../images/topdealer1.jpg";
 
 const CRM = () => {
+  const [openDealdrop, setOpenDealDrop] = useState(false);
+  const handleDealDrop = () => {
+    setOpenDealDrop(!openDealdrop);
+  };
   return (
     <section className="crm-div">
       <div className="crm-area">
@@ -37,24 +48,154 @@ const CRM = () => {
                     <Row>
                       <Col lg={12}>
                         <div>
-                          <div className="crm-target card">
-                            <h5>Your target is incomplete</h5>
-                            <p>
-                              you have completed 48% of the given targrt, you
-                              can also check your status.
-                            </p>
-                            <a href="/">Click here</a>
+                          <div className="crm-target card target-content">
+                            <div className="d-flex align-items-center justify-content-between">
+                              <div className="target-text pe-3">
+                                <h5>Your target is incomplete</h5>
+                                <p className="py-1">
+                                  You have completed
+                                  <span className="target-span ms-1">
+                                    66%
+                                  </span>{" "}
+                                  of the given targrt, you can also check your
+                                  status.
+                                </p>
+                                <NavLink>Click here</NavLink>
+                              </div>
+                              <div className="target-image">
+                                <img
+                                  src={targetImage}
+                                  alt=""
+                                  className="d-block"
+                                />
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </Col>
                       <Col lg={12}>
                         <div className="crm-deal card">
-                          <h5>Top Deals</h5>
+                          <div className="top-deal-top d-flex justify-content-between">
+                            <div className="card-heading">
+                              <h5>Top Deals</h5>
+                            </div>
+                            <div className="deal-dropdown">
+                              <div
+                                onClick={handleDealDrop}
+                                className="three-dots"
+                              >
+                                <i>
+                                  <BsThreeDotsVertical />
+                                </i>
+                                {openDealdrop && (
+                                  <ul className="list-unstyled deal-drop-items">
+                                    <li>Week</li>
+                                    <li>Month</li>
+                                    <li>Year</li>
+                                  </ul>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="top-deal-bottom">
+                            <ul className="list-unstyled mb-0">
+                              <li>
+                                <div className="dealer-detail d-flex align-items-top flex-wrap">
+                                  <div className="dealer-image me-2">
+                                    <img
+                                      src={dealer1}
+                                      alt=""
+                                      className="d-block w-100"
+                                    />
+                                  </div>
+                                  <div className="dealer-contact flex-fill">
+                                    <p className="mb-0">Michale Jordan</p>
+                                    <span className="fs-12">
+                                      michale.jordan@gmail.com
+                                    </span>
+                                  </div>
+                                  <div className="deal-amount">$6767</div>
+                                </div>
+                              </li>
+                              <li>
+                                <div className="dealer-detail d-flex align-items-top flex-wrap">
+                                  <div className="dealer-image me-2">
+                                    <img
+                                      src={dealer1}
+                                      alt=""
+                                      className="d-block w-100"
+                                    />
+                                  </div>
+                                  <div className="dealer-contact flex-fill">
+                                    <p className="mb-0">Michale Jordan</p>
+                                    <span className="fs-12">
+                                      michale.jordan@gmail.com
+                                    </span>
+                                  </div>
+                                  <div className="deal-amount">$6767</div>
+                                </div>
+                              </li>
+                              <li>
+                                <div className="dealer-detail d-flex align-items-top flex-wrap">
+                                  <div className="dealer-image me-2">
+                                    <img
+                                      src={dealer1}
+                                      alt=""
+                                      className="d-block w-100"
+                                    />
+                                  </div>
+                                  <div className="dealer-contact flex-fill">
+                                    <p className="mb-0">Michale Jordan</p>
+                                    <span className="fs-12">
+                                      michale.jordan@gmail.com
+                                    </span>
+                                  </div>
+                                  <div className="deal-amount">$6767</div>
+                                </div>
+                              </li>
+                              <li>
+                                <div className="dealer-detail d-flex align-items-top flex-wrap">
+                                  <div className="dealer-image me-2">
+                                    <img
+                                      src={dealer1}
+                                      alt=""
+                                      className="d-block w-100"
+                                    />
+                                  </div>
+                                  <div className="dealer-contact flex-fill">
+                                    <p className="mb-0">Michale Jordan</p>
+                                    <span className="fs-12">
+                                      michale.jordan@gmail.com
+                                    </span>
+                                  </div>
+                                  <div className="deal-amount">$6767</div>
+                                </div>
+                              </li>
+                              <li>
+                                <div className="dealer-detail d-flex align-items-top flex-wrap">
+                                  <div className="dealer-image me-2">
+                                    <img
+                                      src={dealer1}
+                                      alt=""
+                                      className="d-block w-100"
+                                    />
+                                  </div>
+                                  <div className="dealer-contact flex-fill">
+                                    <p className="mb-0">Michale Jordan</p>
+                                    <span className="fs-12">
+                                      michale.jordan@gmail.com
+                                    </span>
+                                  </div>
+                                  <div className="deal-amount">$6767</div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
                         </div>
                       </Col>
                       <Col lg={12}>
                         <div className="crm-earned card">
-                          <h5>Profile Earned</h5>
+                          <h5 className="card-heading">Profile Earned</h5>
                         </div>
                       </Col>
                     </Row>
@@ -62,28 +203,48 @@ const CRM = () => {
                   <Col lg={8}>
                     <Row>
                       <Col lg={6}>
-                        <div className="crm-cutomer card">
-                          <h5>Total Customers</h5>
+                        <div className="crm-customer card">
+                          <BasicCard
+                            cardTitle="Total Customers"
+                            numbers="1,02,890"
+                            percentage="+40%"
+                            icon={<GoPeople />}
+                          />
                         </div>
                       </Col>
                       <Col lg={6}>
                         <div className="crm-revenue card">
-                          <h5>Total Revenue</h5>
+                          <BasicCard
+                            cardTitle="Total Revenue"
+                            numbers="$56,562"
+                            percentage="+25%"
+                            icon={<TbCalendarEvent />}
+                          />
                         </div>
                       </Col>
                       <Col lg={6}>
                         <div className="crm-ratio card">
-                          <h5>Conversation Ratio</h5>
+                          <BasicCard
+                            cardTitle="Conversion Ratio"
+                            numbers="12.08%"
+                            percentage="-12%"
+                            icon={<BiPulse />}
+                          />
                         </div>
                       </Col>
                       <Col lg={6}>
                         <div className="crm-total-deals card">
-                          <h5>Total deals</h5>
+                          <BasicCard
+                            cardTitle="Total Deals"
+                            numbers="2,543"
+                            percentage="+19%"
+                            icon={<HiOutlineBriefcase />}
+                          />
                         </div>
                       </Col>
                       <Col lg={12}>
                         <div className="crm-revenue-stats card">
-                          <h5>Revenue Analytics</h5>
+                          <h5 className="card-heading">Revenue Analytics</h5>
                         </div>
                       </Col>
                     </Row>
@@ -92,24 +253,24 @@ const CRM = () => {
               </Col>
               <Col lg={12}>
                 <div className="crm-stats card">
-                  <h5>Deals Statistics</h5>
+                  <h5 className="card-heading">Deals Statistics</h5>
                 </div>
               </Col>
               <Col lg={12}>
                 <div className="crm-leads card">
-                  <h5>Leads By Source</h5>
+                  <h5 className="card-heading">Leads By Source</h5>
                 </div>
               </Col>
               <Col lg={12}>
                 <Row>
                   <Col lg={6}>
                     <div className="crm-status card">
-                      <h5>Deals Status</h5>
+                      <h5 className="card-heading">Deals Status</h5>
                     </div>
                   </Col>
                   <Col lg={6}>
                     <div className="crm-activity card">
-                      <h5>Recent Activity</h5>
+                      <h5 className="card-heading">Recent Activity</h5>
                     </div>
                   </Col>
                 </Row>

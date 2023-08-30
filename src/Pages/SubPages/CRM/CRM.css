@@ -39,4 +39,143 @@
   background-color: #ffffff;
   box-shadow: 0 0.125rem 0 rgba(10, 10, 10, 0.04);
   margin-bottom: 24px;
+  z-index: 20;
+}
+/* .card h5 {
+  font-size: 0.813rem;
+}
+.card p {
+  font-size: 12px;
+}
+.card a {
+  font-size: 13px;
+} */
+.crm-target {
+  background-color: #9477e1 !important;
+}
+.target-content {
+  position: relative;
+}
+.target-content::after {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  background-image: url(../../../images/targetbg.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  left: 0;
+  top: 0;
+  opacity: 0.2;
+  z-index: -1;
+}
+.crm-target h5 {
+  color: #ffffff !important;
+  font-size: 1.135rem !important;
+  font-weight: 600;
+}
+.crm-target p {
+  color: #ffffff !important;
+  font-size: 0.75rem;
+}
+.crm-target a {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+  padding-top: 10px;
+  font-weight: 600;
+  font-size: 0.813rem;
+}
+.crm-target img {
+  height: 85px;
+  width: 85px;
+}
+.crm-target .target-span {
+  font-weight: 600;
+  color: #f5b849;
+}
+.card-heading {
+  position: relative;
+}
+.card-heading::before {
+  position: absolute;
+  content: "";
+  height: 1rem;
+  width: 0.23rem;
+  border-radius: 0.5rem;
+  top: 0;
+  left: -12px;
+  background: linear-gradient(
+    to bottom,
+    rgba(132, 90, 223, 0.5) 50%,
+    rgba(35, 183, 229, 0.5) 50%
+  );
+}
+.crm-customer .card-icon i {
+  background-color: #985adf;
+}
+.crm-revenue .card-icon i {
+  background-color: #23b7e5;
+}
+.crm-ratio {
+  z-index: 1;
+}
+.crm-ratio .card-icon i {
+  background-color: #26bf94;
+}
+.crm-ratio .basic-bottom-right p {
+  color: #e6533c;
+}
+.crm-revenue-stats {
+  z-index: 1;
+}
+.crm-total-deals .card-icon i {
+  background-color: #f5b849;
+}
+.dealer-contact span {
+  font-size: 0.75rem;
+}
+.top-deal-top {
+  padding: 1rem 1.25rem;
+  border-radius: 0.625rem 0.625rem 0 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+}
+.top-deal-top h5 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+.deal-drop-items {
+  position: absolute;
+  background-color: #fff;
+  width: 50%;
+  z-index: 99;
+}
+.deal-drop-items li {
+  color: #333335;
+  white-space: unset;
+  padding: 0.5rem 0.9375rem;
+  font-size: 0.8215rem;
+  font-weight: 500;
+}
+.top-deal-bottom {
+  padding: 1.25rem 0;
+}
+.top-deal-bottom li {
+  margin-block-end: 0.9rem;
+}
+.top-deal-bottom li:last-child {
+  margin-block-end: 0rem;
+}
+.dealer-image img {
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+}
+.dealer-contact p {
+  font-size: 0.813rem;
+  font-weight: 600;
+  color: #333335;
+}
+.deal-amount {
+  font-weight: 600;
 }

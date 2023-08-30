@@ -20,7 +20,7 @@ const Header = ({ onClick, isOpen }) => {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
   };
   // Fullscreen Control
-  const [fullScreen, setFullScreen] = useState();
+  const [fullScreen, setFullScreen] = useState(true);
   const handleFullscreen = () => {
     const isFullScreen = document.fullscreenElement;
     setFullScreen(isFullScreen);

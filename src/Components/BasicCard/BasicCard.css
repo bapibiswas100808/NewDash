@@ -1,0 +1,30 @@
+.card-icon span i {
+  color: #ffffff;
+  padding: 9px 13px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.basic-top-right img {
+  height: 40px;
+}
+.basic-top-left h4 {
+  font-weight: 600;
+}
+.basic-bottom-right span {
+  font-size: 0.6875rem;
+  color: #8c9097;
+}
+.basic-bottom-right p {
+  font-size: 0.813rem;
+  font-weight: 600;
+  color: rgb(38, 191, 148);
+}
+.basic-bottom-left a {
+  font-size: 0.813rem;
+  color: #985adf;
+  font-weight: 600;
+}
+.basic-bottom-left i {
+  color: #985adf;
+}

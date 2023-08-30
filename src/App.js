@@ -23,7 +23,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<WithLayout isOpen={isOpen} toggle={toggle} />}
+              element={<CRMWithLayout isOpen={isOpen} toggle={toggle} />}
             />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
