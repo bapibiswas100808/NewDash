@@ -41,6 +41,15 @@
   margin-bottom: 24px;
   z-index: 20;
 }
+.special-card {
+  width: 100%;
+  padding: 1rem 2rem 2rem 2rem;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 0.125rem 0 rgba(10, 10, 10, 0.04);
+  margin-bottom: 24px;
+  z-index: 20;
+}
 /* .card h5 {
   font-size: 0.813rem;
 }
@@ -140,7 +149,13 @@
   border-radius: 0.625rem 0.625rem 0 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.175);
 }
-.top-deal-top h5 {
+.top-special-top {
+  padding: 10px 0;
+  border-radius: 0.625rem 0.625rem 0 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+}
+
+.top-special-top h5 {
   font-size: 0.9375rem;
   font-weight: 600;
 }
@@ -179,3 +194,32 @@
 .deal-amount {
   font-weight: 600;
 }
+.chart-container {
+  min-height: 345px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+}
+.crm-revenue-stats p {
+  font-size: 0.8123rem;
+}
+.stats-input {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.8rem;
+}
+.crm-stats-btn {
+  background-color: #8f69e1 !important;
+  color: #fff !important;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+}
+.crm-stats-body td {
+  font-size: 0.8523rem;
+  font-weight: 500;
+}
+/* .crm-stats-body a {
+  background-color: rgba(23, 116, 89, 0.1);
+} */
