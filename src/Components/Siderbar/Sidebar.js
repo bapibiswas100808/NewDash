@@ -149,7 +149,9 @@ const Sidebar = ({ isOpen, children }) => {
         {/* Main Area */}
         <main
           className="main-area"
-          style={{ paddingLeft: isOpen || !isHovered ? "0px" : "75px" }}
+          style={{
+            marginLeft: isOpen ? "240px" : "75px",
+          }}
         >
           {children}
         </main>

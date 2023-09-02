@@ -1,3 +1,9 @@
+.header-div {
+  position: fixed;
+  z-index: 99;
+  width: calc(100% - 75.24px);
+  top: 0;
+}
 .header-area {
   padding: 13px 30px;
   min-height: 60px;

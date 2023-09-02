@@ -56,7 +56,10 @@ const Header = ({ onClick, isOpen }) => {
   };
 
   return (
-    <section className="header-div">
+    <section
+      style={{ width: isOpen ? "calc(100% - 240px)" : "calc(100% - 75.24px)" }}
+      className="header-div"
+    >
       <div
         style={{ borderBottom: theme === "light" ? null : "1px solid #313335" }}
         className="header-area d-flex justify-content-between align-items-center"
