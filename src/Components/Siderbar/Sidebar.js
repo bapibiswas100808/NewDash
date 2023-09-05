@@ -50,9 +50,11 @@ const Sidebar = ({ isOpen, children }) => {
 
   return (
     <section className="sidebar-div">
-      <div className="sidebar-container w-100">
+      <div className="sidebar-container">
         <div
-          className={`sidebar ${!isOpen && isHovered ? "absolute" : ""}`}
+          className={`sidebar d-lg-block d-none ${
+            !isOpen && isHovered ? "absolute" : ""
+          }`}
           style={{
             backgroundColor: isHovered || isOpen ? "#111C43" : "",
             width: isOpen || isHovered ? "300px" : "80px",
@@ -150,7 +152,13 @@ const Sidebar = ({ isOpen, children }) => {
         <main
           className="main-area"
           style={{
-            marginLeft: isOpen ? "240px" : "75px",
+            marginLeft: isOpen
+              ? window.innerWidth < 992
+                ? "0px"
+                : "240px"
+              : window.innerWidth < 992
+              ? "0px"
+              : "75px",
           }}
         >
           {children}

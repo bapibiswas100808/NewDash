@@ -57,7 +57,15 @@ const Header = ({ onClick, isOpen }) => {
 
   return (
     <section
-      style={{ width: isOpen ? "calc(100% - 240px)" : "calc(100% - 75.24px)" }}
+      style={{
+        width: isOpen
+          ? window.innerWidth < 992
+            ? "100%"
+            : "calc(100% - 240px)"
+          : window.innerWidth < 992
+          ? "100%"
+          : "calc(100% - 75.24px)",
+      }}
       className="header-div"
     >
       <div

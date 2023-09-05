@@ -59,7 +59,7 @@ const CRM = () => {
 
   return (
     <section className="crm-div">
-      <div className="crm-area">
+      <div className="crm-area crm-container">
         <div className="crm-intro d-flex justify-content-between">
           <div className="crm-intro-text">
             <h3>Welcome Back, Jason Tyler!</h3>
@@ -320,11 +320,11 @@ const CRM = () => {
               </Col>
               <Col lg={12}>
                 <div className="crm-stats card">
-                  <div className="top-special-top crm-stats-header d-flex justify-content-between align-items-center">
+                  <div className="top-special-top crm-stats-header d-flex justify-content-between">
                     <div className="stats-title">
                       <h5 className="card-heading">Deals Statistics</h5>
                     </div>
-                    <div className="stats-search-sort d-flex align-items-center">
+                    <div className="stats-search-sort d-flex align-items-top">
                       <div className="stats-search pe-2">
                         <input
                           placeholder="Search Here"

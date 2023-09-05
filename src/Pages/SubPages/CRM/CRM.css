@@ -3,7 +3,7 @@
   z-index: 1;
 }
 .crm-area {
-  margin: 0 30px;
+  padding: 0 30px;
 }
 .crm-intro-text h3 {
   font-size: 1.125rem;
@@ -50,15 +50,7 @@
   margin-bottom: 24px;
   z-index: 20;
 }
-/* .card h5 {
-  font-size: 0.813rem;
-}
-.card p {
-  font-size: 12px;
-}
-.card a {
-  font-size: 13px;
-} */
+
 .crm-target {
   background-color: #9477e1 !important;
 }
@@ -220,6 +212,19 @@
   font-size: 0.8523rem;
   font-weight: 500;
 }
-/* .crm-stats-body a {
-  background-color: rgba(23, 116, 89, 0.1);
-} */
+@media (max-width: 991px) {
+  .crm-intro {
+    flex-direction: column;
+  }
+}
+@media (max-width: 575px) {
+  .crm-stats-header {
+    flex-direction: column;
+  }
+  .stats-search-sort {
+    flex-direction: column;
+  }
+  .stats-search {
+    margin-bottom: 10px;
+  }
+}

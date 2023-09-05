@@ -3,6 +3,9 @@
   padding: 0;
   text-decoration: none !important;
 }
+.crm-container {
+  padding: 0 30px;
+}
 ul {
   margin-bottom: 0 !important;
 }
@@ -53,4 +56,9 @@ p {
 }
 .bars {
   color: var(--var-bar-bg);
+}
+@media (max-width: 991px) {
+  .crm-container {
+    padding: 0 15px !important;
+  }
 }

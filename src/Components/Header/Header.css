@@ -76,3 +76,8 @@
     transform: rotate(360deg);
   }
 }
+@media (max-width: 991) {
+  .header-div {
+    width: 100% !important;
+  }
+}
