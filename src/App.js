@@ -12,7 +12,7 @@ import SignIn from "./Components/SignIn/SignIn";
 import Footer from "./Components/Footer/Footer";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState("light");
   const toggle = () => setIsOpen(!isOpen);
 

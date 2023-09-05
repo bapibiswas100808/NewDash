@@ -19,7 +19,7 @@ const BasicCard = ({ cardTitle, numbers, percentage, icon }) => {
               <h4 className="mt-1 mb-2">{numbers}</h4>
             </div>
             <div className="basic-top-right">
-              <img className="d-block w-100" src={customerGraph} alt="" />
+              <img className="d-block" src={customerGraph} alt="" />
             </div>
           </div>
           <div className="basic-card-bottom d-flex justify-content-between align-items center mt-1">

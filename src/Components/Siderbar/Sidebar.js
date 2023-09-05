@@ -13,7 +13,11 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
   const menuRef = useRef();
   useEffect(() => {
     const handler = (e) => {
-      if (window.innerWidth < 992 && !menuRef.current.contains(e.target)) {
+      if (
+        isOpen &&
+        window.innerWidth < 992 &&
+        !menuRef.current.contains(e.target)
+      ) {
         setIsOpen(false);
       }
     };

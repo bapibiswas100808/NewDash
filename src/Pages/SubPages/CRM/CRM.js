@@ -146,7 +146,7 @@ const CRM = () => {
                                     <img
                                       src={dealer1}
                                       alt=""
-                                      className="d-block w-100"
+                                      className="d-block"
                                     />
                                   </div>
                                   <div className="dealer-contact flex-fill">
@@ -164,7 +164,7 @@ const CRM = () => {
                                     <img
                                       src={dealer1}
                                       alt=""
-                                      className="d-block w-100"
+                                      className="d-block"
                                     />
                                   </div>
                                   <div className="dealer-contact flex-fill">
@@ -182,7 +182,7 @@ const CRM = () => {
                                     <img
                                       src={dealer1}
                                       alt=""
-                                      className="d-block w-100"
+                                      className="d-block"
                                     />
                                   </div>
                                   <div className="dealer-contact flex-fill">
@@ -200,7 +200,7 @@ const CRM = () => {
                                     <img
                                       src={dealer1}
                                       alt=""
-                                      className="d-block w-100"
+                                      className="d-block"
                                     />
                                   </div>
                                   <div className="dealer-contact flex-fill">
@@ -218,7 +218,7 @@ const CRM = () => {
                                     <img
                                       src={dealer1}
                                       alt=""
-                                      className="d-block w-100"
+                                      className="d-block "
                                     />
                                   </div>
                                   <div className="dealer-contact flex-fill">
