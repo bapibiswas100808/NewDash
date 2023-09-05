@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiHomeAlt } from "react-icons/bi";
 import { MdOutlineContactPage } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -9,7 +9,26 @@ import "./Sidebar.css";
 import Logo from "../../images/logo.png";
 import Logo2 from "../../images/favicon1.png";
 
-const Sidebar = ({ isOpen, children }) => {
+const Sidebar = ({ isOpen, children, setIsOpen }) => {
+  const menuRef = useRef();
+  useEffect(() => {
+    const handler = (e) => {
+      if (window.innerWidth < 992 && !menuRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (window.innerWidth < 992) {
+      document.addEventListener("mousedown", handler);
+    }
+
+    return () => {
+      if (window.innerWidth < 992) {
+        document.removeEventListener("mousedown", handler);
+      }
+    };
+  }, [setIsOpen, isOpen]);
+
   // Menu Items
   const menuItem = [
     {
@@ -47,17 +66,24 @@ const Sidebar = ({ isOpen, children }) => {
       }
     }
   };
-
   return (
     <section className="sidebar-div">
       <div className="sidebar-container">
         <div
-          className={`sidebar d-lg-block d-none ${
-            !isOpen && isHovered ? "absolute" : ""
+          ref={menuRef}
+          className={`sidebar ${
+            !isOpen || isHovered || window.innerWidth < 992 ? "absolute" : ""
           }`}
           style={{
             backgroundColor: isHovered || isOpen ? "#111C43" : "",
-            width: isOpen || isHovered ? "300px" : "80px",
+            width:
+              isOpen || isHovered
+                ? window.innerWidth < 992
+                  ? "300px"
+                  : "300px"
+                : window.innerWidth < 992
+                ? "0px"
+                : "80px",
           }}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}

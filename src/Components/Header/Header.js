@@ -76,9 +76,15 @@ const Header = ({ onClick, isOpen }) => {
         <div className="header-content-left">
           <div className="bars">
             {isOpen ? (
-              <FaBars onClick={onClick} />
-            ) : (
+              window.innerWidth < 992 || window.innerWidth > 992 ? (
+                <FaBars onClick={onClick} />
+              ) : (
+                <RxCross1 onClick={onClick} />
+              )
+            ) : window.innerWidth > 992 ? (
               <RxCross1 onClick={onClick} />
+            ) : (
+              <FaBars onClick={onClick} />
             )}
           </div>
         </div>

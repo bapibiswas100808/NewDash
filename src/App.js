@@ -44,7 +44,7 @@ function App() {
 
 const WithLayout = ({ children, isOpen, toggle }) => {
   return (
-    <Sidebar isOpen={isOpen}>
+    <Sidebar isOpen={isOpen} setIsOpen={toggle}>
       <Header onClick={toggle} isOpen={isOpen} />
       {children}
       <Footer onClick={toggle} isOpen={isOpen} />
