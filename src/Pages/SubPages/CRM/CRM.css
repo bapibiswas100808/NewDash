@@ -212,6 +212,10 @@
   font-size: 0.8523rem;
   font-weight: 500;
 }
+.crm-leads canvas {
+  height: 18rem !important;
+  width: auto;
+}
 @media (max-width: 991px) {
   .crm-intro {
     flex-direction: column;

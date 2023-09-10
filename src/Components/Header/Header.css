@@ -8,6 +8,9 @@
   padding: 13px 30px;
   min-height: 60px;
 }
+.bars {
+  cursor: pointer;
+}
 .header-content-right {
   color: #536485;
 }

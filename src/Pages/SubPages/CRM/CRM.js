@@ -24,6 +24,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js/auto";
+import PercentageChart from "../../../Components/PercentageChart/PercentageChart";
 
 ChartJS.register(
   CategoryScale,
@@ -596,7 +597,12 @@ const CRM = () => {
               </Col>
               <Col lg={12}>
                 <div className="crm-leads card">
-                  <h5 className="card-heading">Leads By Source</h5>
+                  <div className="crm-leads-heading top-special-top">
+                    <h5 className="card-heading">Leads By Source</h5>{" "}
+                  </div>
+                  <div className="d-flex align-items-center justify-content-center ">
+                    <PercentageChart chartData={userData} />
+                  </div>
                 </div>
               </Col>
               <Col lg={12}>

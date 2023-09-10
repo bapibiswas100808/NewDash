@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
@@ -11,11 +11,31 @@ import "./Header.css";
 import { Themecontext } from "../ThemeContext/ThemeContext";
 import profileImage from "../../images/favicon1.png";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const Header = ({ onClick, isOpen }) => {
   // Theme Selection
   const { theme, setTheme } = useContext(Themecontext);
   const [isProfilopen, setIsProfileOpen] = useState(false);
+  const [countries, setCountries] = useState("");
+  const [country, setCountry] = useState("");
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://auth.privateyebd.com/api/v1/country/"
+        );
+        setCountries(response.data.results);
+      } catch (error) {
+        alert(JSON.stringify(error));
+      }
+    };
+
+    fetchData();
+  }, []);
+  const handleCountry = (e) => {
+    setCountry(e.target.value);
+  };
   const handleMode = () => {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
   };
@@ -101,13 +121,18 @@ const Header = ({ onClick, isOpen }) => {
           </div>
           {/* Country optios */}
           <div className="ps-4">
-            <select style={{ color: "#536485" }} className="country-drop">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
+            <select onChange={handleCountry} value={country}>
+              {countries.length > 0 ? (
+                countries.map((country) => (
+                  <option key={country.id} value={country.id}>
+                    <span>
+                      <img src={country.flag} alt="" />
+                    </span>
+                  </option>
+                ))
+              ) : (
+                <option value="">No options available</option>
+              )}
             </select>
           </div>
           {/* Dark/light switch */}
