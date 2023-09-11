@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
+import { CgProfile } from "react-icons/cg";
+import { LuSettings2 } from "react-icons/lu";
+import { HiOutlineLogout } from "react-icons/hi";
 import { BsMoonFill, BsFullscreenExit, BsFullscreen } from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
 import { AiOutlineShoppingCart, AiOutlineAppstore } from "react-icons/ai";
@@ -13,7 +16,7 @@ import profileImage from "../../images/favicon1.png";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 
-const Header = ({ onClick, isOpen }) => {
+const Header = ({ onClick, isOpen, onCountryChange }) => {
   // Theme Selection
   const { theme, setTheme } = useContext(Themecontext);
   const [isProfilopen, setIsProfileOpen] = useState(false);
@@ -35,6 +38,7 @@ const Header = ({ onClick, isOpen }) => {
   }, []);
   const handleCountry = (e) => {
     setCountry(e.target.value);
+    onCountryChange(setCountry);
   };
   const handleMode = () => {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
@@ -125,9 +129,7 @@ const Header = ({ onClick, isOpen }) => {
               {countries.length > 0 ? (
                 countries.map((country) => (
                   <option key={country.id} value={country.id}>
-                    <span>
-                      <img src={country.flag} alt="" />
-                    </span>
+                    {country.name}
                   </option>
                 ))
               ) : (
@@ -186,10 +188,24 @@ const Header = ({ onClick, isOpen }) => {
               <p>Web Developer</p>
             </div>
             {isProfilopen && (
-              <ul className="profile-list">
-                <li className="profile-list-item">Profile</li>
+              <ul className="profile-list d-flex flex-column justify-content-start bg-white mt-2 pe-5 py-3">
+                <NavLink to="/profile">
+                  <li className="profile-list-item pb-2">
+                    <CgProfile className="me-2" />
+                    Profile
+                  </li>
+                </NavLink>
+                <NavLink to="/settings">
+                  <li className="profile-list-item">
+                    <LuSettings2 className="me-2" />
+                    Settings
+                  </li>
+                </NavLink>
                 <NavLink to="/signup">
-                  <li className="profile-list-item">Log out</li>
+                  <li className="profile-list-item pt-2">
+                    <HiOutlineLogout className="me-2" />
+                    Log out
+                  </li>
                 </NavLink>
               </ul>
             )}

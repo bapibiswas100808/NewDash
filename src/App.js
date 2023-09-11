@@ -10,6 +10,8 @@ import About from "./Pages/About/About";
 import "swiper/css";
 import SignIn from "./Components/SignIn/SignIn";
 import Footer from "./Components/Footer/Footer";
+import Profile from "./Components/Profile/Profile";
+import Settings from "./Components/Settings/Settings";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +37,14 @@ function App() {
               path="/webpage1"
               element={<AboutWithLayout isOpen={isOpen} toggle={toggle} />}
             />
+            <Route
+              path="/profile"
+              element={<ProfileWithLayout isOpen={isOpen} toggle={toggle} />}
+            />
+            <Route
+              path="/settings"
+              element={<SettingsWithLayout isOpen={isOpen} toggle={toggle} />}
+            />
           </Routes>
         </BrowserRouter>
       </div>
@@ -56,6 +66,20 @@ const CRMWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
       <CRM />
+    </WithLayout>
+  );
+};
+const ProfileWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <Profile />
+    </WithLayout>
+  );
+};
+const SettingsWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <Settings />
     </WithLayout>
   );
 };

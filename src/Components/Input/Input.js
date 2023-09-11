@@ -1,11 +1,11 @@
 import React from "react";
 import "./Input.css";
 
-const Input = ({ label, placeholder, handleInput }) => {
+const Input = ({ label, placeholder, handleInput, type }) => {
   return (
     <div className="form-input mt-3">
       <label className="form-label">{label}</label>
-      <input placeholder={placeholder} onChange={handleInput} />
+      <input type={type} placeholder={placeholder} onChange={handleInput} />
     </div>
   );
 };

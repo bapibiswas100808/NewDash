@@ -60,6 +60,8 @@
   position: absolute;
   list-style: none;
   top: 50px;
+  border: 1px solid #b9c2d4;
+  border-radius: 5px;
 }
 .profile-list-item {
   font-size: 13px;
