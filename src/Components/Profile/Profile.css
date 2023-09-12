@@ -1,5 +1,5 @@
 .profile-area {
-  height: 100vh;
+  height: 100%;
 }
 .card {
   border-radius: 6px 6px 0 0 !important;
@@ -40,11 +40,131 @@
   color: black;
   font-weight: 500;
 }
+.bio-area {
+  border-radius: 0px 0px 6px 6px;
+}
+.bio-heading h2 {
+  font-size: 15px;
+}
+.bio-heading p {
+  font-size: 12px;
+}
+.profile-link h2 {
+  font-size: 15px;
+}
+.single-link span {
+  font-size: 12px;
+}
+.contact-zone h2 {
+  font-size: 15px;
+}
+.single-info span {
+  padding-right: 20px;
+}
+.single-info p {
+  font-size: 13px;
+  line-height: 2.5;
+}
+.social-networks h2 {
+  font-size: 15px;
+}
+.single-icon {
+  padding: 5px 5px;
+  font-size: 30px;
+  border-radius: 6px;
+}
+.facebook {
+  background-color: #e2eefc;
+  color: #845adf;
+}
+.facebook:hover {
+  background-color: #845adf;
+  color: #e2eefc;
+}
+.twitter {
+  background-color: #e9f8fc;
+  color: #23b7e5;
+}
+.twitter:hover {
+  color: #e9f8fc;
+  background-color: #23b7e5;
+}
+.instagram {
+  background-color: #fef8ec;
+  color: #f5b849;
+}
+.instagram:hover {
+  color: #fef8ec;
+  background-color: #f5b849;
+}
+.github {
+  background-color: #e9f8f4;
+  color: #26b594;
+}
+.github:hover {
+  color: #f9f8f4;
+  background-color: #26b594;
+}
+.youtube {
+  background-color: #ecedeb;
+  color: #e6533c;
+}
+.youtube:hover {
+  color: #ecedeb;
+  background-color: #e6533c;
+}
+.skills-area h2 {
+  font-size: 15px;
+}
+.skills span {
+  font-size: 10px;
+  padding: 4px 7px;
+  background-color: #f3f6f8;
+  color: #8c9097;
+  border-radius: 5px;
+}
+.single-skill a {
+  display: inline-block;
+}
+
+.follower-zone h2 {
+  font-size: 15px;
+}
+.single-follower {
+  margin-bottom: 20px;
+}
+.single-follower img {
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+}
+.single-follower button {
+  border: none;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+.follower-info p {
+  font-size: 13px;
+  color: #333335;
+  font-weight: 500;
+}
+.follower-info span {
+  font-size: 11px;
+  color: #8c9097;
+}
+.profile-content-area {
+  background-color: #ffffff;
+  height: 100%;
+}
 
 @media (max-width: 767px) {
   .profile-info-button button {
     position: absolute;
     left: 65%;
     top: 15%;
+  }
+  .single-link span {
+    font-size: 10px;
   }
 }

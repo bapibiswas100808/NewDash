@@ -28,7 +28,7 @@ const Verification = () => {
         alert("Verification Successful. Please Login.");
         setVerificationStatus("success");
         localStorage.removeItem("email");
-        navigate(`./signin`);
+        navigate(`/signin`);
       })
       .catch((error) => {
         console.log(error.response.data);

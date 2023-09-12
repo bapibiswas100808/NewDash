@@ -21,10 +21,8 @@ const SignIn = () => {
     axios
       .post(loginApi, loginForm)
       .then((res) => {
-        console.log(res.data);
         localStorage.setItem("getToken", res.data.token);
-        console.log(res.data.token);
-        navigate("/dashboard1");
+        navigate("/profile");
       })
       .catch((err) => {
         console.log(err.data);

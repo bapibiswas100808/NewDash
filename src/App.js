@@ -13,6 +13,7 @@ import Footer from "./Components/Footer/Footer";
 import Profile from "./Components/Profile/Profile";
 import Settings from "./Components/Settings/Settings";
 import Verification from "./Components/Verification/Verification";
+import { DataProvider } from "./Components/DataContext/DataContext";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,37 +21,39 @@ function App() {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <Themecontext.Provider value={{ theme, setTheme }}>
-      <div className={`App ${theme}`}>
-        <BrowserRouter>
-          <Routes>
-            <Route
-              path="/"
-              element={<CRMWithLayout isOpen={isOpen} toggle={toggle} />}
-            />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/signup/verification" element={<Verification />} />
-            <Route
-              path="/dashboard1"
-              element={<CRMWithLayout isOpen={isOpen} toggle={toggle} />}
-            />
-            <Route
-              path="/webpage1"
-              element={<AboutWithLayout isOpen={isOpen} toggle={toggle} />}
-            />
-            <Route
-              path="/profile"
-              element={<ProfileWithLayout isOpen={isOpen} toggle={toggle} />}
-            />
-            <Route
-              path="/settings"
-              element={<SettingsWithLayout isOpen={isOpen} toggle={toggle} />}
-            />
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </Themecontext.Provider>
+    <DataProvider>
+      <Themecontext.Provider value={{ theme, setTheme }}>
+        <div className={`App ${theme}`}>
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/"
+                element={<CRMWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/signup/verification" element={<Verification />} />
+              <Route
+                path="/dashboard1"
+                element={<CRMWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/webpage1"
+                element={<AboutWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/profile"
+                element={<ProfileWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/settings"
+                element={<SettingsWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </Themecontext.Provider>
+    </DataProvider>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
@@ -13,33 +13,40 @@ import { BsFillSunFill } from "react-icons/bs";
 import "./Header.css";
 import { Themecontext } from "../ThemeContext/ThemeContext";
 import profileImage from "../../images/favicon1.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useData } from "../DataContext/DataContext";
 import axios from "axios";
 
-const Header = ({ onClick, isOpen, onCountryChange }) => {
+const Header = ({ onClick, isOpen }) => {
+  const navigate = useNavigate();
+  const { data } = useData();
+  const firstName = data?.data?.first_name || "";
+  const countryId = data?.data?.country || "";
+
   // Theme Selection
   const { theme, setTheme } = useContext(Themecontext);
   const [isProfilopen, setIsProfileOpen] = useState(false);
-  const [countries, setCountries] = useState("");
-  const [country, setCountry] = useState("");
+  // const [countries, setCountries] = useState("");
+  const [country, setCountry] = useState({});
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://auth.privateyebd.com/api/v1/country/"
+          `https://auth.privateyebd.com/api/v1/country/${countryId}`
         );
-        setCountries(response.data.results);
+        setCountry(response.data);
+        console.log(response.data);
       } catch (error) {
         alert(JSON.stringify(error));
       }
     };
 
     fetchData();
-  }, [country]);
-  const handleCountry = (e) => {
-    setCountry(e.target.value);
-    onCountryChange(setCountry);
-  };
+  }, [countryId]);
+  // const handleCountry = (e) => {
+  //   setCountry(e.target.value);
+  //   onCountryChange(setCountry);
+  // };
   const handleMode = () => {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
   };
@@ -77,6 +84,11 @@ const Header = ({ onClick, isOpen, onCountryChange }) => {
         document.msExitFullscreen();
       }
     }
+  };
+  const handleLogOut = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("getToken");
+    navigate("/signin");
   };
 
   return (
@@ -124,18 +136,11 @@ const Header = ({ onClick, isOpen, onCountryChange }) => {
             </div>
           </div>
           {/* Country optios */}
-          <div className="ps-4">
-            <select onChange={handleCountry} value={country}>
-              {countries.length > 0 ? (
-                countries.map((country) => (
-                  <option key={country.id} value={country.id}>
-                    {country.name}
-                  </option>
-                ))
-              ) : (
-                <option value="">No options available</option>
-              )}
-            </select>
+          <div className="ps-4 country-image">
+            <img className="d-block " src={country.flag} alt="" />
+            {/* {country?.data?.data?.flag && (
+              <img src={country.data.data.flag} alt="Country Flag" />
+            )} */}
           </div>
           {/* Dark/light switch */}
           <div className="ps-4">
@@ -184,7 +189,7 @@ const Header = ({ onClick, isOpen, onCountryChange }) => {
               <img className="" src={profileImage} alt="" />
             </div>
             <div className="profile-text">
-              <h5 className="profile-heading">Name</h5>
+              <h5 className="profile-heading">{firstName}</h5>
               <p>Web Developer</p>
             </div>
             {isProfilopen && (
@@ -201,7 +206,7 @@ const Header = ({ onClick, isOpen, onCountryChange }) => {
                     Settings
                   </li>
                 </NavLink>
-                <NavLink to="/signup">
+                <NavLink onClick={handleLogOut}>
                   <li className="profile-list-item pt-2">
                     <HiOutlineLogout className="me-2" />
                     Log out
