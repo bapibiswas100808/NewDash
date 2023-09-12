@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import SignTop from "../SignTop/SignTop";
 import Input from "../Input/Input";
 import Slider from "../Slider/Slider";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./SignIn.css";
+import axios from "axios";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const loginApi = "https://auth.privateyebd.com/api/v1/login/";
+    const loginForm = {
+      email: userName,
+      password: password,
+    };
+    axios
+      .post(loginApi, loginForm)
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("getToken", res.data.token);
+        console.log(res.data.token);
+        navigate("/dashboard1");
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+  };
   return (
     <div className="sign-in-div">
       <div className="sign-in-area">
@@ -17,9 +40,19 @@ const SignIn = () => {
                 <div className="sign-in-top">
                   <SignTop heading="Sign In" text="Welcome back John!" />
                   <div className="sign-in-form">
-                    <form>
-                      <Input label="User Name" placeholder="user name" />
-                      <Input label="Password" placeholder="password" />
+                    <form onSubmit={handleLogin}>
+                      <Input
+                        handleInput={(e) => setUserName(e.target.value)}
+                        userName={userName}
+                        label="User Name"
+                        placeholder="user name"
+                      />
+                      <Input
+                        handleInput={(e) => setPassword(e.target.value)}
+                        password={password}
+                        label="Password"
+                        placeholder="password"
+                      />
                       <div className="form-checkbox d-flex align-items-center mt-3 mb-4">
                         <div>
                           <input type="checkbox" className="me-2" />
@@ -31,7 +64,9 @@ const SignIn = () => {
                         </div>
                       </div>
                       <div className="sign-submit mt-2">
-                        <button className="w-100">Sign In</button>
+                        <button type="submit" className="w-100">
+                          Sign In
+                        </button>
                       </div>
                     </form>
                     <div className="go-sign mt-4 text-center">

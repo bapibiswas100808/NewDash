@@ -17,9 +17,9 @@ const SignUp = () => {
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
   const [cmPassword, setCmPassword] = useState("");
-  const [selectedGender, setSelectedGender] = useState("");
+  const [selectedGender, setSelectedGender] = useState("0");
   const [countries, setCountries] = useState("");
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("20");
   useEffect(() => {
     const fetchData = async () => {
       try {

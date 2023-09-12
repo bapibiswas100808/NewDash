@@ -35,7 +35,7 @@ const Header = ({ onClick, isOpen, onCountryChange }) => {
     };
 
     fetchData();
-  }, []);
+  }, [country]);
   const handleCountry = (e) => {
     setCountry(e.target.value);
     onCountryChange(setCountry);
@@ -180,7 +180,7 @@ const Header = ({ onClick, isOpen, onCountryChange }) => {
             onClick={(e) => setIsProfileOpen(!isProfilopen)}
             className="ps-4 d-flex justify-content-center align-items-center header-profile"
           >
-            <div className="profile-image">
+            <div className="header-profile-image">
               <img className="" src={profileImage} alt="" />
             </div>
             <div className="profile-text">

@@ -12,6 +12,7 @@ import SignIn from "./Components/SignIn/SignIn";
 import Footer from "./Components/Footer/Footer";
 import Profile from "./Components/Profile/Profile";
 import Settings from "./Components/Settings/Settings";
+import Verification from "./Components/Verification/Verification";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +30,7 @@ function App() {
             />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/signup/verification" element={<Verification />} />
             <Route
               path="/dashboard1"
               element={<CRMWithLayout isOpen={isOpen} toggle={toggle} />}
