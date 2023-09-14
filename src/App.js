@@ -26,13 +26,10 @@ function App() {
         <div className={`App ${theme}`}>
           <BrowserRouter>
             <Routes>
-              <Route
-                path="/"
-                element={<CRMWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
+              <Route path="/" element={<SignUp />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
-              <Route path="/signup/verification" element={<Verification />} />
+              <Route path="/verification" element={<Verification />} />
               <Route
                 path="/dashboard1"
                 element={<CRMWithLayout isOpen={isOpen} toggle={toggle} />}

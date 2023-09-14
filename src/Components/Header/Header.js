@@ -12,7 +12,6 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { BsFillSunFill } from "react-icons/bs";
 import "./Header.css";
 import { Themecontext } from "../ThemeContext/ThemeContext";
-import profileImage from "../../images/favicon1.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useData } from "../DataContext/DataContext";
 import axios from "axios";
@@ -22,6 +21,7 @@ const Header = ({ onClick, isOpen }) => {
   const { data } = useData();
   const firstName = data?.data?.first_name || "";
   const countryId = data?.data?.country || "";
+  const image = data?.data?.image_url || "";
 
   // Theme Selection
   const { theme, setTheme } = useContext(Themecontext);
@@ -186,7 +186,7 @@ const Header = ({ onClick, isOpen }) => {
             className="ps-4 d-flex justify-content-center align-items-center header-profile"
           >
             <div className="header-profile-image">
-              <img className="" src={profileImage} alt="" />
+              <img className="" src={image} alt="" />
             </div>
             <div className="profile-text">
               <h5 className="profile-heading">{firstName}</h5>

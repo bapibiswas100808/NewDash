@@ -1,3 +1,80 @@
-.settings {
+.settings-area {
   height: 100vh;
+}
+.content {
+  display: none;
+}
+.active-content {
+  display: block;
+}
+.tabs {
+  cursor: pointer;
+}
+.active-tabs {
+  border-bottom: 1px solid red;
+}
+.update-image-info img {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 1px solid #335564;
+}
+.update-image button {
+  border: 0;
+  background-color: #906ae2;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #ffffff;
+}
+.update-image input {
+  font-size: 12px;
+}
+.update-image button:hover {
+  background-color: #8eafbd;
+}
+.update-name-bio input {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #333335;
+  background-color: #ffffff;
+  border: 1px solid #e9edf6;
+  border-radius: 5px;
+}
+.update-name-bio textarea {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #333335;
+  background-color: #ffffff;
+  border: 1px solid #e9edf6;
+  border-radius: 5px;
+}
+.update-name-bio button {
+  border: none;
+  background-color: #906ae2;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #ffffff;
+}
+.change-password h2 {
+  font-size: 15px;
+}
+.change-password input {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #333335;
+  background-color: #ffffff;
+  border: 1px solid #e9edf6;
+  border-radius: 5px;
+}
+.change-password button {
+  border: none;
+  font-size: 12px;
+  padding: 5px 10px;
+  background-color: #906ae2;
+  border-radius: 5px;
 }

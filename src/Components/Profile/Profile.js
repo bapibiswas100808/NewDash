@@ -44,6 +44,7 @@ const Profile = () => {
   const email = data?.data?.email || "";
   const mobile = data?.data?.mobile || "";
   const bio = data?.data?.bio || "";
+  const image = data?.data?.image_url || "";
   return (
     <div className="profile-area">
       <div className="project-container ">
@@ -71,7 +72,7 @@ const Profile = () => {
                   <div className="profile-image pe-3">
                     <img
                       className="d-block rounded-circle"
-                      src={profileImage}
+                      src={image}
                       alt=""
                     />
                   </div>
@@ -118,11 +119,12 @@ const Profile = () => {
               <div className="bio-content pb-4">
                 <div className="bio-heading">
                   <h2 className="fs-6">Professional Bio :</h2>
-                  <p>
+                  {/* <p>
+                    {bio}
                     I am soniya Taulor. here by conclude that, i am founder and
                     managing director of the pastegious company name laugh at
                     all and acts as the cheif executive officer of the company
-                  </p>
+                  </p> */}
                   <div className="bio-text">
                     <p>{bio}</p>
                   </div>
