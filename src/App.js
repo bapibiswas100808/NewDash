@@ -16,7 +16,7 @@ import Verification from "./Components/Verification/Verification";
 import { DataProvider } from "./Components/DataContext/DataContext";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [theme, setTheme] = useState("light");
   const toggle = () => setIsOpen(!isOpen);
 

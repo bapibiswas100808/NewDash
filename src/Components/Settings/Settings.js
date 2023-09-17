@@ -15,6 +15,7 @@ const Settings = () => {
   const [oldPsw, setOldPsw] = useState("");
   const [newPsw, setNewPsw] = useState("");
   const [cNewPsw, setCNewPsw] = useState("");
+  const [selectedImage, setSelectedImage] = useState();
   useEffect(() => {
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
     axios
@@ -27,7 +28,7 @@ const Settings = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [profile]);
+  }, []);
   if (!profile) {
     return null;
   }
@@ -38,8 +39,17 @@ const Settings = () => {
   const handleChange = (e) => {
     const upImage = e.target.files[0];
     setImage(upImage);
-    console.log(upImage);
-    handleImage();
+
+    if (upImage) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setSelectedImage(e.target.result);
+      };
+      reader.readAsDataURL(upImage);
+    } else {
+      setSelectedImage(null);
+    }
+    console.log(image);
   };
   const handleImage = () => {
     const imageApi = "https://auth.privateyebd.com/api/v1/documents/upload/";
@@ -59,6 +69,7 @@ const Settings = () => {
         console.log(res.data.id);
         setImageId(res.data.id);
         setUploading(false);
+        alert("Image Upload Successful");
       })
       .catch((err) => {
         console.log(err);
@@ -69,7 +80,7 @@ const Settings = () => {
     e.preventDefault();
     const form = e.target;
     const image = imageId;
-    console.log(Image);
+    console.log(image);
     const profileapi = "https://auth.privateyebd.com/api/v1/profile/";
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
     const first_name = form.fnameInput.value;
@@ -92,15 +103,14 @@ const Settings = () => {
       })
       .then((res) => {
         console.log(res.data);
+        alert("Updated SuccessFully!");
       })
       .catch((err) => {
         console.log(err);
       });
   };
   const handleRemove = () => {
-    console.log("Remove button clicked");
-    setImage(null);
-    setImageId(null);
+    setSelectedImage(null);
   };
   const handlePasswordChange = (e) => {
     e.preventDefault();
@@ -174,12 +184,10 @@ const Settings = () => {
                       <div className="settings-info-content">
                         <div className="update-image-info">
                           <h2>Photo :</h2>
-                          <img
-                            className="mb-3"
-                            src={profile.data.image_url}
-                            alt=""
-                          />
-                          <div className="update-image d-flex mb-3">
+
+                          <img className="mb-3" src={selectedImage} alt="" />
+
+                          <div className="update-image d-flex  flex-column flex-lg-row mb-3">
                             <div>
                               <input
                                 onChange={handleChange}
@@ -187,7 +195,7 @@ const Settings = () => {
                                 type="file"
                               />
                             </div>
-                            <div className="upload-buttons d-flex">
+                            <div className="upload-buttons d-flex mt-3 mt-lg-0">
                               <div className="upload-button me-3">
                                 <button onClick={handleImage} className="">
                                   {uploading ? "Uploading..." : "Upload"}
