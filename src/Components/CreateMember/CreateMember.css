@@ -1,0 +1,13 @@
+.create-area {
+  min-height: 100vh;
+  height: 100%;
+}
+.create-area button {
+  background-color: #845adf;
+  border: none;
+  color: #ffffff;
+}
+.create-area button:hover {
+  background-color: rgb(28, 98, 98);
+  color: #ffffff;
+}

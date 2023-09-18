@@ -1,0 +1,12 @@
+.update-area {
+  min-height: 100vh;
+  height: 100%;
+}
+.update-area button {
+  background-color: #845adf;
+  color: #ffffff;
+}
+.update-area button:hover {
+  background-color: rgb(28, 98, 98);
+  color: #ffffff;
+}

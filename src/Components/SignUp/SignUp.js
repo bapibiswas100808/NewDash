@@ -78,7 +78,7 @@ const SignUp = () => {
       .then((res) => {
         console.log(res.data);
         localStorage.setItem("email", res.data.email);
-        navigate("./verification");
+        navigate("/verification");
       })
       .catch((err) => {
         console.log(err);

@@ -1,0 +1,15 @@
+.about-area {
+  min-height: 100vh;
+  height: 100%;
+}
+.update-button {
+  background-color: #845adf;
+}
+.add-button button {
+  background-color: #845adf;
+  border: none;
+  color: #ffffff;
+}
+.add-button button:hover {
+  background-color: rgb(53, 125, 125);
+}

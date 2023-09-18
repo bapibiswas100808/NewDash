@@ -14,6 +14,8 @@ import Profile from "./Components/Profile/Profile";
 import Settings from "./Components/Settings/Settings";
 import Verification from "./Components/Verification/Verification";
 import { DataProvider } from "./Components/DataContext/DataContext";
+import Update from "./Components/Update/Update";
+import CreateMember from "./Components/CreateMember/CreateMember";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -45,6 +47,14 @@ function App() {
               <Route
                 path="/settings"
                 element={<SettingsWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/update/:id"
+                element={<UpdateWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/create"
+                element={<CreateWithLayout isOpen={isOpen} toggle={toggle} />}
               />
             </Routes>
           </BrowserRouter>
@@ -90,6 +100,20 @@ const AboutWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
       <About />
+    </WithLayout>
+  );
+};
+const UpdateWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <Update />
+    </WithLayout>
+  );
+};
+const CreateWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <CreateMember />
     </WithLayout>
   );
 };

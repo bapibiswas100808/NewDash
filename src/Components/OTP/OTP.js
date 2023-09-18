@@ -23,28 +23,30 @@ const OTP = ({ onChange }) => {
 
   return (
     <section>
-      <div className=" otp-container">
-        {otp.map((data, index) => {
-          return (
-            <input
-              className="otp-field"
-              type="text"
-              name="otp"
-              maxLength="1"
-              key={index}
-              value={data}
-              onChange={(e) => handleOtpChange(e.target, index)}
-              onFocus={(e) => e.target.select()}
-            />
-          );
-        })}
+      <div className="project-contaner">
+        <div className=" otp-container">
+          {otp.map((data, index) => {
+            return (
+              <input
+                className="otp-field"
+                type="text"
+                name="otp"
+                maxLength="1"
+                key={index}
+                value={data}
+                onChange={(e) => handleOtpChange(e.target, index)}
+                onFocus={(e) => e.target.select()}
+              />
+            );
+          })}
+        </div>
+        <button
+          onClick={() => setOtp(new Array(6).fill(""))}
+          className="btn p-2 mb-4 mt-4 bg-primary"
+        >
+          Clear OTP
+        </button>
       </div>
-      <button
-        onClick={() => setOtp(new Array(6).fill(""))}
-        className="btn p-2 mb-4 mt-4 bg-primary"
-      >
-        Clear OTP
-      </button>
     </section>
   );
 };

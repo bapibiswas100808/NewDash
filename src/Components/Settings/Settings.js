@@ -15,7 +15,7 @@ const Settings = () => {
   const [oldPsw, setOldPsw] = useState("");
   const [newPsw, setNewPsw] = useState("");
   const [cNewPsw, setCNewPsw] = useState("");
-  const [selectedImage, setSelectedImage] = useState();
+  const [selectedImage, setSelectedImage] = useState(data?.data?.image_url);
   useEffect(() => {
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
     axios
@@ -49,7 +49,6 @@ const Settings = () => {
     } else {
       setSelectedImage(null);
     }
-    console.log(image);
   };
   const handleImage = () => {
     const imageApi = "https://auth.privateyebd.com/api/v1/documents/upload/";
