@@ -18,10 +18,26 @@ import axios from "axios";
 
 const Header = ({ onClick, isOpen }) => {
   const navigate = useNavigate();
-  const { data } = useData();
-  const firstName = data?.data?.first_name || "";
-  const countryId = data?.data?.country || "";
-  const image = data?.data?.image_url || "";
+  const [profile, setProfile] = useState([]);
+  useEffect(() => {
+    const accessToken = `Token ${localStorage.getItem("getToken")}`;
+    axios
+      .get("https://auth.privateyebd.com/api/v1/profile/", {
+        headers: { Authorization: accessToken },
+      })
+      .then(
+        (res) => {
+          console.log(res.data);
+          setProfile(res);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }, []);
+  const firstName = profile?.data?.first_name || "";
+  const countryId = profile?.data?.country || "";
+  const image = profile?.data?.image_url || "";
 
   // Theme Selection
   const { theme, setTheme } = useContext(Themecontext);
@@ -128,7 +144,7 @@ const Header = ({ onClick, isOpen }) => {
         {/* Header links */}
         <div className="header-content-right d-flex align-items-center">
           {/* Search Button */}
-          <div className="ps-4">
+          <div className="ps-4 d-none d-lg-block">
             <div>
               <i>
                 <BsSearch style={{ color: "#536485" }} />
@@ -155,19 +171,19 @@ const Header = ({ onClick, isOpen }) => {
             </div>
           </div>
           {/* Cart */}
-          <div className="ps-4">
+          <div className="ps-4 d-none d-lg-block">
             <i>
               <AiOutlineShoppingCart />
             </i>
           </div>
           {/* Notifications */}
-          <div className="ps-4">
+          <div className="ps-4 d-none d-lg-block">
             <i>
               <IoIosNotificationsOutline />
             </i>
           </div>
           {/* App Store */}
-          <div className="ps-4">
+          <div className="ps-4 d-none d-lg-block">
             <i>
               <AiOutlineAppstore />
             </i>
@@ -216,7 +232,7 @@ const Header = ({ onClick, isOpen }) => {
             )}
           </div>
           {/* Settings */}
-          <div className="ps-4">
+          <div className="ps-4 d-none d-lg-block">
             <FiSettings className="settings-button" />
           </div>
         </div>

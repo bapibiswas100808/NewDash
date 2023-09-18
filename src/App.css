@@ -61,4 +61,7 @@ p {
   .crm-container {
     padding: 0 15px !important;
   }
+  .project-container {
+    padding: 0 10px;
+  }
 }

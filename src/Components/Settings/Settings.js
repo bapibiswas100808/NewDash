@@ -7,7 +7,7 @@ import { useData } from "../DataContext/DataContext";
 
 const Settings = () => {
   const { data } = useData();
-  const [profile, setProfile] = useState("");
+  const [profile, setProfile] = useState();
   const [toogleState, setToogleState] = useState(1);
   const [uploading, setUploading] = useState(false);
   const [imageId, setImageId] = useState();
@@ -15,23 +15,29 @@ const Settings = () => {
   const [oldPsw, setOldPsw] = useState("");
   const [newPsw, setNewPsw] = useState("");
   const [cNewPsw, setCNewPsw] = useState("");
-  const [selectedImage, setSelectedImage] = useState(data?.data?.image_url);
+  const [selectedImage, setSelectedImage] = useState(profile?.image_url);
+  const fNameValue = profile?.first_name;
+  const lNameValue = profile?.last_name;
+
   useEffect(() => {
-    const accessToken = `Token ${localStorage.getItem("getToken")}`;
-    axios
-      .get("https://auth.privateyebd.com/api/v1/profile/", {
-        headers: { Authorization: accessToken },
-      })
-      .then((res) => {
-        setProfile(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const fetchData = async () => {
+      try {
+        const accessToken = `Token ${localStorage.getItem("getToken")}`;
+        const response = await axios.get(
+          "https://auth.privateyebd.com/api/v1/profile/",
+          {
+            headers: { Authorization: accessToken },
+          }
+        );
+        setProfile(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    };
+
+    fetchData();
   }, []);
-  if (!profile) {
-    return null;
-  }
 
   const toogleTab = (index) => {
     setToogleState(index);
@@ -184,7 +190,11 @@ const Settings = () => {
                         <div className="update-image-info">
                           <h2>Photo :</h2>
 
-                          <img className="mb-3" src={selectedImage} alt="" />
+                          <img
+                            className="mb-3"
+                            src={image ? selectedImage : profile?.image_url}
+                            alt=""
+                          />
 
                           <div className="update-image d-flex  flex-column flex-lg-row mb-3">
                             <div>
@@ -214,18 +224,16 @@ const Settings = () => {
                         <div className="update-name-bio">
                           <form onSubmit={(e) => handleProfile(e)}>
                             <input
-                              // label="First Name"
-                              placeholder="first name"
                               name="fnameInput"
                               type="text"
                               className="w-100 mb-2"
+                              defaultValue={fNameValue}
                             />
                             <input
-                              // label="Last Name"
-                              placeholder="last name"
                               name="lnameInput"
                               type="text"
                               className="w-100 mb-2"
+                              defaultValue={lNameValue}
                             />
                             <textarea
                               className="w-100 border-none"

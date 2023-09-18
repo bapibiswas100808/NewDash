@@ -117,7 +117,7 @@ const About = () => {
                   />
                 </td>
                 <td className="">
-                  <div className="buttons-dash d-flex align-items-center justify-content-center">
+                  <div className="buttons-dash d-flex align-items-center justify-content-center flex-column flex-lg-row">
                     <div className="view-button-div">
                       <button
                         onClick={() => handleView(d.id)}
