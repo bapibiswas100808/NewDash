@@ -87,4 +87,7 @@
   .header-div {
     width: 100% !important;
   }
+  .header-profile .profile-text {
+    text-align: center;
+  }
 }

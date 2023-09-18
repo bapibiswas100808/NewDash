@@ -204,7 +204,7 @@ const Header = ({ onClick, isOpen }) => {
             <div className="header-profile-image">
               <img className="" src={image} alt="" />
             </div>
-            <div className="profile-text">
+            <div className="profile-text text-center">
               <h5 className="profile-heading">{firstName}</h5>
               <p>Web Developer</p>
             </div>

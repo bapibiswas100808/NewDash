@@ -37,21 +37,24 @@ ChartJS.register(
 
 const CRM = () => {
   const [openDealdrop, setOpenDealDrop] = useState(false);
-  const [userData, setUserData] = useState({
-    labels: UserData.map((data) => data.month),
-    datasets: [
-      {
-        label: "Revenue",
-        data: UserData.map((data) => data.revenue),
-        backgroundColor: "#b289ff",
-      },
-      {
-        label: "Profit",
-        data: UserData.map((data) => data.profit),
-        backgroundColor: "#44c2e9",
-      },
-    ],
-  });
+  const [userData, setUserData] = useState(
+    {
+      labels: UserData.map((data) => data.month),
+      datasets: [
+        {
+          label: "Revenue",
+          data: UserData.map((data) => data.revenue),
+          backgroundColor: "#b289ff",
+        },
+        {
+          label: "Profit",
+          data: UserData.map((data) => data.profit),
+          backgroundColor: "#44c2e9",
+        },
+      ],
+    },
+    []
+  );
 
   console.log(setUserData);
   const handleDealDrop = () => {

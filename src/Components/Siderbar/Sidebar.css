@@ -13,7 +13,7 @@
   height: 100%;
 }
 .sidebar.absolute {
-  position: absolute;
+  position: fixed;
   height: 100%;
 }
 

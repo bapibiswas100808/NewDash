@@ -40,20 +40,14 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
       name: "Dashboards",
       icon: <BiHomeAlt />,
       heading: "MAIN",
-      subitems: [
-        { path: "/dashboard1", name: "CRM" },
-        { path: "/dashboard2", name: "Ecommerce" },
-      ],
+      subitems: [{ path: "/dashboard1", name: "CRM" }],
     },
     {
       path: "/webpages",
       name: "Pages",
       icon: <MdOutlineContactPage />,
       heading: "GENERAL",
-      subitems: [
-        { path: "/webpage1", name: "Webpage 1" },
-        { path: "/webpage2", name: "Webpage 2" },
-      ],
+      subitems: [{ path: "/webpage1", name: "User Lists" }],
     },
   ];
   // Menu and Hover

@@ -50,7 +50,7 @@ const Update = () => {
   };
 
   return (
-    <section className="update-area">
+    <section className="update-area mt-4">
       <div className="project-container">
         <h2>Update Info</h2>
         <form className="d-flex flex-column" onSubmit={handleUpdate}>
