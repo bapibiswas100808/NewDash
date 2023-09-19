@@ -31,6 +31,11 @@
   width: 80px;
 }
 .profile-info-button button {
+  position: absolute;
+  left: 75%;
+  top: 15%;
+}
+.profile-info-button button {
   padding: 6px 12px;
 
   border: none;

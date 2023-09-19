@@ -15,7 +15,7 @@ const Verification = () => {
   const handleVerificationCode = (e) => {
     e.preventDefault();
     const verificationApiUrl =
-      "https://auth.privateyebd.com/api/v1/account/verify/";
+      "https://secom.privateyebd.com/api/v1/auth/verification/check/";
     const verificationData = {
       email: userEmail,
       code: verificationCode,
@@ -35,8 +35,23 @@ const Verification = () => {
         alert("Verification Failed. Invalid Code.");
         setVerificationStatus("error");
       });
+    resendVerification();
   };
-
+  const resendVerification = () => {
+    const resendApi =
+      "https://secom.privateyebd.com/api/v1/auth/verification/resend/";
+    const resendData = {
+      email: userEmail,
+    };
+    axios
+      .post(resendApi, resendData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const handleOTPChange = (otpString) => {
     setVerificationCode(otpString);
     setVerificationStatus(null);

@@ -13,7 +13,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const handleLogin = (e) => {
     e.preventDefault();
-    const loginApi = "https://auth.privateyebd.com/api/v1/login/";
+    const loginApi = "https://secom.privateyebd.com/api/v1/auth/login/";
     const loginForm = {
       email: userName,
       password: password,
@@ -21,11 +21,12 @@ const SignIn = () => {
     axios
       .post(loginApi, loginForm)
       .then((res) => {
+        console.log(res.data);
         localStorage.setItem("getToken", res.data.token);
         navigate("/profile");
       })
       .catch((err) => {
-        console.log(err.data);
+        console.log(err);
       });
   };
   return (
@@ -49,6 +50,7 @@ const SignIn = () => {
                         handleInput={(e) => setPassword(e.target.value)}
                         password={password}
                         label="Password"
+                        type="password"
                         placeholder="password"
                       />
                       <div className="form-checkbox d-flex align-items-center mt-3 mb-4">

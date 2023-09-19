@@ -24,7 +24,7 @@ const SignUp = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://auth.privateyebd.com/api/v1/country/"
+          "https://secom.privateyebd.com/api/v1/auth/country/"
         );
         setCountries(response.data.results);
       } catch (error) {
@@ -71,7 +71,7 @@ const SignUp = () => {
       gender: selectedGender,
     };
 
-    const signApi = "https://auth.privateyebd.com/api/v1/signup/";
+    const signApi = "https://secom.privateyebd.com/api/v1/auth/signup/";
 
     axios
       .post(signApi, signForm)
@@ -134,12 +134,14 @@ const SignUp = () => {
                       <Input
                         label="Password"
                         placeholder="password"
+                        type="password"
                         handleInput={(e) => setPassword(e.target.value)}
                         password={password}
                       />
                       <Input
                         label="Confirm Password"
                         placeholder="confirm password"
+                        type="password"
                         handleInput={(e) => setCmPassword(e.target.value)}
                         cmPassword={cmPassword}
                       />

@@ -16,6 +16,7 @@ import Verification from "./Components/Verification/Verification";
 import { DataProvider } from "./Components/DataContext/DataContext";
 import Update from "./Components/Update/Update";
 import CreateMember from "./Components/CreateMember/CreateMember";
+import Orders from "./Components/Orders/Orders";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -39,6 +40,10 @@ function App() {
               <Route
                 path="/webpage1"
                 element={<AboutWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/webpage2"
+                element={<OrdersWithLayout isOpen={isOpen} toggle={toggle} />}
               />
               <Route
                 path="/profile"
@@ -100,6 +105,13 @@ const AboutWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
       <About />
+    </WithLayout>
+  );
+};
+const OrdersWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <Orders />
     </WithLayout>
   );
 };

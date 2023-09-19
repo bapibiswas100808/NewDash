@@ -47,7 +47,10 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
       name: "Pages",
       icon: <MdOutlineContactPage />,
       heading: "GENERAL",
-      subitems: [{ path: "/webpage1", name: "User Lists" }],
+      subitems: [
+        { path: "/webpage1", name: "User Lists" },
+        { path: "/webpage2", name: "Orders" },
+      ],
     },
   ];
   // Menu and Hover

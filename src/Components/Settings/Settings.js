@@ -24,7 +24,7 @@ const Settings = () => {
       try {
         const accessToken = `Token ${localStorage.getItem("getToken")}`;
         const response = await axios.get(
-          "https://auth.privateyebd.com/api/v1/profile/",
+          "https://secom.privateyebd.com/api/v1/auth/profile/",
           {
             headers: { Authorization: accessToken },
           }
@@ -57,7 +57,8 @@ const Settings = () => {
     }
   };
   const handleImage = () => {
-    const imageApi = "https://auth.privateyebd.com/api/v1/documents/upload/";
+    const imageApi =
+      "https://secom.privateyebd.com/api/v1/auth/documents/upload/";
     const imageForm = new FormData();
     imageForm.append("document", image);
     imageForm.append("doc_type", 0);
@@ -86,7 +87,7 @@ const Settings = () => {
     const form = e.target;
     const image = imageId;
     console.log(image);
-    const profileapi = "https://auth.privateyebd.com/api/v1/profile/";
+    const profileapi = "https://secom.privateyebd.com/api/v1/auth/profile/";
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
     const first_name = form.fnameInput.value;
     const last_name = form.lnameInput.value;
@@ -121,7 +122,7 @@ const Settings = () => {
     e.preventDefault();
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
     const changePasswordApi =
-      "https://auth.privateyebd.com/api/v1/change/password/";
+      "https://secom.privateyebd.com/api/v1/auth/change/password/";
     const changePasswordForm = {
       old_password: oldPsw,
       password: newPsw,

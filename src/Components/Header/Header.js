@@ -22,7 +22,7 @@ const Header = ({ onClick, isOpen }) => {
   useEffect(() => {
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
     axios
-      .get("https://auth.privateyebd.com/api/v1/profile/", {
+      .get("https://secom.privateyebd.com/api/v1/auth/profile/", {
         headers: { Authorization: accessToken },
       })
       .then(
@@ -48,7 +48,7 @@ const Header = ({ onClick, isOpen }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://auth.privateyebd.com/api/v1/country/${countryId}`
+          `https://secom.privateyebd.com/api/v1/auth/country/${countryId}`
         );
         setCountry(response.data);
         console.log(response.data);
@@ -59,10 +59,7 @@ const Header = ({ onClick, isOpen }) => {
 
     fetchData();
   }, [countryId]);
-  // const handleCountry = (e) => {
-  //   setCountry(e.target.value);
-  //   onCountryChange(setCountry);
-  // };
+
   const handleMode = () => {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
   };
@@ -152,8 +149,8 @@ const Header = ({ onClick, isOpen }) => {
             </div>
           </div>
           {/* Country optios */}
-          <div className="ps-4 country-image">
-            <img className="d-block " src={country.flag} alt="" />
+          <div className=" country-image">
+            <img className="d-none " src={country.flag} alt="" />
             {/* {country?.data?.data?.flag && (
               <img src={country.data.data.flag} alt="Country Flag" />
             )} */}

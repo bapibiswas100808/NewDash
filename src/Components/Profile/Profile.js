@@ -25,7 +25,7 @@ const Profile = () => {
   useEffect(() => {
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
     axios
-      .get("https://auth.privateyebd.com/api/v1/profile/", {
+      .get("https://secom.privateyebd.com/api/v1/auth/profile/", {
         headers: { Authorization: accessToken },
       })
       .then(
@@ -77,7 +77,7 @@ const Profile = () => {
                     />
                   </div>
                   <div className="profile-info flex-fill mt-3 ">
-                    <div className="profile-info-top d-flex justify-content-between">
+                    <div className="profile-info-top d-flex">
                       <div className="profile-info-text">
                         <h2 className="text-white fs-6 fw-normal">
                           {firstName} {lastName}

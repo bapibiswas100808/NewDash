@@ -1,0 +1,33 @@
+.orders-top button {
+  border: none;
+  background-color: #23b7e5;
+  color: white;
+}
+.order-search {
+  position: relative;
+}
+.search {
+  position: absolute;
+  left: 10px;
+}
+.order-drop h6 {
+  background-color: #8f69e1;
+  cursor: pointer;
+}
+.order-drop ul {
+  min-width: 140px;
+  max-width: 160px;
+  background-color: #ffffff;
+  border: 1px solid #8f69e1;
+}
+.order-drop ul li {
+  padding: 8px 5px;
+  border-bottom: 1px solid #8f69e1;
+}
+.order-drop ul li:last-child {
+  border-bottom: none;
+}
+.order-table-zone tr {
+  height: 60px;
+  border-bottom: 1px solid #8f69e1;
+}
