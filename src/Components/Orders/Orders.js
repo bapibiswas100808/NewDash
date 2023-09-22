@@ -1,4 +1,5 @@
 import React from "react";
+import { IoMdArrowDropdown } from "react-icons/io";
 import "./Orders.css";
 import {
   AiOutlineDoubleRight,
@@ -10,9 +11,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Orders = () => {
-  const [profile, setProfile] = useState(false);
   const [columns, setColumns] = useState([]);
   const [records, setRecords] = useState([]);
+  const [originalRecords, setOriginalRecords] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,19 +22,84 @@ const Orders = () => {
         const response = await axios.get(
           "https://secom.privateyebd.com/api/v1/order/admin/order/",
           {
-            headers: { Authorization: accessToken },
+            headers: {
+              Authorization: accessToken,
+            },
+            params: {
+              page: 1,
+              limit: 5,
+            },
           }
         );
         setColumns(Object.keys(response.data[0]));
         setRecords(response.data);
+        setOriginalRecords(response.data);
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching profile:", error);
       }
     };
 
-    fetchData();
+    fetchData(1, 5);
   }, []);
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    if (searchTerm === "") {
+      setRecords(originalRecords);
+    } else {
+      setRecords(
+        originalRecords.filter((f) =>
+          f.customer_name.toLowerCase().includes(searchTerm)
+        )
+      );
+    }
+  };
+  const dropValueChange = (e) => {
+    const dropTerm = e.target.value;
+    console.log(dropTerm);
+
+    if (dropTerm === "all") {
+      setRecords(originalRecords);
+    } else if (dropTerm === "pending") {
+      setRecords(originalRecords.filter((record) => record.order_status === 0));
+    } else if (dropTerm === "processing") {
+      setRecords(originalRecords.filter((record) => record.order_status === 1));
+    } else if (dropTerm === "out for delivery") {
+      setRecords(originalRecords.filter((record) => record.order_status === 2));
+    } else if (dropTerm === "delivered") {
+      setRecords(originalRecords.filter((record) => record.order_status === 3));
+    } else if (dropTerm === "cancelled") {
+      setRecords(originalRecords.filter((record) => record.order_status === 4));
+    } else {
+      setRecords([]);
+    }
+  };
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordPerPage = 5;
+  const lastIndex = currentPage * recordPerPage;
+  const firstIndex = lastIndex - recordPerPage;
+  const record = records?.slice(firstIndex, lastIndex);
+  const nPage = Math.ceil(records.length / recordPerPage);
+  const numbers = [...Array(nPage + 1).keys()].slice(1);
+  const prePage = () => {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const changePage = (id) => {
+    setCurrentPage(id);
+  };
+
+  const nextPage = () => {
+    if (currentPage !== nPage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  const totalRows = 10;
+  const emptyRowCount = totalRows - records.length;
+  const emptyRows = [...Array(emptyRowCount).keys()];
+
   return (
     <div className="orders-area">
       <div className="orders-content project-container py-3 ">
@@ -52,7 +118,7 @@ const Orders = () => {
             <button className="px-3 py-2 rounded mt-4 mb-2">New Order</button>
           </div>
         </div>
-        <div className="order-table card">
+        <div className="order-table card container-fluid ">
           <div className="order-table-top d-flex justify-content-between">
             <div className="order-search d-flex align-items-center">
               <span className="search">
@@ -61,34 +127,31 @@ const Orders = () => {
               <div>
                 <input
                   className="form-control px-5"
-                  list="datalistOptions"
-                  id="exampleDataList"
-                  placeholder="Type to search orders"
+                  placeholder="Type to search by Name"
+                  onChange={handleSearch}
                 />
               </div>
             </div>
             <div className="order-drop">
-              <h6
-                className="px-3 py-2 rounded text-white"
-                onClick={(e) => setProfile(!profile)}
-              >
-                Sort Order
-                <span className="fs-6 ms-2">
-                  {profile ? <AiFillCaretDown /> : <AiFillCaretRight />}
-                </span>
-              </h6>
-              {profile && (
-                <ul className="position-fixed list-unstyled  px-3 py-1 rounded">
-                  <li>first fdhufudyf</li>
-                  <li>two</li>
-                  <li>three</li>
-                </ul>
-              )}
+              <div className="order-drop-button">
+                <select className=" list-unstyled " onChange={dropValueChange}>
+                  <option value="all">All</option>
+                  <br />
+                  <option value="pending">Pending</option>
+                  <option value="processing">Processing</option>
+                  <option value="out for delivery">Out for Delivery</option>
+                  <option value="delivered">Delivered</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+                <div className="drop-icon text-white">
+                  <IoMdArrowDropdown />
+                </div>
+              </div>
             </div>
           </div>
           <div className="order-table-main">
             <div className="order-table-zone">
-              <table className="w-100">
+              <table className="w-100 table">
                 <thead className="">
                   <tr className="w-100 text-center">
                     <td>Id</td>
@@ -102,7 +165,7 @@ const Orders = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {records.map((d, i) => (
+                  {record.map((d, i) => (
                     <tr className="w-100 text-center my-2" key={i}>
                       <td>{d.id}</td>
                       <td>{d.invoice_no}</td>
@@ -113,8 +176,34 @@ const Orders = () => {
                       {/* <td>{d.updated_at}</td> */}
                     </tr>
                   ))}
+                  {emptyRows.map((_, i) => (
+                    <tr key={`empty-${i}`}>
+                      <td></td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
+              <nav className="">
+                <ul className="pagination pagi-list">
+                  <li className="page-link" onClick={prePage}>
+                    Prev
+                  </li>
+                  {numbers.map((n, i) => (
+                    <li
+                      className={`page-link ${
+                        currentPage === n ? "active-page" : ""
+                      }`}
+                      key={i}
+                      onClick={() => changePage(n)}
+                    >
+                      {n}
+                    </li>
+                  ))}
+                  <li className="page-link" onClick={nextPage}>
+                    Next
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>

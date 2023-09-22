@@ -18,6 +18,7 @@ const Settings = () => {
   const [selectedImage, setSelectedImage] = useState(profile?.image_url);
   const fNameValue = profile?.first_name;
   const lNameValue = profile?.last_name;
+  const bioValue = profile?.bio;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -239,7 +240,7 @@ const Settings = () => {
                             <textarea
                               className="w-100 border-none"
                               type="textarea"
-                              placeholder="Write Something About Yourself"
+                              defaultValue={bioValue}
                               name="bioInput"
                             />
                             <button type="submit" className="">

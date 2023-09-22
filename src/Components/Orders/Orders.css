@@ -10,24 +10,62 @@
   position: absolute;
   left: 10px;
 }
-.order-drop h6 {
+.order-drop-button {
+  position: relative;
+}
+.order-drop-button .drop-icon {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+}
+.order-drop-button select {
+  box-shadow: none !important;
+  border: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  padding: 5px 30px 5px 15px;
+  font-size: 15px;
   background-color: #8f69e1;
-  cursor: pointer;
+  border-radius: 6px;
+  color: white;
 }
-.order-drop ul {
-  min-width: 140px;
-  max-width: 160px;
-  background-color: #ffffff;
-  border: 1px solid #8f69e1;
-}
-.order-drop ul li {
-  padding: 8px 5px;
-  border-bottom: 1px solid #8f69e1;
-}
-.order-drop ul li:last-child {
-  border-bottom: none;
+.order-drop-button option {
+  font-size: 13px;
 }
 .order-table-zone tr {
   height: 60px;
   border-bottom: 1px solid #8f69e1;
+}
+.page-link {
+  height: 40px;
+}
+.pagi-list li {
+  color: #23b7e5;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+.pagi-list li:first-child {
+  background-color: #8f69e1;
+  color: white;
+}
+.pagi-list li:first-child:hover {
+  background-color: #23b7e5;
+}
+.pagi-list li:last-child {
+  background-color: #8f69e1;
+  color: white;
+}
+.pagi-list li:last-child:hover {
+  background-color: #23b7e5;
+}
+.pagi-list li:hover {
+  background-color: #23b7e5;
+  color: #ffffff;
+}
+.active-page {
+  background-color: #23b7e5 !important;
+  color: #ffffff !important;
 }

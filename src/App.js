@@ -4,7 +4,6 @@ import Sidebar from "./Components/Siderbar/Sidebar";
 import Header from "./Components/Header/Header";
 import { useState } from "react";
 import { Themecontext } from "./Components/ThemeContext/ThemeContext";
-import CRM from "./Pages/SubPages/CRM/CRM";
 import SignUp from "./Components/SignUp/SignUp";
 import About from "./Pages/About/About";
 import "swiper/css";
@@ -17,6 +16,7 @@ import { DataProvider } from "./Components/DataContext/DataContext";
 import Update from "./Components/Update/Update";
 import CreateMember from "./Components/CreateMember/CreateMember";
 import Orders from "./Components/Orders/Orders";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -34,8 +34,10 @@ function App() {
               <Route path="/signup" element={<SignUp />} />
               <Route path="/verification" element={<Verification />} />
               <Route
-                path="/dashboard1"
-                element={<CRMWithLayout isOpen={isOpen} toggle={toggle} />}
+                path="/dashboard"
+                element={
+                  <DashboardWithLayout isOpen={isOpen} toggle={toggle} />
+                }
               />
               <Route
                 path="/webpage1"
@@ -79,10 +81,10 @@ const WithLayout = ({ children, isOpen, toggle }) => {
   );
 };
 
-const CRMWithLayout = ({ isOpen, toggle }) => {
+const DashboardWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
-      <CRM />
+      <Dashboard />
     </WithLayout>
   );
 };

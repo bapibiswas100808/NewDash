@@ -37,10 +37,10 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
   const menuItem = [
     {
       path: "/dashboard",
-      name: "Dashboards",
+      name: "Dashboard",
       icon: <BiHomeAlt />,
       heading: "MAIN",
-      subitems: [{ path: "/dashboard1", name: "CRM" }],
+      subitems: [],
     },
     {
       path: "/webpages",
@@ -101,7 +101,7 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
             {menuItem.map((menu, index) => (
               <div className="bottom-side" key={index}>
                 {/* Sidebar Heading */}
-                <div className="side-heading">
+                <div className="side-heading mt-2">
                   <p
                     style={{
                       textAlign: isOpen || isHovered ? "left" : "center",
@@ -112,51 +112,102 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
                 </div>
 
                 {/* Siderbar Link */}
-                <div to={menu.path} onClick={() => handleMenuClick(index)}>
-                  <div
-                    style={{ padding: isOpen || isHovered ? "6px 17px" : "0" }}
+                {index === 0 ? (
+                  <NavLink
+                    to={menu.path}
                     onClick={() => handleMenuClick(index)}
-                    className={`d-flex align-items-center justify-content-between link ${
-                      (isOpen && activeMenu === index) ||
-                      (!isOpen && activeMenu === index)
-                        ? "active"
-                        : ""
-                    }`}
                   >
-                    {/* Icon and Text in link */}
-                    <div className="icon-text d-flex align-items-center justify-content-center">
-                      {/*Icon  */}
-                      <div className="icon text-white">
-                        {isOpen || isHovered ? menu.icon : null}
-                      </div>
+                    <div
+                      style={{
+                        padding: isOpen || isHovered ? "6px 17px" : "0",
+                      }}
+                      onClick={() => handleMenuClick(index)}
+                      className={`d-flex align-items-center justify-content-between link ${
+                        (isOpen && activeMenu === index) ||
+                        (!isOpen && activeMenu === index)
+                          ? "active"
+                          : ""
+                      }`}
+                    >
+                      {/* Icon and Text in link */}
+                      <div className="icon-text d-flex align-items-center justify-content-center">
+                        {/*Icon  */}
+                        <div className="icon text-white">
+                          {isOpen || isHovered ? menu.icon : null}
+                        </div>
 
-                      {/* Text */}
-                      <div
-                        style={{
-                          fontSize: isOpen || isHovered ? "14px" : "20px",
-                        }}
-                        className="link-text "
-                      >
-                        <span>
-                          {isOpen || isHovered ? menu.name : menu.icon}
-                        </span>
+                        {/* Text */}
+                        <div
+                          style={{
+                            fontSize: isOpen || isHovered ? "14px" : "20px",
+                          }}
+                          className="link-text "
+                        >
+                          <span>
+                            {isOpen || isHovered ? menu.name : menu.icon}
+                          </span>
+                        </div>
                       </div>
+                      {/* <div className="drop-icon text-white">
+                        {isOpen || isHovered ? (
+                          activeMenu === index ? (
+                            <IoMdArrowDropdown style={{ fontSize: "20px" }} />
+                          ) : (
+                            <AiFillCaretRight style={{ fontSize: "14px" }} />
+                          )
+                        ) : null}
+                      </div> */}
                     </div>
-                    <div className="drop-icon text-white">
-                      {isOpen || isHovered ? (
-                        activeMenu === index ? (
-                          <IoMdArrowDropdown style={{ fontSize: "20px" }} />
-                        ) : (
-                          <AiFillCaretRight style={{ fontSize: "14px" }} />
-                        )
-                      ) : null}
+                  </NavLink>
+                ) : (
+                  <div to={menu.path} onClick={() => handleMenuClick(index)}>
+                    <div
+                      style={{
+                        padding: isOpen || isHovered ? "6px 17px" : "0",
+                      }}
+                      onClick={() => handleMenuClick(index)}
+                      className={`d-flex align-items-center justify-content-between link ${
+                        (isOpen && activeMenu === index) ||
+                        (!isOpen && activeMenu === index)
+                          ? "active"
+                          : ""
+                      }`}
+                    >
+                      {/* Icon and Text in link */}
+                      <div className="icon-text d-flex align-items-center justify-content-center">
+                        {/*Icon  */}
+                        <div className="icon text-white">
+                          {isOpen || isHovered ? menu.icon : null}
+                        </div>
+
+                        {/* Text */}
+                        <div
+                          style={{
+                            fontSize: isOpen || isHovered ? "14px" : "20px",
+                          }}
+                          className="link-text "
+                        >
+                          <span>
+                            {isOpen || isHovered ? menu.name : menu.icon}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="drop-icon text-white">
+                        {isOpen || isHovered ? (
+                          activeMenu === index ? (
+                            <IoMdArrowDropdown style={{ fontSize: "20px" }} />
+                          ) : (
+                            <AiFillCaretRight style={{ fontSize: "14px" }} />
+                          )
+                        ) : null}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
                 {/* Sub Menu */}
                 <div>
                   {activeMenu === index && (
-                    <div className="dropdown mt-1">
+                    <div className="dropdown ">
                       {menu.subitems.map((subitem, subindex) => (
                         <NavLink to={subitem.path} key={subindex}>
                           <div className="subitem px-3 py-2">
