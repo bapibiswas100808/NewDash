@@ -35,6 +35,9 @@
 .order-drop-button option {
   font-size: 13px;
 }
+.order-table-zone {
+  overflow-x: auto;
+}
 .order-table-zone tr {
   height: 60px;
   border-bottom: 1px solid #8f69e1;
@@ -46,6 +49,7 @@
   color: #23b7e5;
   cursor: pointer;
   background-color: #ffffff;
+  margin-right: 10px;
 }
 .pagi-list li:first-child {
   background-color: #8f69e1;

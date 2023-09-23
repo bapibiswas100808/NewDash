@@ -1,17 +1,11 @@
 import React from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import "./Orders.css";
-import {
-  AiOutlineDoubleRight,
-  AiFillCaretRight,
-  AiFillCaretDown,
-  AiOutlineSearch,
-} from "react-icons/ai";
+import { AiOutlineDoubleRight, AiOutlineSearch } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Orders = () => {
-  const [columns, setColumns] = useState([]);
   const [records, setRecords] = useState([]);
   const [originalRecords, setOriginalRecords] = useState([]);
 
@@ -25,22 +19,16 @@ const Orders = () => {
             headers: {
               Authorization: accessToken,
             },
-            params: {
-              page: 1,
-              limit: 5,
-            },
           }
         );
-        setColumns(Object.keys(response.data[0]));
         setRecords(response.data);
         setOriginalRecords(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error("Error fetching profile:", error);
       }
     };
 
-    fetchData(1, 5);
+    fetchData();
   }, []);
   const handleSearch = (e) => {
     const searchTerm = e.target.value.toLowerCase();
@@ -115,7 +103,9 @@ const Orders = () => {
                 Orders
               </span>
             </p>
-            <button className="px-3 py-2 rounded mt-4 mb-2">New Order</button>
+            <button className="d-none px-3 py-2 rounded mt-4 mb-2">
+              New Order
+            </button>
           </div>
         </div>
         <div className="order-table card container-fluid ">
@@ -136,7 +126,6 @@ const Orders = () => {
               <div className="order-drop-button">
                 <select className=" list-unstyled " onChange={dropValueChange}>
                   <option value="all">All</option>
-                  <br />
                   <option value="pending">Pending</option>
                   <option value="processing">Processing</option>
                   <option value="out for delivery">Out for Delivery</option>
@@ -151,7 +140,7 @@ const Orders = () => {
           </div>
           <div className="order-table-main">
             <div className="order-table-zone">
-              <table className="w-100 table">
+              <table className="w-100">
                 <thead className="">
                   <tr className="w-100 text-center">
                     <td>Id</td>

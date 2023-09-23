@@ -1,632 +1,252 @@
-import React, { useState } from "react";
+import React from "react";
+import { IoMdArrowDropdown } from "react-icons/io";
 import "./CRM.css";
-import { Col, Row } from "react-bootstrap";
-import { BsFilterSquare, BsThreeDotsVertical } from "react-icons/bs";
-import { BiExport, BiPulse } from "react-icons/bi";
-import { HiOutlineBriefcase } from "react-icons/hi";
-import { NavLink } from "react-router-dom";
-import { GoPeople } from "react-icons/go";
-import { AiOutlineDownload, AiOutlineEdit } from "react-icons/ai";
-import { TbCalendarEvent } from "react-icons/tb";
-import BasicCard from "../../../Components/BasicCard/BasicCard";
-import targetImage from "../../../images/loading.png";
-import dealer1 from "../../../images/topdealer1.jpg";
-import BarChart from "../../../Components/BarChart/BarChart";
-import LineChart from "../../../Components/LineChart/LineChart";
-import { UserData } from "../../../Components/UserData/UserData";
+import { AiOutlineDoubleRight, AiOutlineSearch } from "react-icons/ai";
+import { BsDot } from "react-icons/bs";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  Tooltip,
-  Legend,
-} from "chart.js/auto";
-import PercentageChart from "../../../Components/PercentageChart/PercentageChart";
+const CRM = ({
+  pageApi,
+  heading,
+  pages,
+  pageName,
+  buttonName,
+  option1,
+  option2,
+  option3,
+  option4,
+  option5,
+  option6,
+  td1,
+  td2,
+  td3,
+  td4,
+  td5,
+  td6,
+  td7,
+  td8,
+  data1,
+  data2,
+  data3,
+  data4,
+  data5,
+  data6,
+  data7,
+  data8,
+  showActiveColumn,
+  showActiveMenu,
+}) => {
+  const [records, setRecords] = useState([]);
+  const [originalRecords, setOriginalRecords] = useState([]);
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  Tooltip,
-  Legend
-);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const accessToken = `Token ${localStorage.getItem("getToken")}`;
+        const response = await axios.get(pageApi, {
+          headers: {
+            Authorization: accessToken,
+          },
+        });
+        console.log(response.data.results);
+        setRecords(response.data.results);
+        setOriginalRecords(response.data.results);
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    };
 
-const CRM = () => {
-  const [openDealdrop, setOpenDealDrop] = useState(false);
-  const [userData, setUserData] = useState(
-    {
-      labels: UserData.map((data) => data.month),
-      datasets: [
-        {
-          label: "Revenue",
-          data: UserData.map((data) => data.revenue),
-          backgroundColor: "#b289ff",
-        },
-        {
-          label: "Profit",
-          data: UserData.map((data) => data.profit),
-          backgroundColor: "#44c2e9",
-        },
-      ],
-    },
-    []
-  );
+    fetchData();
+  }, []);
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    if (searchTerm === "") {
+      setRecords(originalRecords);
+    } else {
+      setRecords(
+        originalRecords.filter((f) => f.name.toLowerCase().includes(searchTerm))
+      );
+    }
+  };
+  const dropValueChange = (e) => {
+    const dropTerm = e.target.value;
+    console.log(dropTerm);
 
-  console.log(setUserData);
-  const handleDealDrop = () => {
-    setOpenDealDrop(!openDealdrop);
+    if (dropTerm === "all") {
+      setRecords(originalRecords);
+    } else if (dropTerm === "pending") {
+      setRecords(originalRecords.filter((record) => record.order_status === 0));
+    } else if (dropTerm === "processing") {
+      setRecords(originalRecords.filter((record) => record.order_status === 1));
+    } else if (dropTerm === "out for delivery") {
+      setRecords(originalRecords.filter((record) => record.order_status === 2));
+    } else if (dropTerm === "delivered") {
+      setRecords(originalRecords.filter((record) => record.order_status === 3));
+    } else if (dropTerm === "cancelled") {
+      setRecords(originalRecords.filter((record) => record.order_status === 4));
+    } else {
+      setRecords([]);
+    }
+  };
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordPerPage = 5;
+  const lastIndex = currentPage * recordPerPage;
+  const firstIndex = lastIndex - recordPerPage;
+  const record = records?.slice(firstIndex, lastIndex);
+  const nPage = Math.ceil(records.length / recordPerPage);
+  const numbers = [...Array(nPage + 1).keys()].slice(1);
+  const prePage = () => {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
+  const changePage = (id) => {
+    setCurrentPage(id);
+  };
+
+  const nextPage = () => {
+    if (currentPage !== nPage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  const totalRows = 10;
+  const emptyRowCount = totalRows - records.length;
+  const emptyRows = [...Array(emptyRowCount).keys()];
+
   return (
-    <section className="crm-div">
-      <div className="crm-area crm-container">
-        <div className="crm-intro d-flex justify-content-between">
-          <div className="crm-intro-text">
-            <h3>Welcome Back, Jason Tyler!</h3>
-            <p>Track Your sales activity, leads and deals here</p>
+    <div className="orders-area">
+      <div className="orders-content project-container py-3 ">
+        <div className="orders-top d-flex align-items-top justify-content-between">
+          <div className="orders-heading">
+            <h4>{heading}</h4>
           </div>
-          <div className="crm-buttons d-flex align-items-center">
-            <div className="me-2">
-              <button className="filter-button px-4 py-2 rounded">
-                <BsFilterSquare className="me-1" />
-                Filter
-              </button>
-            </div>
-            <div className="">
-              <button className="export-button px-4 py-2 rounded">
-                <BiExport className="me-1" />
-                Export
-              </button>
-            </div>
+          <div className="">
+            <p className="fs-6">
+              {pages}
+              <span>
+                <AiOutlineDoubleRight />
+                {pageName}
+              </span>
+            </p>
+            <button className="px-3 py-2 rounded mt-4 mb-2">
+              {buttonName}
+            </button>
           </div>
         </div>
-        <div className="crm-graph-area mt-4">
-          <div className="crm-graphs">
-            <Row>
-              <Col lg={12}>
-                <Row>
-                  <Col lg={4}>
-                    <Row>
-                      <Col lg={12}>
-                        <div>
-                          <div className="crm-target card target-content">
-                            <div className="d-flex align-items-center justify-content-between">
-                              <div className="target-text pe-3">
-                                <h5>Your target is incomplete</h5>
-                                <p className="py-1">
-                                  You have completed
-                                  <span className="target-span ms-1">
-                                    66%
-                                  </span>{" "}
-                                  of the given targrt, you can also check your
-                                  status.
-                                </p>
-                                <NavLink>Click here</NavLink>
-                              </div>
-                              <div className="target-image">
-                                <img
-                                  src={targetImage}
-                                  alt=""
-                                  className="d-block"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Col>
-                      <Col lg={12}>
-                        <div className="crm-deal card">
-                          <div className="top-special-top d-flex justify-content-between">
-                            <div className="card-heading">
-                              <h5>Top Deals</h5>
-                            </div>
-                            <div className="deal-dropdown">
-                              <div
-                                onClick={handleDealDrop}
-                                className="three-dots"
-                              >
-                                <i>
-                                  <BsThreeDotsVertical />
-                                </i>
-                                {openDealdrop && (
-                                  <ul className="list-unstyled deal-drop-items">
-                                    <li>Week</li>
-                                    <li>Month</li>
-                                    <li>Year</li>
-                                  </ul>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                          <div className="top-deal-bottom">
-                            <ul className="list-unstyled mb-0">
-                              <li>
-                                <div className="dealer-detail d-flex align-items-top flex-wrap">
-                                  <div className="dealer-image me-2">
-                                    <img
-                                      src={dealer1}
-                                      alt=""
-                                      className="d-block"
-                                    />
-                                  </div>
-                                  <div className="dealer-contact flex-fill">
-                                    <p className="mb-0">Michale Jordan</p>
-                                    <span className="fs-12">
-                                      michale.jordan@gmail.com
-                                    </span>
-                                  </div>
-                                  <div className="deal-amount">$6767</div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="dealer-detail d-flex align-items-top flex-wrap">
-                                  <div className="dealer-image me-2">
-                                    <img
-                                      src={dealer1}
-                                      alt=""
-                                      className="d-block"
-                                    />
-                                  </div>
-                                  <div className="dealer-contact flex-fill">
-                                    <p className="mb-0">Michale Jordan</p>
-                                    <span className="fs-12">
-                                      michale.jordan@gmail.com
-                                    </span>
-                                  </div>
-                                  <div className="deal-amount">$6767</div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="dealer-detail d-flex align-items-top flex-wrap">
-                                  <div className="dealer-image me-2">
-                                    <img
-                                      src={dealer1}
-                                      alt=""
-                                      className="d-block"
-                                    />
-                                  </div>
-                                  <div className="dealer-contact flex-fill">
-                                    <p className="mb-0">Michale Jordan</p>
-                                    <span className="fs-12">
-                                      michale.jordan@gmail.com
-                                    </span>
-                                  </div>
-                                  <div className="deal-amount">$6767</div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="dealer-detail d-flex align-items-top flex-wrap">
-                                  <div className="dealer-image me-2">
-                                    <img
-                                      src={dealer1}
-                                      alt=""
-                                      className="d-block"
-                                    />
-                                  </div>
-                                  <div className="dealer-contact flex-fill">
-                                    <p className="mb-0">Michale Jordan</p>
-                                    <span className="fs-12">
-                                      michale.jordan@gmail.com
-                                    </span>
-                                  </div>
-                                  <div className="deal-amount">$6767</div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="dealer-detail d-flex align-items-top flex-wrap">
-                                  <div className="dealer-image me-2">
-                                    <img
-                                      src={dealer1}
-                                      alt=""
-                                      className="d-block "
-                                    />
-                                  </div>
-                                  <div className="dealer-contact flex-fill">
-                                    <p className="mb-0">Michale Jordan</p>
-                                    <span className="fs-12">
-                                      michale.jordan@gmail.com
-                                    </span>
-                                  </div>
-                                  <div className="deal-amount">$6767</div>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </Col>
-                      <Col lg={12}>
-                        <div className="crm-earned card">
-                          <div className="top-special-top d-flex align-items-top justify-content-between">
-                            <div>
-                              <h5 className="card-heading">Profile Earned</h5>
-                            </div>
-                            <div>
-                              <p>View-all</p>
-                            </div>
-                          </div>
-                          <div className="crm-earned-bar py-0 px-0 pt-3">
-                            <BarChart
-                              className="py-0 px-0"
-                              chartData={userData}
-                            />
-                          </div>
-                        </div>
-                      </Col>
-                    </Row>
-                  </Col>
-                  <Col lg={8}>
-                    <Row>
-                      <Col lg={6}>
-                        <div className="crm-customer card">
-                          <BasicCard
-                            cardTitle="Total Customers"
-                            numbers="1,02,890"
-                            percentage="+40%"
-                            icon={<GoPeople />}
-                          />
-                        </div>
-                      </Col>
-                      <Col lg={6}>
-                        <div className="crm-revenue card">
-                          <BasicCard
-                            cardTitle="Total Revenue"
-                            numbers="$56,562"
-                            percentage="+25%"
-                            icon={<TbCalendarEvent />}
-                          />
-                        </div>
-                      </Col>
-                      <Col lg={6}>
-                        <div className="crm-ratio card">
-                          <BasicCard
-                            cardTitle="Conversion Ratio"
-                            numbers="12.08%"
-                            percentage="-12%"
-                            icon={<BiPulse />}
-                          />
-                        </div>
-                      </Col>
-                      <Col lg={6}>
-                        <div className="crm-total-deals card">
-                          <BasicCard
-                            cardTitle="Total Deals"
-                            numbers="2,543"
-                            percentage="+19%"
-                            icon={<HiOutlineBriefcase />}
-                          />
-                        </div>
-                      </Col>
-                      <Col lg={12}>
-                        <div className="crm-revenue-stats special-card">
-                          <div className="top-special-top">
-                            <h5 className="card-heading">Revenue Analytics</h5>
-                          </div>
-                          <div className=" py-0 px-0 mt-3">
-                            <p className="mb-2">
-                              Revenue Analytics with sales & profit(USD)
-                            </p>
-                            <div className="chart-container">
-                              <LineChart
-                                className="py-0 px-0"
-                                chartData1={userData}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
-              </Col>
-              <Col lg={12}>
-                <div className="crm-stats card">
-                  <div className="top-special-top crm-stats-header d-flex justify-content-between">
-                    <div className="stats-title">
-                      <h5 className="card-heading">Deals Statistics</h5>
-                    </div>
-                    <div className="stats-search-sort d-flex align-items-top">
-                      <div className="stats-search pe-2">
-                        <input
-                          placeholder="Search Here"
-                          type="text"
-                          className="stats-input"
-                        />
-                      </div>
-                      <div>
-                        <button className="crm-stats-btn">Sort By</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="crm-stats-body">
-                    <div className="table-responsive mt-3">
-                      <table className="table text-nowrap table-hover border table-bordered">
-                        <thead>
-                          <tr>
-                            <th scope="row" className="ps-4">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                              />
-                            </th>
-                            <th scope="col">Sales Rep</th>
-                            <th scope="col">Catagory</th>
-                            <th scope="col">Mail</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row" className="ps-4">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                              />
-                            </th>
-                            <td>
-                              <div className="crm-stats-profile d-flex align-items-center dealer-image">
-                                <div>
-                                  <span>
-                                    <img
-                                      className="d-block me-2"
-                                      alt=""
-                                      src={dealer1}
-                                    />
-                                  </span>
-                                </div>
-                                <div className="dealer-contact">
-                                  <p>Mayor Kelly</p>
-                                </div>
-                              </div>
-                            </td>
-                            <td>Manufacturer</td>
-                            <td>mayorkelly@gmail.com</td>
-                            <td>
-                              <span className="badge bg-info">Germany</span>
-                            </td>
-                            <td>Sep 15 - oct 12, 2023</td>
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <div className="download-stats me-2">
-                                  <a href="/">
-                                    <i>
-                                      <AiOutlineDownload />
-                                    </i>
-                                  </a>
-                                </div>
-                                <div className="edit-stats">
-                                  <i>
-                                    <AiOutlineEdit />
-                                  </i>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row" className="ps-4">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                              />
-                            </th>
-                            <td>
-                              <div className="crm-stats-profile d-flex align-items-center dealer-image">
-                                <div>
-                                  <span>
-                                    <img
-                                      className="d-block me-2"
-                                      alt=""
-                                      src={dealer1}
-                                    />
-                                  </span>
-                                </div>
-                                <div className="dealer-contact">
-                                  <p>Mayor Kelly</p>
-                                </div>
-                              </div>
-                            </td>
-                            <td>Manufacturer</td>
-                            <td>mayorkelly@gmail.com</td>
-                            <td>
-                              <span className="badge bg-info">Germany</span>
-                            </td>
-                            <td>Sep 15 - oct 12, 2023</td>
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <div className="download-stats me-2">
-                                  <a href="/">
-                                    <i>
-                                      <AiOutlineDownload />
-                                    </i>
-                                  </a>
-                                </div>
-                                <div className="edit-stats">
-                                  <i>
-                                    <AiOutlineEdit />
-                                  </i>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row" className="ps-4">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                              />
-                            </th>
-                            <td>
-                              <div className="crm-stats-profile d-flex align-items-center dealer-image">
-                                <div>
-                                  <span>
-                                    <img
-                                      className="d-block me-2"
-                                      alt=""
-                                      src={dealer1}
-                                    />
-                                  </span>
-                                </div>
-                                <div className="dealer-contact">
-                                  <p>Mayor Kelly</p>
-                                </div>
-                              </div>
-                            </td>
-                            <td>Manufacturer</td>
-                            <td>mayorkelly@gmail.com</td>
-                            <td>
-                              <span className="badge bg-info">Germany</span>
-                            </td>
-                            <td>Sep 15 - oct 12, 2023</td>
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <div className="download-stats me-2">
-                                  <a href="/">
-                                    <i>
-                                      <AiOutlineDownload />
-                                    </i>
-                                  </a>
-                                </div>
-                                <div className="edit-stats">
-                                  <i>
-                                    <AiOutlineEdit />
-                                  </i>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row" className="ps-4">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                              />
-                            </th>
-                            <td>
-                              <div className="crm-stats-profile d-flex align-items-center dealer-image">
-                                <div>
-                                  <span>
-                                    <img
-                                      className="d-block me-2"
-                                      alt=""
-                                      src={dealer1}
-                                    />
-                                  </span>
-                                </div>
-                                <div className="dealer-contact">
-                                  <p>Mayor Kelly</p>
-                                </div>
-                              </div>
-                            </td>
-                            <td>Manufacturer</td>
-                            <td>mayorkelly@gmail.com</td>
-                            <td>
-                              <span className="badge bg-info">Germany</span>
-                            </td>
-                            <td>Sep 15 - oct 12, 2023</td>
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <div className="download-stats me-2">
-                                  <a href="/">
-                                    <i>
-                                      <AiOutlineDownload />
-                                    </i>
-                                  </a>
-                                </div>
-                                <div className="edit-stats">
-                                  <i>
-                                    <AiOutlineEdit />
-                                  </i>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row" className="ps-4">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                              />
-                            </th>
-                            <td>
-                              <div className="crm-stats-profile d-flex align-items-center dealer-image">
-                                <div>
-                                  <span>
-                                    <img
-                                      className="d-block me-2"
-                                      alt=""
-                                      src={dealer1}
-                                    />
-                                  </span>
-                                </div>
-                                <div className="dealer-contact">
-                                  <p>Mayor Kelly</p>
-                                </div>
-                              </div>
-                            </td>
-                            <td>Manufacturer</td>
-                            <td>mayorkelly@gmail.com</td>
-                            <td>
-                              <span className="badge bg-info">Germany</span>
-                            </td>
-                            <td>Sep 15 - oct 12, 2023</td>
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <div className="download-stats me-2">
-                                  <a href="/">
-                                    <i>
-                                      <AiOutlineDownload />
-                                    </i>
-                                  </a>
-                                </div>
-                                <div className="edit-stats">
-                                  <i>
-                                    <AiOutlineEdit />
-                                  </i>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div className="crm-stats-footer"></div>
+        <div className="order-table card container-fluid ">
+          <div className="order-table-top d-flex justify-content-between">
+            <div className="order-search d-flex align-items-center">
+              <span className="search">
+                <AiOutlineSearch className="fs-4" />
+              </span>
+              <div>
+                <input
+                  className="form-control px-5"
+                  placeholder="Type to search by Name"
+                  onChange={handleSearch}
+                />
+              </div>
+            </div>
+            <div className="order-drop">
+              <div className="order-drop-button">
+                <select className=" list-unstyled " onChange={dropValueChange}>
+                  <option value="all">{option1}</option>
+                  <option value="pending">{option2}</option>
+                  <option value="processing">{option3}</option>
+                  <option value="out for delivery">{option4}</option>
+                  <option value="delivered">{option5}</option>
+                  <option value="cancelled">{option6}</option>
+                </select>
+                <div className="drop-icon text-white">
+                  <IoMdArrowDropdown />
                 </div>
-              </Col>
-              <Col lg={12}>
-                <div className="crm-leads card">
-                  <div className="crm-leads-heading top-special-top">
-                    <h5 className="card-heading">Leads By Source</h5>{" "}
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center ">
-                    <PercentageChart chartData={userData} />
-                  </div>
-                </div>
-              </Col>
-              <Col lg={12}>
-                <Row>
-                  <Col lg={6}>
-                    <div className="crm-status card">
-                      <h5 className="card-heading">Deals Status</h5>
-                    </div>
-                  </Col>
-                  <Col lg={6}>
-                    <div className="crm-activity card">
-                      <h5 className="card-heading">Recent Activity</h5>
-                    </div>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
+              </div>
+            </div>
+          </div>
+          <div className="order-table-main">
+            <div className="order-table-zone">
+              <table className="w-100 ">
+                <thead className="">
+                  <tr className="w-100 text-center">
+                    <td>{td1}</td>
+                    <td>{td2}</td>
+                    <td>{td3}</td>
+                    <td>{td4}</td>
+                    <td>{td5}</td>
+                    <td>{td6}</td>
+                    <td>{td7}</td>
+                    <td>{td8}</td>
+                    {/* <td>Updated</td> */}
+                    <td>Action</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {record.map((d, i) => (
+                    <tr className="w-100 text-center my-2" key={i}>
+                      <td>
+                        <img src={d[data1]} alt="" />
+                      </td>
+                      <td>{d[data2]}</td>
+                      <td>{d[data3]}</td>
+                      {showActiveColumn && (
+                        <td>
+                          {d[data4] ? "Active " : "Inactive "}
+                          <BsDot
+                            className="fs-2"
+                            style={{ color: d[data4] ? "#03AC13" : "red" }}
+                          />
+                        </td>
+                      )}
+                      {showActiveMenu && (
+                        <td>
+                          {d[data5] ? "Yes" : "No"}
+                          <BsDot
+                            className="fs-3"
+                            style={{ color: d[data4] ? "#03AC13" : "red" }}
+                          />
+                        </td>
+                      )}
+                      <td>{d[data6]}</td>
+                      <td>{d[data7]}</td>
+                      <td>{d[data8]}</td>
+                      {/* <td>{d.updated_at}</td> */}
+                    </tr>
+                  ))}
+                  {emptyRows.map((_, i) => (
+                    <tr key={`empty-${i}`}>
+                      <td></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <nav className="">
+                <ul className="pagination pagi-list">
+                  <li className="page-link" onClick={prePage}>
+                    Prev
+                  </li>
+                  {numbers.map((n, i) => (
+                    <li
+                      className={`page-link ${
+                        currentPage === n ? "active-page" : ""
+                      }`}
+                      key={i}
+                      onClick={() => changePage(n)}
+                    >
+                      {n}
+                    </li>
+                  ))}
+                  <li className="page-link" onClick={nextPage}>
+                    Next
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BiHomeAlt } from "react-icons/bi";
-import { MdOutlineContactPage } from "react-icons/md";
-import { IoMdArrowDropdown } from "react-icons/io";
-import { AiFillCaretRight } from "react-icons/ai";
+import {
+  MdOutlineContactPage,
+  MdOutlineBrandingWatermark,
+  MdProductionQuantityLimits,
+} from "react-icons/md";
+import { BiCategory } from "react-icons/bi";
+import { AiOutlineBorderBottom } from "react-icons/ai";
 import { GoDot } from "react-icons/go";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
@@ -43,14 +47,39 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
       subitems: [],
     },
     {
-      path: "/webpages",
-      name: "Pages",
+      path: "/webpage1",
+      name: "User List",
       icon: <MdOutlineContactPage />,
-      heading: "GENERAL",
-      subitems: [
-        { path: "/webpage1", name: "User Lists" },
-        { path: "/webpage2", name: "Orders" },
-      ],
+      heading: "Users",
+      subitems: [],
+    },
+    {
+      path: "/webpage2",
+      name: "Orders",
+      icon: <AiOutlineBorderBottom />,
+      heading: "Orders",
+      subitems: [],
+    },
+    {
+      path: "/webpage3",
+      name: "Categories",
+      icon: <BiCategory />,
+      heading: "Category",
+      subitems: [],
+    },
+    {
+      path: "/webpage4",
+      name: "Brands",
+      icon: <MdOutlineBrandingWatermark />,
+      heading: "Brand",
+      subitems: [],
+    },
+    {
+      path: "/webpage5",
+      name: "Products",
+      icon: <MdProductionQuantityLimits />,
+      heading: "Product",
+      subitems: [],
     },
   ];
   // Menu and Hover
@@ -89,7 +118,10 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="top-side d-flex justify-content-center align-items-center">
+          <div
+            className="top-side d-flex justify-content-center align-items-center"
+            style={{ width: isOpen || isHovered ? "240px" : "80px" }}
+          >
             <img
               className="logo"
               src={isOpen || isHovered ? Logo : Logo2}
@@ -97,7 +129,7 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
             />
           </div>
           {/* Menu Items */}
-          <div>
+          <div className="bottom-side-container">
             {menuItem.map((menu, index) => (
               <div className="bottom-side" key={index}>
                 {/* Sidebar Heading */}
@@ -112,43 +144,40 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
                 </div>
 
                 {/* Siderbar Link */}
-                {index === 0 ? (
-                  <NavLink
-                    to={menu.path}
-                    onClick={() => handleMenuClick(index)}
-                  >
-                    <div
-                      style={{
-                        padding: isOpen || isHovered ? "6px 17px" : "0",
-                      }}
-                      onClick={() => handleMenuClick(index)}
-                      className={`d-flex align-items-center justify-content-between link ${
-                        (isOpen && activeMenu === index) ||
-                        (!isOpen && activeMenu === index)
-                          ? "active"
-                          : ""
-                      }`}
-                    >
-                      {/* Icon and Text in link */}
-                      <div className="icon-text d-flex align-items-center justify-content-center">
-                        {/*Icon  */}
-                        <div className="icon text-white">
-                          {isOpen || isHovered ? menu.icon : null}
-                        </div>
 
-                        {/* Text */}
-                        <div
-                          style={{
-                            fontSize: isOpen || isHovered ? "14px" : "20px",
-                          }}
-                          className="link-text "
-                        >
-                          <span>
-                            {isOpen || isHovered ? menu.name : menu.icon}
-                          </span>
-                        </div>
+                <NavLink to={menu.path} onClick={() => handleMenuClick(index)}>
+                  <div
+                    style={{
+                      padding: isOpen || isHovered ? "6px 17px" : "0",
+                    }}
+                    onClick={() => handleMenuClick(index)}
+                    className={`d-flex align-items-center justify-content-between link ${
+                      (isOpen && activeMenu === index) ||
+                      (!isOpen && activeMenu === index)
+                        ? "active"
+                        : ""
+                    }`}
+                  >
+                    {/* Icon and Text in link */}
+                    <div className="icon-text d-flex align-items-center justify-content-center">
+                      {/*Icon  */}
+                      <div className="icon text-white">
+                        {isOpen || isHovered ? menu.icon : null}
                       </div>
-                      {/* <div className="drop-icon text-white">
+
+                      {/* Text */}
+                      <div
+                        style={{
+                          fontSize: isOpen || isHovered ? "14px" : "20px",
+                        }}
+                        className="link-text "
+                      >
+                        <span>
+                          {isOpen || isHovered ? menu.name : menu.icon}
+                        </span>
+                      </div>
+                    </div>
+                    {/* <div className="drop-icon text-white">
                         {isOpen || isHovered ? (
                           activeMenu === index ? (
                             <IoMdArrowDropdown style={{ fontSize: "20px" }} />
@@ -157,53 +186,9 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
                           )
                         ) : null}
                       </div> */}
-                    </div>
-                  </NavLink>
-                ) : (
-                  <div to={menu.path} onClick={() => handleMenuClick(index)}>
-                    <div
-                      style={{
-                        padding: isOpen || isHovered ? "6px 17px" : "0",
-                      }}
-                      onClick={() => handleMenuClick(index)}
-                      className={`d-flex align-items-center justify-content-between link ${
-                        (isOpen && activeMenu === index) ||
-                        (!isOpen && activeMenu === index)
-                          ? "active"
-                          : ""
-                      }`}
-                    >
-                      {/* Icon and Text in link */}
-                      <div className="icon-text d-flex align-items-center justify-content-center">
-                        {/*Icon  */}
-                        <div className="icon text-white">
-                          {isOpen || isHovered ? menu.icon : null}
-                        </div>
-
-                        {/* Text */}
-                        <div
-                          style={{
-                            fontSize: isOpen || isHovered ? "14px" : "20px",
-                          }}
-                          className="link-text "
-                        >
-                          <span>
-                            {isOpen || isHovered ? menu.name : menu.icon}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="drop-icon text-white">
-                        {isOpen || isHovered ? (
-                          activeMenu === index ? (
-                            <IoMdArrowDropdown style={{ fontSize: "20px" }} />
-                          ) : (
-                            <AiFillCaretRight style={{ fontSize: "14px" }} />
-                          )
-                        ) : null}
-                      </div>
-                    </div>
                   </div>
-                )}
+                </NavLink>
+
                 {/* Sub Menu */}
                 <div>
                   {activeMenu === index && (

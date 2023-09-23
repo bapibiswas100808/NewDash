@@ -17,9 +17,12 @@ import Update from "./Components/Update/Update";
 import CreateMember from "./Components/CreateMember/CreateMember";
 import Orders from "./Components/Orders/Orders";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import Category from "./Components/Category/Category";
+import Brands from "./Components/Brands/Brands";
+import Products from "./Components/Products/Products";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState("light");
   const toggle = () => setIsOpen(!isOpen);
 
@@ -46,6 +49,18 @@ function App() {
               <Route
                 path="/webpage2"
                 element={<OrdersWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/webpage3"
+                element={<CategoryWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/webpage4"
+                element={<BrandsWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/webpage5"
+                element={<ProductsWithLayout isOpen={isOpen} toggle={toggle} />}
               />
               <Route
                 path="/profile"
@@ -114,6 +129,27 @@ const OrdersWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
       <Orders />
+    </WithLayout>
+  );
+};
+const CategoryWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <Category />
+    </WithLayout>
+  );
+};
+const BrandsWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <Brands />
+    </WithLayout>
+  );
+};
+const ProductsWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <Products />
     </WithLayout>
   );
 };
