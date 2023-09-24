@@ -20,6 +20,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Category from "./Components/Category/Category";
 import Brands from "./Components/Brands/Brands";
 import Products from "./Components/Products/Products";
+import CreateThing from "./Components/CreateThing/CreateThing";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,6 +62,12 @@ function App() {
               <Route
                 path="/webpage5"
                 element={<ProductsWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/creatething"
+                element={
+                  <CreateThingWithLayout isOpen={isOpen} toggle={toggle} />
+                }
               />
               <Route
                 path="/profile"
@@ -150,6 +157,13 @@ const ProductsWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
       <Products />
+    </WithLayout>
+  );
+};
+const CreateThingWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <CreateThing />
     </WithLayout>
   );
 };

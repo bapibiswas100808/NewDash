@@ -9,6 +9,7 @@ import { BsDot, BsFillEyeFill } from "react-icons/bs";
 import { GrEdit } from "react-icons/gr";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const CRM = ({
   pageApi,
@@ -38,6 +39,7 @@ const CRM = ({
 }) => {
   const [records, setRecords] = useState([]);
   const [originalRecords, setOriginalRecords] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -94,6 +96,9 @@ const CRM = ({
   const totalRows = 10;
   const emptyRowCount = totalRows - records.length;
   const emptyRows = [...Array(emptyRowCount).keys()];
+  const handleAdd = () => {
+    navigate("/creatething");
+  };
 
   return (
     <div className="orders-area">
@@ -127,7 +132,10 @@ const CRM = ({
               </div>
             </div>
             <div>
-              <button className="px-3 py-2 rounded mt-4 mb-2">
+              <button
+                onClick={handleAdd}
+                className="px-3 py-2 rounded mt-4 mb-2"
+              >
                 {buttonName}
               </button>
             </div>
@@ -182,7 +190,9 @@ const CRM = ({
                       <td>
                         <div className="action-buttons d-flex align-items-center justify-content-center">
                           <div className="show-button me-2 action-button">
-                            <BsFillEyeFill />
+                            <NavLink to="">
+                              <BsFillEyeFill />
+                            </NavLink>
                           </div>
                           <div className="edit-button me-2 action-button">
                             <GrEdit />

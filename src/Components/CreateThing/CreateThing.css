@@ -1,0 +1,33 @@
+.create-area input {
+  border: 1px solid #8f69e1 !important;
+  box-shadow: none;
+  padding: 20px;
+}
+.create-area textarea {
+  border: 1px solid #8f69e1 !important;
+  box-shadow: none;
+  padding: 20px;
+}
+.create-area label {
+  font-size: 13px;
+  color: #8f69e1;
+}
+
+.dropzone {
+  padding: 30px 10px;
+  border: 1px dashed #8f69e1;
+  border-radius: 5px;
+}
+
+.is-featured input {
+  height: 20px;
+  width: 20px;
+}
+.is-active input {
+  height: 20px;
+  width: 20px;
+}
+.discount input {
+  height: 20px;
+  width: 20px;
+}
