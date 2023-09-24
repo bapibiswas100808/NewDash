@@ -14,6 +14,7 @@ const Brands = () => {
         td1="Image"
         td2="Name"
         td4="Active Status"
+        td8="Action"
         data1="image_url"
         data2="name"
         data4="is_active"

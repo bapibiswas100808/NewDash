@@ -1,4 +1,4 @@
-.orders-top button {
+.order-table-top button {
   border: none;
   background-color: #23b7e5;
   color: white;
@@ -75,4 +75,10 @@
 .active-page {
   background-color: #23b7e5 !important;
   color: #ffffff !important;
+}
+.action-button {
+  padding: 5px 10px;
+  border: 1px solid #8f69e1;
+  border-radius: 5px;
+  cursor: pointer;
 }

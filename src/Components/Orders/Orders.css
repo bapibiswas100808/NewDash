@@ -73,3 +73,6 @@
   background-color: #23b7e5 !important;
   color: #ffffff !important;
 }
+.show-button {
+  cursor: pointer;
+}

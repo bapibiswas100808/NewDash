@@ -16,6 +16,7 @@ const Category = () => {
         td3="Rank"
         td4="Active Status"
         td5="Menu Status"
+        td9="Action"
         data1="image_url"
         data2="name"
         data3="code"

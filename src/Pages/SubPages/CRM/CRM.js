@@ -1,8 +1,12 @@
 import React from "react";
-import { IoMdArrowDropdown } from "react-icons/io";
 import "./CRM.css";
-import { AiOutlineDoubleRight, AiOutlineSearch } from "react-icons/ai";
-import { BsDot } from "react-icons/bs";
+import {
+  AiOutlineDoubleRight,
+  AiOutlineSearch,
+  AiFillDelete,
+} from "react-icons/ai";
+import { BsDot, BsFillEyeFill } from "react-icons/bs";
+import { GrEdit } from "react-icons/gr";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -12,12 +16,6 @@ const CRM = ({
   pages,
   pageName,
   buttonName,
-  option1,
-  option2,
-  option3,
-  option4,
-  option5,
-  option6,
   td1,
   td2,
   td3,
@@ -26,6 +24,7 @@ const CRM = ({
   td6,
   td7,
   td8,
+  td9,
   data1,
   data2,
   data3,
@@ -58,7 +57,7 @@ const CRM = ({
     };
 
     fetchData();
-  }, []);
+  });
   const handleSearch = (e) => {
     const searchTerm = e.target.value.toLowerCase();
     if (searchTerm === "") {
@@ -69,26 +68,7 @@ const CRM = ({
       );
     }
   };
-  const dropValueChange = (e) => {
-    const dropTerm = e.target.value;
-    console.log(dropTerm);
 
-    if (dropTerm === "all") {
-      setRecords(originalRecords);
-    } else if (dropTerm === "pending") {
-      setRecords(originalRecords.filter((record) => record.order_status === 0));
-    } else if (dropTerm === "processing") {
-      setRecords(originalRecords.filter((record) => record.order_status === 1));
-    } else if (dropTerm === "out for delivery") {
-      setRecords(originalRecords.filter((record) => record.order_status === 2));
-    } else if (dropTerm === "delivered") {
-      setRecords(originalRecords.filter((record) => record.order_status === 3));
-    } else if (dropTerm === "cancelled") {
-      setRecords(originalRecords.filter((record) => record.order_status === 4));
-    } else {
-      setRecords([]);
-    }
-  };
   const [currentPage, setCurrentPage] = useState(1);
   const recordPerPage = 5;
   const lastIndex = currentPage * recordPerPage;
@@ -130,13 +110,10 @@ const CRM = ({
                 {pageName}
               </span>
             </p>
-            <button className="px-3 py-2 rounded mt-4 mb-2">
-              {buttonName}
-            </button>
           </div>
         </div>
         <div className="order-table card container-fluid ">
-          <div className="order-table-top d-flex justify-content-between">
+          <div className="order-table-top d-flex justify-content-between align-items-center">
             <div className="order-search d-flex align-items-center">
               <span className="search">
                 <AiOutlineSearch className="fs-4" />
@@ -149,20 +126,10 @@ const CRM = ({
                 />
               </div>
             </div>
-            <div className="order-drop">
-              <div className="order-drop-button">
-                <select className=" list-unstyled " onChange={dropValueChange}>
-                  <option value="all">{option1}</option>
-                  <option value="pending">{option2}</option>
-                  <option value="processing">{option3}</option>
-                  <option value="out for delivery">{option4}</option>
-                  <option value="delivered">{option5}</option>
-                  <option value="cancelled">{option6}</option>
-                </select>
-                <div className="drop-icon text-white">
-                  <IoMdArrowDropdown />
-                </div>
-              </div>
+            <div>
+              <button className="px-3 py-2 rounded mt-4 mb-2">
+                {buttonName}
+              </button>
             </div>
           </div>
           <div className="order-table-main">
@@ -178,8 +145,8 @@ const CRM = ({
                     <td>{td6}</td>
                     <td>{td7}</td>
                     <td>{td8}</td>
+                    <td>{td9}</td>
                     {/* <td>Updated</td> */}
-                    <td>Action</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -212,6 +179,19 @@ const CRM = ({
                       <td>{d[data7]}</td>
                       <td>{d[data8]}</td>
                       {/* <td>{d.updated_at}</td> */}
+                      <td>
+                        <div className="action-buttons d-flex align-items-center justify-content-center">
+                          <div className="show-button me-2 action-button">
+                            <BsFillEyeFill />
+                          </div>
+                          <div className="edit-button me-2 action-button">
+                            <GrEdit />
+                          </div>
+                          <div className="delete-button action-button">
+                            <AiFillDelete />
+                          </div>
+                        </div>
+                      </td>
                     </tr>
                   ))}
                   {emptyRows.map((_, i) => (
@@ -221,7 +201,7 @@ const CRM = ({
                   ))}
                 </tbody>
               </table>
-              <nav className="">
+              <nav className="mt-2">
                 <ul className="pagination pagi-list">
                   <li className="page-link" onClick={prePage}>
                     Prev

@@ -2,6 +2,7 @@ import React from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import "./Orders.css";
 import { AiOutlineDoubleRight, AiOutlineSearch } from "react-icons/ai";
+import { BsFillEyeFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -87,6 +88,18 @@ const Orders = () => {
   const totalRows = 10;
   const emptyRowCount = totalRows - records.length;
   const emptyRows = [...Array(emptyRowCount).keys()];
+  const getStatusText = (orderStatus) => {
+    switch (orderStatus) {
+      case 0:
+        return "Completed";
+      case 1:
+        return "In Delivery";
+      case 2:
+        return "Cancelled";
+      default:
+        return "Unknown";
+    }
+  };
 
   return (
     <div className="orders-area">
@@ -160,9 +173,16 @@ const Orders = () => {
                       <td>{d.invoice_no}</td>
                       <td>{d.customer_name}</td>
                       <td>{d.total}</td>
-                      <td>{d.order_status}</td>
+                      <td>{getStatusText(d.order_status)}</td>
                       <td>{d.created_at}</td>
                       {/* <td>{d.updated_at}</td> */}
+                      <td>
+                        <div className="action-buttons">
+                          <div className="show-button">
+                            <BsFillEyeFill />
+                          </div>
+                        </div>
+                      </td>
                     </tr>
                   ))}
                   {emptyRows.map((_, i) => (
@@ -172,7 +192,7 @@ const Orders = () => {
                   ))}
                 </tbody>
               </table>
-              <nav className="">
+              <nav className="mt-2">
                 <ul className="pagination pagi-list">
                   <li className="page-link" onClick={prePage}>
                     Prev

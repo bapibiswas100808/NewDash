@@ -1,7 +1,7 @@
 .profile-area {
   height: 100%;
 }
-.card {
+.profile-area .card {
   border-radius: 6px 6px 0 0 !important;
 }
 .profile-container {

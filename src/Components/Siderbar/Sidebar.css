@@ -37,6 +37,7 @@
   max-height: 60px;
   position: fixed;
   background-color: #111c43;
+  z-index: 999;
 }
 
 .logo {

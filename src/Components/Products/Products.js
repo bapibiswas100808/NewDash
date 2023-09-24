@@ -17,6 +17,7 @@ const Products = () => {
         td4="Active Status"
         td5="Price"
         td6="Category name"
+        td8="Action"
         data1="thumbnail"
         data2="name"
         data3="id"
