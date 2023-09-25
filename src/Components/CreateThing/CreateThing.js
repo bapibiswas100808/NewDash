@@ -1,17 +1,182 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreateThing.css";
 import { Col, Row } from "react-bootstrap";
+import axios from "axios";
 
 const CreateThing = () => {
   const [file, setFile] = useState(null);
   const [thumbFile, setThumbFile] = useState(null);
+  const [isChecked, setIsChecked] = useState(false);
+  const [newBrand, setNewBrand] = useState([]);
+  const [selectBrand, setSelectBrand] = useState();
+  const [newCategory, setNewCategory] = useState([]);
+  const [selectCategory, setSelectCategory] = useState();
+  const [newStatus, setNewStatus] = useState(0);
+  const [imageId, setImageId] = useState();
+  const [thumbId, setThumbId] = useState();
   const inputRef = useRef();
   const inputThumbRef = useRef();
   const navigate = useNavigate();
+  useEffect(() => {
+    const imageForm = new FormData();
+    imageForm.append("document", file);
+    imageForm.append("doc_type", 0);
+    console.log(imageForm);
+    const accessToken = `Token ${localStorage.getItem("getToken")}`;
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          "https://secom.privateyebd.com/api/v1/auth/documents/upload/",
+          imageForm,
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        console.log(response.data);
+        setImageId(response.data.id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [file]);
+  useEffect(() => {
+    const thumbForm = new FormData();
+    thumbForm.append("document", thumbFile);
+    thumbForm.append("doc_type", 0);
+    console.log(thumbForm);
+    const accessToken = `Token ${localStorage.getItem("getToken")}`;
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          "https://secom.privateyebd.com/api/v1/auth/documents/upload/",
+          thumbForm,
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        console.log(response.data);
+        setThumbId(response.data.id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [thumbFile]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const accessToken = `Token ${localStorage.getItem("getToken")}`;
+        const response = await axios.get(
+          "https://secom.privateyebd.com/api/v1/inventory/admin/brands/",
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        console.log(response.data.results);
+        setNewBrand(response.data.results);
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const accessToken = `Token ${localStorage.getItem("getToken")}`;
+        const response = await axios.get(
+          "https://secom.privateyebd.com/api/v1/inventory/admin/categories/",
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        console.log(response.data.results);
+        setNewCategory(response.data.results);
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const handleAddMember = (event) => {
     event.preventDefault();
+    const form = event.target;
+    const brand = selectBrand;
+    const category = selectCategory;
+    const stock_status = newStatus;
+    const name = form.productName.value;
+    const vat = form.vatName.value;
+    const price = form.priceName.value;
+    const cost = form.costName.value;
+    const quantity = form.quantityName.value;
+    const description = form.descriptionName.value;
+    const images = [imageId];
+    const thumbnail = thumbId;
+    const is_active = isChecked;
+    const is_featured = isChecked;
+    const accessToken = `Token ${localStorage.getItem("getToken")}`;
+
+    const addApi =
+      "https://secom.privateyebd.com/api/v1/inventory/admin/product/";
+    const addForm = {
+      brand,
+      category,
+      thumbnail,
+      images,
+      name,
+      description,
+      quantity,
+      stock_status,
+      cost,
+      price,
+      vat,
+      is_featured,
+      is_active,
+    };
+    console.log(addForm);
+    axios
+      .post(addApi, addForm, {
+        headers: {
+          Authorization: accessToken,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        navigate("/webpage5");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+  const handleBrand = (e) => {
+    e.preventDefault();
+    const selectedBrandId = e.target.value;
+    setSelectBrand(selectedBrandId);
+    console.log(selectedBrandId);
+  };
+  const handleCategory = (e) => {
+    const categoryData = e.target.value;
+    setSelectCategory(categoryData);
+    console.log(categoryData);
+  };
+  const handleStatus = (e) => {
+    const statusData = parseInt(e.target.value);
+    setNewStatus(statusData);
+  };
+
   const handleDragOver = (e) => {
     e.preventDefault();
   };
@@ -50,6 +215,9 @@ const CreateThing = () => {
     setThumbFile(e.target.files[0]);
     console.log(e.target.files[0]);
   };
+  const handleCheck = (event) => {
+    setIsChecked(event.target.checked);
+  };
 
   return (
     <section className="create-area mt-4">
@@ -67,20 +235,43 @@ const CreateThing = () => {
           </div>
           <div>
             <label className="me-3">Brand Name</label> <br />
-            <select className="w-100 px-2 py-2 rounded">
-              <option>Web App</option>
-              <option>LG</option>
-              <option>Sony</option>
-              <option>Aroma</option>
-              <option>abc</option>
+            <select
+              className="w-100 px-2 py-2 rounded"
+              onChange={handleBrand}
+              value={selectBrand}
+            >
+              {newBrand.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className="mt-3">
             <label className="me-3">Category Name</label> <br />
-            <select className="w-100 px-2 py-2 rounded">
-              <option>fg-76458</option>
-              <option>fg-7645</option>
-              <option>fg-7656</option>
+            <select
+              className="w-100 px-2 py-2 rounded"
+              onChange={handleCategory}
+              value={selectCategory}
+            >
+              {newCategory.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="mt-3">
+            <label className="me-3">Stock Status</label> <br />
+            <select
+              className="w-100 px-2 py-2 rounded"
+              value={newStatus}
+              onChange={handleStatus}
+            >
+              <option value="0">Select Status</option>
+              <option value="1">Avaialable</option>
+              <option value="2">Coming Soon!</option>
+              <option value="3">Out Of Stock</option>
             </select>
           </div>
           <div className="upload-div mt-3">
@@ -94,7 +285,7 @@ const CreateThing = () => {
               <h5 className="mx-3">Or</h5>
               {file && (
                 <img
-                  className=""
+                  className="me-2"
                   src={URL.createObjectURL(file)}
                   alt="Selected File"
                 />
@@ -126,7 +317,11 @@ const CreateThing = () => {
               <h5>Drag and Drop File picture here</h5>
               <h5 className="mx-3">Or</h5>
               {thumbFile && (
-                <img className="" src={URL.createObjectURL(thumbFile)} alt="" />
+                <img
+                  className="me-2"
+                  src={URL.createObjectURL(thumbFile)}
+                  alt=""
+                />
               )}
               <input
                 hidden
@@ -150,6 +345,7 @@ const CreateThing = () => {
             <textarea
               placeholder="Enter Product Details"
               className="w-100 py-3 rounded  "
+              name="descriptionName"
             />
           </div>
           <div className="product-quantity">
@@ -158,6 +354,7 @@ const CreateThing = () => {
               placeholder="Product Quantity"
               className="w-100 py-2 rounded"
               type="number"
+              name="quantityName"
             />
           </div>
           <div className="product-cost">
@@ -166,6 +363,7 @@ const CreateThing = () => {
               placeholder="Product Cost"
               className="w-100 py-2 rounded"
               type="number"
+              name="costName"
             />
           </div>
           <div className="product-price">
@@ -174,6 +372,7 @@ const CreateThing = () => {
               placeholder="Price"
               className="w-100 py-2 rounded"
               type="number"
+              name="priceName"
             />
           </div>
           <div className="product-vat">
@@ -182,6 +381,7 @@ const CreateThing = () => {
               placeholder="Vat"
               className="w-100 py-2 rounded"
               type="number"
+              name="vatName"
             />
           </div>
 
@@ -192,7 +392,12 @@ const CreateThing = () => {
               </Col>
               <Col lg={8}>
                 <div className=" d-flex align-items-center">
-                  <input className="py-2" type="checkbox" />
+                  <input
+                    className="py-2"
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={handleCheck}
+                  />
                   <label className="ms-2">Yes</label>
                 </div>
               </Col>
@@ -205,7 +410,12 @@ const CreateThing = () => {
               </Col>
               <Col lg={8}>
                 <div className=" d-flex align-items-center">
-                  <input className="py-2" type="checkbox" />
+                  <input
+                    className="py-2"
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={handleCheck}
+                  />
                   <label className="ms-2">Yes</label>
                 </div>
               </Col>
@@ -214,11 +424,16 @@ const CreateThing = () => {
           <div className="discount mt-3">
             <Row>
               <Col lg={4}>
-                <span>Discout Available?</span>
+                <span>Product Available?</span>
               </Col>
               <Col lg={8}>
                 <div className=" d-flex align-items-center">
-                  <input className="py-2" type="checkbox" />
+                  <input
+                    className="py-2"
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={handleCheck}
+                  />
                   <label className="ms-2">Yes</label>
                 </div>
               </Col>
@@ -234,7 +449,7 @@ const CreateThing = () => {
           </div>
 
           <button className="w-100 px-3 py-2 rounded mt-3" type="submit">
-            Add Member
+            Add Product
           </button>
         </form>
       </div>

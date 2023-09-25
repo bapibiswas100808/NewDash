@@ -13,7 +13,6 @@ import { BsFillSunFill } from "react-icons/bs";
 import "./Header.css";
 import { Themecontext } from "../ThemeContext/ThemeContext";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useData } from "../DataContext/DataContext";
 import axios from "axios";
 
 const Header = ({ onClick, isOpen }) => {

@@ -59,7 +59,7 @@ const CRM = ({
     };
 
     fetchData();
-  });
+  }, [pageApi]);
   const handleSearch = (e) => {
     const searchTerm = e.target.value.toLowerCase();
     if (searchTerm === "") {

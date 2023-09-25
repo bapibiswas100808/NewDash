@@ -3,6 +3,11 @@
   box-shadow: none;
   padding: 20px;
 }
+.create-area select {
+  border: 1px solid #8f69e1 !important;
+  box-shadow: none;
+  padding: 20px;
+}
 .create-area textarea {
   border: 1px solid #8f69e1 !important;
   box-shadow: none;
