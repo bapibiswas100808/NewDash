@@ -23,7 +23,7 @@ const SignIn = () => {
       .then((res) => {
         console.log(res.data);
         localStorage.setItem("getToken", res.data.token);
-        navigate("/profile");
+        navigate("/dashboard");
       })
       .catch((err) => {
         console.log(err);
@@ -43,8 +43,8 @@ const SignIn = () => {
                       <Input
                         handleInput={(e) => setUserName(e.target.value)}
                         userName={userName}
-                        label="User Name"
-                        placeholder="user name"
+                        label="User Email"
+                        placeholder="user Email"
                       />
                       <Input
                         handleInput={(e) => setPassword(e.target.value)}
