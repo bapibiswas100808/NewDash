@@ -20,7 +20,9 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Category from "./Components/Category/Category";
 import Brands from "./Components/Brands/Brands";
 import Products from "./Components/Products/Products";
-import CreateThing from "./Components/CreateThing/CreateThing";
+import AddProduct from "./Components/CreateThing/AddProduct";
+import AddCategory from "./Components/AddCategory/AddCategory";
+import AddBrand from "./Components/AddBrand/AddBrand";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +35,7 @@ function App() {
         <div className={`App ${theme}`}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<SignUp />} />
+              <Route path="/" element={<SignIn />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/verification" element={<Verification />} />
@@ -64,10 +66,20 @@ function App() {
                 element={<ProductsWithLayout isOpen={isOpen} toggle={toggle} />}
               />
               <Route
-                path="/creatething"
+                path="/addproduct"
                 element={
-                  <CreateThingWithLayout isOpen={isOpen} toggle={toggle} />
+                  <AddProductWithLayout isOpen={isOpen} toggle={toggle} />
                 }
+              />
+              <Route
+                path="/addcategory"
+                element={
+                  <AddCategoryWithLayout isOpen={isOpen} toggle={toggle} />
+                }
+              />
+              <Route
+                path="/addbrand"
+                element={<AddBrandWithLayout isOpen={isOpen} toggle={toggle} />}
               />
               <Route
                 path="/profile"
@@ -160,10 +172,24 @@ const ProductsWithLayout = ({ isOpen, toggle }) => {
     </WithLayout>
   );
 };
-const CreateThingWithLayout = ({ isOpen, toggle }) => {
+const AddProductWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
-      <CreateThing />
+      <AddProduct />
+    </WithLayout>
+  );
+};
+const AddCategoryWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <AddCategory />
+    </WithLayout>
+  );
+};
+const AddBrandWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <AddBrand />
     </WithLayout>
   );
 };

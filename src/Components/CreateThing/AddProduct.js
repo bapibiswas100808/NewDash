@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./CreateThing.css";
+import "./AddProduct.css";
 import { Col, Row } from "react-bootstrap";
 import axios from "axios";
 
-const CreateThing = () => {
+const AddProduct = () => {
   const [file, setFile] = useState(null);
   const [thumbFile, setThumbFile] = useState(null);
-  const [isChecked, setIsChecked] = useState(false);
+  const [isActiveChecked, setIsActiveChecked] = useState(false);
+  const [isFeatureChecked, setIsFeatureChecked] = useState(false);
+  const [isProductChecked, setIsProductChecked] = useState(false);
   const [newBrand, setNewBrand] = useState([]);
   const [selectBrand, setSelectBrand] = useState();
   const [newCategory, setNewCategory] = useState([]);
@@ -125,8 +127,8 @@ const CreateThing = () => {
     const description = form.descriptionName.value;
     const images = [imageId];
     const thumbnail = thumbId;
-    const is_active = isChecked;
-    const is_featured = isChecked;
+    const is_active = isActiveChecked;
+    const is_featured = isFeatureChecked;
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
 
     const addApi =
@@ -215,8 +217,14 @@ const CreateThing = () => {
     setThumbFile(e.target.files[0]);
     console.log(e.target.files[0]);
   };
-  const handleCheck = (event) => {
-    setIsChecked(event.target.checked);
+  const handleActiveCheck = (event) => {
+    setIsActiveChecked(event.target.checked);
+  };
+  const handleFeatureCheck = (event) => {
+    setIsFeatureChecked(event.target.checked);
+  };
+  const handleProductCheck = (event) => {
+    setIsProductChecked(event.target.checked);
   };
 
   return (
@@ -395,8 +403,8 @@ const CreateThing = () => {
                   <input
                     className="py-2"
                     type="checkbox"
-                    checked={isChecked}
-                    onChange={handleCheck}
+                    checked={isFeatureChecked}
+                    onChange={handleFeatureCheck}
                   />
                   <label className="ms-2">Yes</label>
                 </div>
@@ -413,8 +421,8 @@ const CreateThing = () => {
                   <input
                     className="py-2"
                     type="checkbox"
-                    checked={isChecked}
-                    onChange={handleCheck}
+                    checked={isActiveChecked}
+                    onChange={handleActiveCheck}
                   />
                   <label className="ms-2">Yes</label>
                 </div>
@@ -431,8 +439,8 @@ const CreateThing = () => {
                   <input
                     className="py-2"
                     type="checkbox"
-                    checked={isChecked}
-                    onChange={handleCheck}
+                    checked={isProductChecked}
+                    onChange={handleProductCheck}
                   />
                   <label className="ms-2">Yes</label>
                 </div>
@@ -449,7 +457,7 @@ const CreateThing = () => {
           </div>
 
           <button className="w-100 px-3 py-2 rounded mt-3" type="submit">
-            Add Product
+            Add New Product
           </button>
         </form>
       </div>
@@ -457,4 +465,4 @@ const CreateThing = () => {
   );
 };
 
-export default CreateThing;
+export default AddProduct;

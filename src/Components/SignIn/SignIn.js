@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import SignTop from "../SignTop/SignTop";
 import Input from "../Input/Input";
 import Slider from "../Slider/Slider";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./SignIn.css";
 import axios from "axios";
 
@@ -70,17 +70,17 @@ const SignIn = () => {
                       </div>
                     </form>
                     <div className="go-sign mt-4 text-center">
-                      <p>
+                      {/* <p>
                         <span className="pe-1">Don't have an account?</span>
                         <NavLink to="/signup">Sign Up</NavLink>
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </Col>
-          <Col lg={5} className="d-md-none d-lg-block">
+          <Col lg={5} className="d-none d-lg-block">
             <Slider
               caption="Sign In"
               para="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce molestie urna sit amet eros hendrerit fringilla. Ut a tortor et leo gravida malesuada et at augue. Phasellus id augue et metus dignissim egestas. "

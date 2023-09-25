@@ -4,13 +4,13 @@ import CRM from "../../Pages/SubPages/CRM/CRM";
 
 const Brands = () => {
   return (
-    <div className="category-area">
+    <div className="brand-area">
       <CRM
         pageApi="https://secom.privateyebd.com/api/v1/inventory/admin/brands/"
         heading="Brands"
         pages="Pages"
         pageName="Brands"
-        buttonName="Add Brands"
+        buttonName2="Add Brands"
         td1="Image"
         td2="Name"
         td4="Active Status"

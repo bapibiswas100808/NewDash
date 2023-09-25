@@ -47,6 +47,7 @@
 .page-link {
   height: 40px;
   border-radius: 5px;
+  text-align: center;
 }
 .pagi-list li {
   color: #23b7e5;

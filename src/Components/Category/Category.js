@@ -10,7 +10,7 @@ const Category = () => {
         heading="Categories"
         pages="Pages"
         pageName="Categories"
-        buttonName="Add Category"
+        buttonName3="Add Category"
         td1="Image"
         td2="Name"
         td3="Rank"

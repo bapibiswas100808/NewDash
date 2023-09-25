@@ -1,3 +1,15 @@
 .sign-label {
   font-size: 0.813rem;
 }
+.signin-form-area {
+  height: 100%;
+}
+.sign-in-area .slider-area {
+  height: 100%;
+}
+
+@media (min-width: 1450px) {
+  .sign-in-area .slider-area {
+    height: 100vh;
+  }
+}

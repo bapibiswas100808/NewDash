@@ -16,7 +16,9 @@ const CRM = ({
   heading,
   pages,
   pageName,
-  buttonName,
+  buttonName1,
+  buttonName2,
+  buttonName3,
   td1,
   td2,
   td3,
@@ -96,8 +98,14 @@ const CRM = ({
   const totalRows = 10;
   const emptyRowCount = totalRows - records.length;
   const emptyRows = [...Array(emptyRowCount).keys()];
-  const handleAdd = () => {
-    navigate("/creatething");
+  const handleAddProduct = () => {
+    navigate("/addproduct");
+  };
+  const handleAddBrand = () => {
+    navigate("/addbrand");
+  };
+  const handleAddCategory = () => {
+    navigate("/addcategory");
   };
 
   return (
@@ -133,10 +141,22 @@ const CRM = ({
             </div>
             <div>
               <button
-                onClick={handleAdd}
-                className="px-3 py-2 rounded mt-4 mb-2"
+                onClick={handleAddProduct}
+                className="px-3 py-2 rounded mt-4 mb-2 add-product-button"
               >
-                {buttonName}
+                {buttonName1}
+              </button>
+              <button
+                onClick={handleAddBrand}
+                className="px-3 py-2 rounded mt-4 mb-2 add-brand-button"
+              >
+                {buttonName2}
+              </button>
+              <button
+                onClick={handleAddCategory}
+                className="px-3 py-2 rounded mt-4 mb-2 add-category-button"
+              >
+                {buttonName3}
               </button>
             </div>
           </div>

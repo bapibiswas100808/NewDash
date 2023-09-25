@@ -3,6 +3,7 @@
 }
 .profile-area .card {
   border-radius: 6px 6px 0 0 !important;
+  margin-bottom: 0;
 }
 .profile-container {
   background-image: url(../../images/profile.jpg);
@@ -161,6 +162,13 @@
 .profile-content-area {
   background-color: #ffffff;
   height: 100%;
+}
+@media (max-width: 1350px) {
+  .profile-info-button button {
+    position: absolute;
+    left: 90%;
+    top: 15%;
+  }
 }
 
 @media (max-width: 767px) {
