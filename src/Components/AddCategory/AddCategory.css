@@ -1,0 +1,14 @@
+.add-category-area input {
+  border: 1px solid #8f69e1;
+}
+.add-category-area textarea {
+  border: 1px solid #8f69e1;
+}
+.add-category-area button {
+  border: none;
+  background-color: #8f69e1;
+  color: #ffffff;
+}
+.add-category-area button:hover {
+  background-color: #23b7e5;
+}
