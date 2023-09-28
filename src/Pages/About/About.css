@@ -13,3 +13,6 @@
 .add-button button:hover {
   background-color: rgb(53, 125, 125);
 }
+.about-area .about-table {
+  overflow-x: auto;
+}

@@ -86,7 +86,7 @@ const Orders = () => {
     }
   };
   const totalRows = 10;
-  const emptyRowCount = totalRows - records.length;
+  const emptyRowCount = totalRows - recordPerPage;
   const emptyRows = [...Array(emptyRowCount).keys()];
   const getStatusText = (orderStatus) => {
     switch (orderStatus) {
@@ -139,11 +139,11 @@ const Orders = () => {
               <div className="order-drop-button">
                 <select className=" list-unstyled " onChange={dropValueChange}>
                   <option value="all">All</option>
-                  <option value="pending">Pending</option>
+                  <option value="pending">Delivered</option>
                   <option value="processing">Processing</option>
-                  <option value="out for delivery">Out for Delivery</option>
-                  <option value="delivered">Delivered</option>
-                  <option value="cancelled">Cancelled</option>
+                  <option value="out for delivery">Cancelled</option>
+                  <option value="delivered">Pending</option>
+                  <option value="cancelled">Out for Delivery </option>
                 </select>
                 <div className="drop-icon text-white">
                   <IoMdArrowDropdown />

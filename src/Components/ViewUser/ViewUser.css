@@ -1,0 +1,20 @@
+.view-user-content input {
+  border: 1px solid #845adf;
+}
+.view-user-content button {
+  background-color: #845adf;
+  border: none;
+  color: #ffffff;
+}
+.view-user-content button:hover {
+  background-color: rgb(53, 125, 125);
+  color: #ffffff;
+}
+
+.view-user-image img {
+  height: 100px;
+  width: 100px;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px dashed #845adf;
+}

@@ -96,7 +96,7 @@ const CRM = ({
     }
   };
   const totalRows = 10;
-  const emptyRowCount = totalRows - records.length;
+  const emptyRowCount = totalRows - recordPerPage;
   const emptyRows = [...Array(emptyRowCount).keys()];
   const handleAddProduct = () => {
     navigate("/addproduct");

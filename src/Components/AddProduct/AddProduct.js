@@ -5,7 +5,7 @@ import { Col, Row } from "react-bootstrap";
 import axios from "axios";
 
 const AddProduct = () => {
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
   const [thumbFile, setThumbFile] = useState(null);
   const [isActiveChecked, setIsActiveChecked] = useState(false);
   const [isFeatureChecked, setIsFeatureChecked] = useState(false);
@@ -20,9 +20,12 @@ const AddProduct = () => {
   const inputRef = useRef();
   const inputThumbRef = useRef();
   const navigate = useNavigate();
+  console.log(files);
   useEffect(() => {
     const imageForm = new FormData();
-    imageForm.append("document", file);
+    files.forEach((file) => {
+      imageForm.append("document", file);
+    });
     imageForm.append("doc_type", 0);
     console.log(imageForm);
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
@@ -34,6 +37,7 @@ const AddProduct = () => {
           {
             headers: {
               Authorization: accessToken,
+              "Content-Type": "multipart/form-data",
             },
           }
         );
@@ -44,7 +48,7 @@ const AddProduct = () => {
       }
     };
     fetchData();
-  }, [file]);
+  }, [files]);
   useEffect(() => {
     const thumbForm = new FormData();
     thumbForm.append("document", thumbFile);
@@ -185,9 +189,9 @@ const AddProduct = () => {
   const handleDrop = (e) => {
     e.preventDefault();
     console.log(e.dataTransfer.files[0]);
-    const mainFile = e.dataTransfer.files[0];
-    if (mainFile) {
-      setFile(mainFile);
+    const mainFile = e.dataTransfer.files;
+    if (mainFile.length > 0) {
+      setFiles([...files, ...Array.from(mainFile)]);
     }
   };
   const handleThumbDragOver = (e) => {
@@ -206,8 +210,11 @@ const AddProduct = () => {
   };
   const handleSelectImage = (e) => {
     e.preventDefault();
-    setFile(e.target.files[0]);
-    console.log(e.target.files[0]);
+    const selectedImage = e.target.files;
+    console.log(e.target.files);
+    if (selectedImage.length > 0) {
+      setFiles([...files, ...Array.from(selectedImage)]);
+    }
   };
   const handleSelectThumbFile = () => {
     inputThumbRef.current.click();
@@ -291,18 +298,24 @@ const AddProduct = () => {
             >
               <h5>Drag and Drop File picture here</h5>
               <h5 className="mx-3">Or</h5>
-              {file && (
-                <img
-                  className="me-2"
-                  src={URL.createObjectURL(file)}
-                  alt="Selected File"
-                />
+              {files && (
+                <div>
+                  {files.map((file, index) => (
+                    <img
+                      className="me-2"
+                      src={URL.createObjectURL(file)}
+                      alt=""
+                      key={index}
+                    />
+                  ))}
+                </div>
               )}
               <input
                 hidden
                 type="file"
                 onChange={handleSelectImage}
                 ref={inputRef}
+                multiple
               />
               <button
                 onClick={(e) => {
