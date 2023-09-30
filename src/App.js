@@ -24,6 +24,7 @@ import AddProduct from "./Components/AddProduct/AddProduct";
 import AddCategory from "./Components/AddCategory/AddCategory";
 import AddBrand from "./Components/AddBrand/AddBrand";
 import ViewUser from "./Components/ViewUser/ViewUser";
+import ViewOrder from "./Components/ViewOrder/ViewOrder";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,6 +54,12 @@ function App() {
               <Route
                 path="/webpage2"
                 element={<OrdersWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/vieworder/:id"
+                element={
+                  <ViewOrderWithLayout isOpen={isOpen} toggle={toggle} />
+                }
               />
               <Route
                 path="/webpage3"
@@ -153,6 +160,13 @@ const OrdersWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
       <Orders />
+    </WithLayout>
+  );
+};
+const ViewOrderWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <ViewOrder />
     </WithLayout>
   );
 };

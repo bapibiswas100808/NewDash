@@ -4,3 +4,9 @@
 .product-area .add-category-button {
   display: none;
 }
+.product-area .view-brand {
+  display: none;
+}
+.product-area .view-category {
+  display: none;
+}

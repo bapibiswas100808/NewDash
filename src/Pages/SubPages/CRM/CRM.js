@@ -210,15 +210,37 @@ const CRM = ({
                       <td>
                         <div className="action-buttons d-flex align-items-center justify-content-center">
                           <div className="show-button me-2 action-button">
-                            <NavLink to="">
+                            <NavLink className="view-category" to="">
+                              <BsFillEyeFill />
+                            </NavLink>
+                            <NavLink className="view-brand" to="">
+                              <BsFillEyeFill />
+                            </NavLink>
+                            <NavLink className="view-product" to="">
                               <BsFillEyeFill />
                             </NavLink>
                           </div>
                           <div className="edit-button me-2 action-button">
-                            <GrEdit />
+                            <NavLink className="view-category" to="">
+                              <GrEdit />
+                            </NavLink>
+                            <NavLink className="view-brand" to="">
+                              <GrEdit />
+                            </NavLink>
+                            <NavLink className="view-product" to="">
+                              <GrEdit />
+                            </NavLink>
                           </div>
                           <div className="delete-button action-button">
-                            <AiFillDelete />
+                            <NavLink className="view-category" to="">
+                              <AiFillDelete />
+                            </NavLink>
+                            <NavLink className="view-brand" to="">
+                              <AiFillDelete />
+                            </NavLink>
+                            <NavLink className="view-product" to="">
+                              <AiFillDelete />
+                            </NavLink>
                           </div>
                         </div>
                       </td>

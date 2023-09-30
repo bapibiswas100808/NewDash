@@ -7,3 +7,9 @@
 .category-area .add-product-button {
   display: none;
 }
+.category-area .view-product {
+  display: none;
+}
+.category-area .view-brand {
+  display: none;
+}

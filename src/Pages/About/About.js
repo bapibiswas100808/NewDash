@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./About.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { AiFillDelete } from "react-icons/ai";
+import { BsFillEyeFill } from "react-icons/bs";
+import { GrEdit } from "react-icons/gr";
 
 const About = () => {
   const navigate = useNavigate();
@@ -101,7 +104,7 @@ const About = () => {
                   <td>{roleMappings[d.role]}</td>
                   <td className="">
                     <div className="buttons-dash d-flex align-items-center justify-content-center flex-column flex-lg-row">
-                      <div className="view-button-div">
+                      <div className="view-button-div ">
                         <button
                           onClick={() => handleView(d.id)}
                           className=" btn-success px-2 rounded view-button"
@@ -110,27 +113,30 @@ const About = () => {
                             fontSize: "13px",
                           }}
                         >
-                          View
+                          <i>
+                            <BsFillEyeFill />
+                          </i>
                         </button>
                       </div>
                       <div className="update-button-div">
                         <Link
                           to={`/viewuser/${d.id}`}
-                          className=" btn-success ms-2 px-2 rounded update-button"
+                          className=" btn-success ms-0 ms-lg-2 px-2 rounded update-button"
                           style={{
                             border: "1px solid #828080",
                             fontSize: "13px",
                             padding: "2px",
-                            color: "#ffffff",
                           }}
                         >
-                          Update
+                          <i className="text-white">
+                            <GrEdit />
+                          </i>
                         </Link>
                       </div>
                       <div className="delete-button-div">
                         <button
                           onClick={(e) => handleDelete(d.id)}
-                          className="bg-danger rounded ms-2 px-2 delete-button"
+                          className="bg-danger rounded ms-0 ms-lg-2 px-2 delete-button"
                           style={{
                             border: "none",
                             padding: "2px",
@@ -138,7 +144,9 @@ const About = () => {
                             fontSize: "13px",
                           }}
                         >
-                          Delete
+                          <i>
+                            <AiFillDelete />
+                          </i>
                         </button>
                       </div>
                     </div>

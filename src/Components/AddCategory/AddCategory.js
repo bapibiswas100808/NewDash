@@ -149,7 +149,7 @@ const AddCategory = () => {
                 </div>
               </div>
               <div className="add-category-active mt-3">
-                <label className="">Menu Active?</label>
+                <label className="">Product Active?</label>
                 <input
                   className="ms-3 py-2"
                   checked={isChecked}

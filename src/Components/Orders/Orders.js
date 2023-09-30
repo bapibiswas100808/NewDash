@@ -5,6 +5,7 @@ import { AiOutlineDoubleRight, AiOutlineSearch } from "react-icons/ai";
 import { BsFillEyeFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 const Orders = () => {
   const [records, setRecords] = useState([]);
@@ -178,9 +179,12 @@ const Orders = () => {
                       {/* <td>{d.updated_at}</td> */}
                       <td>
                         <div className="action-buttons">
-                          <div className="show-button">
+                          <NavLink
+                            className="show-button"
+                            to={`/vieworder/${d.id}`}
+                          >
                             <BsFillEyeFill />
-                          </div>
+                          </NavLink>
                         </div>
                       </td>
                     </tr>
