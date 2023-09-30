@@ -1,0 +1,15 @@
+.view-order-area input,
+select,
+textarea {
+  border: 1px solid #8f69e1;
+}
+.view-order-area button {
+  border: none;
+  background-color: #8f69e1;
+  color: white;
+}
+.view-order-area button:hover {
+  border: none;
+  background-color: #23b7e5;
+  color: white;
+}

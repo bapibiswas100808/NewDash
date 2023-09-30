@@ -25,6 +25,7 @@ const Orders = () => {
         );
         setRecords(response.data);
         setOriginalRecords(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching profile:", error);
       }
