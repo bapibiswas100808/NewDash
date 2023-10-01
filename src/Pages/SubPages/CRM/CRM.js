@@ -107,6 +107,102 @@ const CRM = ({
   const handleAddCategory = () => {
     navigate("/addcategory");
   };
+  const handleDeleteCategory = async (id) => {
+    try {
+      const accessToken = `Token ${localStorage.getItem("getToken")}`;
+      const shouldDelete = window.confirm("Do You Want to Delete?");
+
+      if (shouldDelete) {
+        const response = await axios.delete(
+          `https://secom.privateyebd.com/api/v1/inventory/admin/categories/${id}/`,
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+
+        console.log(response);
+        alert("Deleted Succesfully");
+        const newCategory = await axios.get(
+          "https://secom.privateyebd.com/api/v1/inventory/admin/categories/",
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        setRecords(newCategory.data.results);
+        navigate("/categories");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleDeleteBrand = async (id) => {
+    try {
+      const accessToken = `Token ${localStorage.getItem("getToken")}`;
+      const shouldDelete = window.confirm("Do You Want to Delete?");
+
+      if (shouldDelete) {
+        const response = await axios.delete(
+          `https://secom.privateyebd.com/api/v1/inventory/admin/brands/${id}/`,
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+
+        console.log(response);
+        alert("Deleted Succesfully");
+        const newCategory = await axios.get(
+          "https://secom.privateyebd.com/api/v1/inventory/admin/brands/",
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        setRecords(newCategory.data.results);
+        navigate("/brands");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleDeleteProduct = async (id) => {
+    try {
+      const accessToken = `Token ${localStorage.getItem("getToken")}`;
+      const shouldDelete = window.confirm("Do You Want to Delete?");
+
+      if (shouldDelete) {
+        const response = await axios.delete(
+          `https://secom.privateyebd.com/api/v1/inventory/admin/product/${id}/`,
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+
+        console.log(response);
+        alert("Deleted Succesfully");
+        const newCategory = await axios.get(
+          "https://secom.privateyebd.com/api/v1/inventory/admin/product/",
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        setRecords(newCategory.data.results);
+        navigate("/products");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="orders-area">
@@ -162,24 +258,30 @@ const CRM = ({
           </div>
           <div className="order-table-main">
             <div className="order-table-zone">
-              <table className="w-100 ">
+              <table className="w-100 table text-nowrap table-hover border ">
                 <thead className="">
                   <tr className="w-100 text-center">
-                    <td>{td1}</td>
-                    <td>{td2}</td>
-                    <td>{td3}</td>
-                    <td>{td4}</td>
-                    <td>{td5}</td>
-                    <td>{td6}</td>
-                    <td>{td7}</td>
-                    <td>{td8}</td>
-                    <td>{td9}</td>
+                    <th scope="row" className="">
+                      <input className="form-check-input" type="checkbox" />
+                    </th>
+                    <th scope="col">{td1}</th>
+                    <th scope="col">{td2}</th>
+                    <th scope="col">{td3}</th>
+                    <th scope="col">{td4}</th>
+                    <th scope="col">{td5}</th>
+                    <th scope="col">{td6}</th>
+                    <th scope="col">{td7}</th>
+                    <th scope="col">{td8}</th>
+                    <th scope="col">{td9}</th>
                     {/* <td>Updated</td> */}
                   </tr>
                 </thead>
                 <tbody>
                   {record.map((d, i) => (
                     <tr className="w-100 text-center my-2" key={i}>
+                      <td>
+                        <input className="form-check-input" type="checkbox" />
+                      </td>
                       <td>
                         <img src={d[data1]} alt="" />
                       </td>
@@ -210,35 +312,62 @@ const CRM = ({
                       <td>
                         <div className="action-buttons d-flex align-items-center justify-content-center">
                           <div className="show-button me-2 action-button">
-                            <NavLink className="view-category" to="">
+                            <NavLink
+                              className="view-category"
+                              to={`/viewcategory/${d.id}`}
+                            >
                               <BsFillEyeFill />
                             </NavLink>
-                            <NavLink className="view-brand" to="">
+                            <NavLink
+                              className="view-brand"
+                              to={`/viewbrand/${d.id}`}
+                            >
                               <BsFillEyeFill />
                             </NavLink>
-                            <NavLink className="view-product" to="">
+                            <NavLink
+                              className="view-product"
+                              to={`/viewproduct/${d.id}`}
+                            >
                               <BsFillEyeFill />
                             </NavLink>
                           </div>
                           <div className="edit-button me-2 action-button">
-                            <NavLink className="view-category" to="">
+                            <NavLink
+                              className="view-category"
+                              to={`/viewcategory/${d.id}`}
+                            >
                               <GrEdit />
                             </NavLink>
-                            <NavLink className="view-brand" to="">
+                            <NavLink
+                              className="view-brand"
+                              to={`/viewbrand/${d.id}`}
+                            >
                               <GrEdit />
                             </NavLink>
-                            <NavLink className="view-product" to="">
+                            <NavLink
+                              className="view-product"
+                              to={`/viewproduct/${d.id}`}
+                            >
                               <GrEdit />
                             </NavLink>
                           </div>
                           <div className="delete-button action-button">
-                            <NavLink className="view-category" to="">
+                            <NavLink
+                              className="view-category"
+                              onClick={() => handleDeleteCategory(d.id)}
+                            >
                               <AiFillDelete />
                             </NavLink>
-                            <NavLink className="view-brand" to="">
+                            <NavLink
+                              className="view-brand"
+                              onClick={() => handleDeleteBrand(d.id)}
+                            >
                               <AiFillDelete />
                             </NavLink>
-                            <NavLink className="view-product" to="">
+                            <NavLink
+                              className="view-product"
+                              onClick={() => handleDeleteProduct(d.id)}
+                            >
                               <AiFillDelete />
                             </NavLink>
                           </div>
@@ -253,6 +382,7 @@ const CRM = ({
                   ))}
                 </tbody>
               </table>
+
               <nav className="mt-2">
                 <ul className="pagination pagi-list">
                   <li className="page-link" onClick={prePage}>

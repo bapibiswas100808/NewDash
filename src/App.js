@@ -25,6 +25,9 @@ import AddCategory from "./Components/AddCategory/AddCategory";
 import AddBrand from "./Components/AddBrand/AddBrand";
 import ViewUser from "./Components/ViewUser/ViewUser";
 import ViewOrder from "./Components/ViewOrder/ViewOrder";
+import ViewCategory from "./Components/ViewCategory/ViewCategory";
+import ViewBrand from "./Components/ViewBrand/ViewBrand";
+import ViewProduct from "./Components/ViewProduct/ViewProduct";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,11 +51,11 @@ function App() {
                 }
               />
               <Route
-                path="/webpage1"
+                path="/users"
                 element={<AboutWithLayout isOpen={isOpen} toggle={toggle} />}
               />
               <Route
-                path="/webpage2"
+                path="/orders"
                 element={<OrdersWithLayout isOpen={isOpen} toggle={toggle} />}
               />
               <Route
@@ -62,16 +65,34 @@ function App() {
                 }
               />
               <Route
-                path="/webpage3"
+                path="/categories"
                 element={<CategoryWithLayout isOpen={isOpen} toggle={toggle} />}
               />
               <Route
-                path="/webpage4"
+                path="/viewcategory/:id"
+                element={
+                  <ViewCategoryWithLayout isOpen={isOpen} toggle={toggle} />
+                }
+              />
+              <Route
+                path="/brands"
                 element={<BrandsWithLayout isOpen={isOpen} toggle={toggle} />}
               />
               <Route
-                path="/webpage5"
+                path="/viewbrand/:id"
+                element={
+                  <ViewBrandsWithLayout isOpen={isOpen} toggle={toggle} />
+                }
+              />
+              <Route
+                path="/products"
                 element={<ProductsWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/viewproduct/:id"
+                element={
+                  <ViewProductsWithLayout isOpen={isOpen} toggle={toggle} />
+                }
               />
               <Route
                 path="/addproduct"
@@ -177,6 +198,13 @@ const CategoryWithLayout = ({ isOpen, toggle }) => {
     </WithLayout>
   );
 };
+const ViewCategoryWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <ViewCategory />
+    </WithLayout>
+  );
+};
 const BrandsWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
@@ -184,10 +212,24 @@ const BrandsWithLayout = ({ isOpen, toggle }) => {
     </WithLayout>
   );
 };
+const ViewBrandsWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <ViewBrand />
+    </WithLayout>
+  );
+};
 const ProductsWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
       <Products />
+    </WithLayout>
+  );
+};
+const ViewProductsWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <ViewProduct />
     </WithLayout>
   );
 };

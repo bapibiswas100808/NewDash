@@ -161,7 +161,7 @@ const AddProduct = () => {
       })
       .then((res) => {
         console.log(res);
-        navigate("/webpage5");
+        navigate("/products");
       })
       .catch((err) => {
         console.log(err);

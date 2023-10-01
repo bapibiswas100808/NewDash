@@ -154,16 +154,19 @@ const Orders = () => {
             </div>
           </div>
           <div className="order-table-main">
-            <div className="order-table-zone">
-              <table className="w-100">
+            <div className="order-table-zone mt-3">
+              <table className="w-100 table text-nowrap table-hover border">
                 <thead className="">
                   <tr className="w-100 text-center">
-                    <td>Id</td>
-                    <td>Invoice</td>
-                    <td>Customer</td>
-                    <td>Total Order</td>
-                    <td>Status</td>
-                    <td>Created</td>
+                    <th scope="row">
+                      <input className="form-check-input" type="checkbox" />
+                    </th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Invoice</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Total Order</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Created</th>
                     {/* <td>Updated</td> */}
                     <td>Action</td>
                   </tr>
@@ -171,6 +174,9 @@ const Orders = () => {
                 <tbody>
                   {record.map((d, i) => (
                     <tr className="w-100 text-center my-2" key={i}>
+                      <td>
+                        <input className="form-check-input" type="checkbox" />
+                      </td>
                       <td>{d.id}</td>
                       <td>{d.invoice_no}</td>
                       <td>{d.customer_name}</td>

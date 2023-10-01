@@ -9,6 +9,7 @@ const ViewOrder = () => {
   const [order, setOrder] = useState({});
   const [coupon, setCoupon] = useState({});
   const [cancel, setCancel] = useState([]);
+  console.log(coupon);
 
   useEffect(() => {
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
@@ -74,6 +75,8 @@ const ViewOrder = () => {
     fetchData();
   }, []);
   const [cancelId, setCancelId] = useState();
+  const [orderStatus, setOrderStatus] = useState(0);
+  const [orderStage, setOrderStage] = useState(0);
   const [selectedCancelItem, setSelectedCancelItem] = useState({
     reason_name: "",
     is_active: false,
@@ -99,8 +102,8 @@ const ViewOrder = () => {
     );
   }, [cancelId, cancel]);
 
-  const { reason_name, is_active, updated_at, created_at } = selectedCancelItem;
-  console.log(reason_name, is_active, updated_at, created_at);
+  const { reason_name, is_active } = selectedCancelItem;
+  // console.log(reason_name, is_active, updated_at, created_at);
 
   const handleCancel = (e) => {
     e.preventDefault();
@@ -129,6 +132,18 @@ const ViewOrder = () => {
         console.log(err.response.data);
       });
   };
+  const handleOrderStatus = (e) => {
+    e.preventDefault();
+    const status = e.target.value;
+    setOrderStatus(status);
+  };
+  console.log(orderStatus);
+  const handleOrderStage = (e) => {
+    e.preventDefault();
+    const stage = e.target.value;
+    setOrderStage(stage);
+  };
+  console.log(orderStage);
 
   return (
     <section className="view-order-zone">
@@ -137,7 +152,7 @@ const ViewOrder = () => {
         <div className="view-order-content card">
           <Row>
             <Col lg={6}>
-              <div className="order-view-id">
+              <div className="order-view-id mb-3">
                 <label className="mb-2">Order ID</label> <br />
                 <input
                   type="text"
@@ -147,7 +162,7 @@ const ViewOrder = () => {
               </div>
             </Col>
             <Col lg={6}>
-              <div className="order-invoice-number">
+              <div className="order-invoice-number mb-3">
                 <label className="mb-2">Invoice Number</label> <br />
                 <input
                   type="text"
@@ -157,7 +172,7 @@ const ViewOrder = () => {
               </div>
             </Col>
             <Col lg={6}>
-              <div className="order-invoice-number mb-3 mb-lg-0">
+              <div className="order-invoice-number mb-3 ">
                 <label className="mb-2">Customer Name</label> <br />
                 <input
                   type="text"
@@ -167,7 +182,7 @@ const ViewOrder = () => {
               </div>
             </Col>
             <Col lg={6}>
-              <div className="order-invoice-number mb-3 mb-lg-0">
+              <div className="order-invoice-number mb-3 ">
                 <label className="mb-2">Total Price</label> <br />
                 <input
                   type="text"
@@ -177,7 +192,7 @@ const ViewOrder = () => {
               </div>
             </Col>
             <Col lg={6}>
-              <div className="order-invoice-number mb-3 mb-lg-0">
+              <div className="order-invoice-number mb-3 ">
                 <label className="mb-2">Shipping Charge</label> <br />
                 <input
                   type="text"
@@ -187,7 +202,7 @@ const ViewOrder = () => {
               </div>
             </Col>
             <Col lg={6}>
-              <div className="order-updated-at mb-3 mb-lg-0">
+              <div className="order-updated-at mb-3 ">
                 <label className="mb-2">Created</label> <br />
                 <input
                   type="text"
@@ -197,7 +212,7 @@ const ViewOrder = () => {
               </div>
             </Col>
             <Col lg={6}>
-              <div className="order-updated-at mb-3 mb-lg-0">
+              <div className="order-updated-at mb-3 ">
                 <label className="mb-2">Updated</label> <br />
                 <input
                   type="text"
@@ -207,11 +222,11 @@ const ViewOrder = () => {
               </div>
             </Col>
             <Col lg={6}>
-              <div className="order-invoice-number mb-3 mb-lg-0">
+              <div className="order-invoice-number mb-3 ">
                 <label className="mb-2">Cancel Reason</label> <br />
                 <select
                   onChange={handleReason}
-                  className="px-3 py-2 w-100 rounded"
+                  className="px-3 py-2 w-100 rounded form-select"
                 >
                   <option>-----</option>
                   {cancel.map((item) => (
@@ -219,6 +234,36 @@ const ViewOrder = () => {
                       {item.reason_name}
                     </option>
                   ))}
+                </select>
+              </div>
+            </Col>
+            <Col lg={6}>
+              <div className="order-update-status mb-3 ">
+                <label className="mb-2">Order Status</label> <br />
+                <select
+                  onChange={handleOrderStatus}
+                  className="px-3 py-2 w-100 rounded form-select"
+                >
+                  <option value="0">Pending</option>
+                  <option value="1">Processing</option>
+                  <option value="2">Out for Delivery</option>
+                  <option value="3">Delivered</option>
+                  <option value="4">Cancelled</option>
+                </select>
+              </div>
+            </Col>
+            <Col lg={6}>
+              <div className="order-stage-status mb-3 ">
+                <label className="mb-2">Order Stage</label> <br />
+                <select
+                  onChange={handleOrderStage}
+                  className="px-3 py-2 w-100 rounded form-select"
+                >
+                  <option value="0">Order Placed</option>
+                  <option value="1">Request Sent</option>
+                  <option value="2">Delivery Assigned</option>
+                  <option value="3">Handover to Courier</option>
+                  <option value="4">Delivered</option>
                 </select>
               </div>
             </Col>

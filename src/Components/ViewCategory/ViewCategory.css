@@ -1,0 +1,20 @@
+.view-category-image img {
+  height: 100px;
+  width: 100px;
+  padding: 10px;
+  border: 1px solid #8f69e1;
+  border-radius: 10px;
+}
+.view-category-area input {
+  border: 1px solid #8f69e1;
+}
+.view-category-area button {
+  background-color: #23b7e5;
+  border: none;
+  color: white;
+}
+.view-category-area button:hover {
+  background-color: #8f69e1;
+  border: none;
+  color: white;
+}

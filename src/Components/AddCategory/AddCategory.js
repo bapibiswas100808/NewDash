@@ -89,7 +89,7 @@ const AddCategory = () => {
       })
       .then((res) => {
         console.log(res);
-        navigate("/webpage3");
+        navigate("/categories");
       })
       .catch((err) => {
         console.log(err);

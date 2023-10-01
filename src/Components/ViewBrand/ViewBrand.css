@@ -1,0 +1,23 @@
+.view-brand-area {
+  min-height: 100vh;
+}
+.view-brand-area input {
+  border: 1px solid #8f69e1;
+}
+.view-brand-image img {
+  height: 100px;
+  width: 100px;
+  padding: 10px;
+  border: 1px solid #8f69e1;
+  border-radius: 10px;
+}
+.view-brand-area button {
+  background-color: #23b7e5;
+  border: none;
+  color: white;
+}
+.view-brand-area button:hover {
+  background-color: #8f69e1;
+  border: none;
+  color: white;
+}
