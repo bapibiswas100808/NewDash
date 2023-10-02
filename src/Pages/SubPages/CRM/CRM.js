@@ -235,7 +235,7 @@ const CRM = ({
                 />
               </div>
             </div>
-            <div>
+            <div className="ms-2">
               <button
                 onClick={handleAddProduct}
                 className="px-3 py-2 rounded mt-4 mb-2 add-product-button"
@@ -382,29 +382,28 @@ const CRM = ({
                   ))}
                 </tbody>
               </table>
-
-              <nav className="mt-2">
-                <ul className="pagination pagi-list">
-                  <li className="page-link" onClick={prePage}>
-                    Prev
-                  </li>
-                  {numbers.map((n, i) => (
-                    <li
-                      className={`page-link ${
-                        currentPage === n ? "active-page" : ""
-                      }`}
-                      key={i}
-                      onClick={() => changePage(n)}
-                    >
-                      {n}
-                    </li>
-                  ))}
-                  <li className="page-link" onClick={nextPage}>
-                    Next
-                  </li>
-                </ul>
-              </nav>
             </div>
+            <nav className="mt-2">
+              <ul className="pagination pagi-list">
+                <li className="page-link" onClick={prePage}>
+                  Prev
+                </li>
+                {numbers.map((n, i) => (
+                  <li
+                    className={`page-link ${
+                      currentPage === n ? "active-page" : ""
+                    }`}
+                    key={i}
+                    onClick={() => changePage(n)}
+                  >
+                    {n}
+                  </li>
+                ))}
+                <li className="page-link" onClick={nextPage}>
+                  Next
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>

@@ -4,6 +4,10 @@
   border-radius: 50%;
   display: inline-block;
 }
+.special-text {
+  color: #985adf;
+  font-size: 14px !important;
+}
 
 .basic-top-right img {
   height: 40px;

@@ -311,7 +311,7 @@ const ViewProduct = () => {
                 <h5>Drag and Drop File picture here</h5>
                 <h5 className="mx-3">Or</h5>
                 {files && (
-                  <div>
+                  <div className="up-img">
                     {files.map((file, index) => (
                       <img
                         className="me-2"
@@ -345,7 +345,7 @@ const ViewProduct = () => {
               <div
                 onDragOver={handleThumbDragOver}
                 onDrop={handleThumbDrop}
-                className="dropzone d-flex align-items-center"
+                className="dropzone d-flex align-items-center up-img"
               >
                 <h5>Drag and Drop File picture here</h5>
                 <h5 className="mx-3">Or</h5>

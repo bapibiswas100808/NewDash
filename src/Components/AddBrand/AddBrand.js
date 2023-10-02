@@ -79,7 +79,7 @@ const AddBrand = () => {
       })
       .then((res) => {
         console.log(res);
-        navigate("/webpage4");
+        navigate("/brands");
       })
       .catch((err) => {
         console.log(err);
@@ -110,7 +110,7 @@ const AddBrand = () => {
                 <div
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}
-                  className="dropzone d-flex align-items-center"
+                  className="dropzone d-flex align-items-center up-img"
                 >
                   <h5>Drag and Drop File picture here</h5>
                   <h5 className="mx-3">Or</h5>

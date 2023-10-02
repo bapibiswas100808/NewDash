@@ -18,7 +18,7 @@
   top: 2px;
   right: 10px;
 }
-.order-drop-button select {
+/* .order-drop-button select {
   box-shadow: none !important;
   border: none !important;
   -webkit-appearance: none;
@@ -31,7 +31,7 @@
   background-color: #8f69e1;
   border-radius: 6px;
   color: white;
-}
+} */
 .order-drop-button option {
   font-size: 13px;
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { IoMdArrowDropdown } from "react-icons/io";
 import "./Orders.css";
 import { AiOutlineDoubleRight, AiOutlineSearch } from "react-icons/ai";
 import { BsFillEyeFill } from "react-icons/bs";
@@ -124,8 +123,8 @@ const Orders = () => {
           </div>
         </div>
         <div className="order-table card container-fluid ">
-          <div className="order-table-top d-flex justify-content-between">
-            <div className="order-search d-flex align-items-center">
+          <div className="order-table-top d-flex justify-content-between align-items-center">
+            <div className="order-search d-flex align-items-center me-2">
               <span className="search">
                 <AiOutlineSearch className="fs-4" />
               </span>
@@ -139,7 +138,7 @@ const Orders = () => {
             </div>
             <div className="order-drop">
               <div className="order-drop-button">
-                <select className=" list-unstyled " onChange={dropValueChange}>
+                <select className="form-select " onChange={dropValueChange}>
                   <option value="all">All</option>
                   <option value="pending">Delivered</option>
                   <option value="processing">Processing</option>
@@ -147,9 +146,6 @@ const Orders = () => {
                   <option value="delivered">Pending</option>
                   <option value="cancelled">Out for Delivery </option>
                 </select>
-                <div className="drop-icon text-white">
-                  <IoMdArrowDropdown />
-                </div>
               </div>
             </div>
           </div>
@@ -203,28 +199,29 @@ const Orders = () => {
                   ))}
                 </tbody>
               </table>
-              <nav className="mt-2">
-                <ul className="pagination pagi-list">
-                  <li className="page-link" onClick={prePage}>
-                    Prev
-                  </li>
-                  {numbers.map((n, i) => (
-                    <li
-                      className={`page-link ${
-                        currentPage === n ? "active-page" : ""
-                      }`}
-                      key={i}
-                      onClick={() => changePage(n)}
-                    >
-                      {n}
-                    </li>
-                  ))}
-                  <li className="page-link" onClick={nextPage}>
-                    Next
-                  </li>
-                </ul>
-              </nav>
             </div>
+
+            <nav className="mt-2">
+              <ul className="pagination pagi-list">
+                <li className="page-link" onClick={prePage}>
+                  Prev
+                </li>
+                {numbers.map((n, i) => (
+                  <li
+                    className={`page-link ${
+                      currentPage === n ? "active-page" : ""
+                    }`}
+                    key={i}
+                    onClick={() => changePage(n)}
+                  >
+                    {n}
+                  </li>
+                ))}
+                <li className="page-link" onClick={nextPage}>
+                  Next
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>

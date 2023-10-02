@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import "./Dashboard.css";
 import { Col, Row } from "react-bootstrap";
-import { BsFilterSquare, BsThreeDotsVertical } from "react-icons/bs";
+import { MdOutlineAssignmentReturned, MdDiscount } from "react-icons/md";
+import { BsFilterSquare } from "react-icons/bs";
 import { BiExport, BiPulse } from "react-icons/bi";
-import { HiOutlineBriefcase } from "react-icons/hi";
-import { NavLink } from "react-router-dom";
+import { HiOutlineBriefcase, HiTemplate } from "react-icons/hi";
 import { GoPeople } from "react-icons/go";
 import { AiOutlineDownload, AiOutlineEdit } from "react-icons/ai";
 import { TbCalendarEvent } from "react-icons/tb";
 import BasicCard from "../../Components/BasicCard/BasicCard";
-import targetImage from "../../images/loading.png";
 import dealer1 from "../../images/topdealer1.jpg";
 import BarChart from "../../Components/BarChart/BarChart";
 import LineChart from "../../Components/LineChart/LineChart";
@@ -25,6 +24,7 @@ import {
   Legend,
 } from "chart.js/auto";
 import PercentageChart from "../../Components/PercentageChart/PercentageChart";
+import GetApi from "../../Components/GetApi/GetApi";
 
 ChartJS.register(
   CategoryScale,
@@ -36,7 +36,31 @@ ChartJS.register(
 );
 
 const Dashboard = () => {
-  const [openDealdrop, setOpenDealDrop] = useState(false);
+  // const [openDealdrop, setOpenDealDrop] = useState(false);
+  const [dataFromApi, setDataFromApi] = useState([]);
+  const [productFromApi, setProductFromApi] = useState({});
+  const [orderFromApi, setOrderFromApi] = useState({});
+  const [couponFromApi, setCouponFromApi] = useState({});
+  const [brandFromApi, setBrandFromApi] = useState({});
+  const [categoryFromApi, setCategoryFromApi] = useState({});
+  const handleUserView = (apiData) => {
+    setDataFromApi(apiData.data);
+  };
+  const handleProductView = (apiData) => {
+    setProductFromApi(apiData.data.results);
+  };
+  const handleOrderView = (apiData) => {
+    setOrderFromApi(apiData.data);
+  };
+  const handleCouponView = (apiData) => {
+    setCouponFromApi(apiData.data);
+  };
+  const handleBrandView = (apiData) => {
+    setBrandFromApi(apiData.data.results);
+  };
+  const handleCategoryView = (apiData) => {
+    setCategoryFromApi(apiData.data.results);
+  };
   const [userData, setUserData] = useState(
     {
       labels: UserData.map((data) => data.month),
@@ -56,13 +80,38 @@ const Dashboard = () => {
     []
   );
 
-  console.log(setUserData);
-  const handleDealDrop = () => {
-    setOpenDealDrop(!openDealdrop);
-  };
+  console.log(userData);
+  console.log(brandFromApi);
+  // const handleDealDrop = () => {
+  //   setOpenDealDrop(!openDealdrop);
+  // };
 
   return (
     <section className="crm-div">
+      <GetApi
+        api="https://secom.privateyebd.com/api/v1/auth/admin/user/"
+        onDataFetched={handleUserView}
+      />
+      <GetApi
+        api="https://secom.privateyebd.com/api/v1/inventory/admin/product/"
+        onDataFetched={handleProductView}
+      />
+      <GetApi
+        api="https://secom.privateyebd.com/api/v1/order/admin/order/"
+        onDataFetched={handleOrderView}
+      />
+      <GetApi
+        api="https://secom.privateyebd.com/api/v1/order/admin/coupon/"
+        onDataFetched={handleCouponView}
+      />
+      <GetApi
+        api="https://secom.privateyebd.com/api/v1/inventory/admin/brands/"
+        onDataFetched={handleBrandView}
+      />
+      <GetApi
+        api="https://secom.privateyebd.com/api/v1/inventory/admin/categories/"
+        onDataFetched={handleCategoryView}
+      />
       <div className="crm-area crm-container">
         <div className="crm-intro d-flex justify-content-between">
           <div className="crm-intro-text">
@@ -92,150 +141,37 @@ const Dashboard = () => {
                   <Col lg={4}>
                     <Row>
                       <Col lg={12}>
-                        <div>
-                          <div className="crm-target card target-content">
-                            <div className="d-flex align-items-center justify-content-between">
-                              <div className="target-text pe-3">
-                                <h5>Your target is incomplete</h5>
-                                <p className="py-1">
-                                  You have completed
-                                  <span className="target-span ms-1">
-                                    66%
-                                  </span>{" "}
-                                  of the given targrt, you can also check your
-                                  status.
-                                </p>
-                                <NavLink>Click here</NavLink>
-                              </div>
-                              <div className="target-image">
-                                <img
-                                  src={targetImage}
-                                  alt=""
-                                  className="d-block"
-                                />
-                              </div>
-                            </div>
-                          </div>
+                        <div className="card special-card total-earnings">
+                          <BasicCard
+                            cardTitle="Total Earnings"
+                            numbersHeading="Earnings"
+                            numbers=" $ 126800"
+                            percentage="-12%"
+                            icon={<BiPulse />}
+                            specialText="Check Analysis"
+                          />
                         </div>
                       </Col>
                       <Col lg={12}>
-                        <div className="crm-deal card">
-                          <div className="top-special-top d-flex justify-content-between">
-                            <div className="card-heading">
-                              <h5>Top Deals</h5>
-                            </div>
-                            <div className="deal-dropdown">
-                              <div
-                                onClick={handleDealDrop}
-                                className="three-dots"
-                              >
-                                <i>
-                                  <BsThreeDotsVertical />
-                                </i>
-                                {openDealdrop && (
-                                  <ul className="list-unstyled deal-drop-items">
-                                    <li>Week</li>
-                                    <li>Month</li>
-                                    <li>Year</li>
-                                  </ul>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                          <div className="top-deal-bottom">
-                            <ul className="list-unstyled mb-0">
-                              <li>
-                                <div className="dealer-detail d-flex align-items-top flex-wrap">
-                                  <div className="dealer-image me-2">
-                                    <img
-                                      src={dealer1}
-                                      alt=""
-                                      className="d-block"
-                                    />
-                                  </div>
-                                  <div className="dealer-contact flex-fill">
-                                    <p className="mb-0">Michale Jordan</p>
-                                    <span className="fs-12">
-                                      michale.jordan@gmail.com
-                                    </span>
-                                  </div>
-                                  <div className="deal-amount">$6767</div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="dealer-detail d-flex align-items-top flex-wrap">
-                                  <div className="dealer-image me-2">
-                                    <img
-                                      src={dealer1}
-                                      alt=""
-                                      className="d-block"
-                                    />
-                                  </div>
-                                  <div className="dealer-contact flex-fill">
-                                    <p className="mb-0">Michale Jordan</p>
-                                    <span className="fs-12">
-                                      michale.jordan@gmail.com
-                                    </span>
-                                  </div>
-                                  <div className="deal-amount">$6767</div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="dealer-detail d-flex align-items-top flex-wrap">
-                                  <div className="dealer-image me-2">
-                                    <img
-                                      src={dealer1}
-                                      alt=""
-                                      className="d-block"
-                                    />
-                                  </div>
-                                  <div className="dealer-contact flex-fill">
-                                    <p className="mb-0">Michale Jordan</p>
-                                    <span className="fs-12">
-                                      michale.jordan@gmail.com
-                                    </span>
-                                  </div>
-                                  <div className="deal-amount">$6767</div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="dealer-detail d-flex align-items-top flex-wrap">
-                                  <div className="dealer-image me-2">
-                                    <img
-                                      src={dealer1}
-                                      alt=""
-                                      className="d-block"
-                                    />
-                                  </div>
-                                  <div className="dealer-contact flex-fill">
-                                    <p className="mb-0">Michale Jordan</p>
-                                    <span className="fs-12">
-                                      michale.jordan@gmail.com
-                                    </span>
-                                  </div>
-                                  <div className="deal-amount">$6767</div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="dealer-detail d-flex align-items-top flex-wrap">
-                                  <div className="dealer-image me-2">
-                                    <img
-                                      src={dealer1}
-                                      alt=""
-                                      className="d-block "
-                                    />
-                                  </div>
-                                  <div className="dealer-contact flex-fill">
-                                    <p className="mb-0">Michale Jordan</p>
-                                    <span className="fs-12">
-                                      michale.jordan@gmail.com
-                                    </span>
-                                  </div>
-                                  <div className="deal-amount">$6767</div>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
+                        <div className="card total-brands">
+                          <BasicCard
+                            cardTitle="Total Brands"
+                            numbersHeading="Brands"
+                            numbers={brandFromApi.length}
+                            percentage="+40%"
+                            icon={<MdOutlineAssignmentReturned />}
+                          />
+                        </div>
+                      </Col>
+                      <Col lg={12}>
+                        <div className="card total-coupons">
+                          <BasicCard
+                            cardTitle="Total Coupons"
+                            numbersHeading="Coupon"
+                            numbers={couponFromApi.length}
+                            percentage="+40%"
+                            icon={<MdDiscount />}
+                          />
                         </div>
                       </Col>
                       <Col lg={12}>
@@ -261,47 +197,51 @@ const Dashboard = () => {
                   <Col lg={8}>
                     <Row>
                       <Col lg={6}>
-                        <div className="crm-customer card">
+                        <div className="total-products card">
                           <BasicCard
-                            cardTitle="Total Customers"
-                            numbers="1,02,890"
+                            cardTitle="Total items"
+                            numbersHeading="Products"
+                            numbers={productFromApi.length}
                             percentage="+40%"
-                            icon={<GoPeople />}
+                            icon={<HiTemplate />}
                           />
                         </div>
                       </Col>
                       <Col lg={6}>
-                        <div className="crm-revenue card">
+                        <div className="total-orders card">
                           <BasicCard
-                            cardTitle="Total Revenue"
-                            numbers="$56,562"
+                            cardTitle="Total Orders"
+                            numbersHeading="Orders"
+                            numbers={orderFromApi.length}
                             percentage="+25%"
                             icon={<TbCalendarEvent />}
                           />
                         </div>
                       </Col>
                       <Col lg={6}>
-                        <div className="crm-ratio card">
+                        <div className="total-users card">
                           <BasicCard
-                            cardTitle="Conversion Ratio"
-                            numbers="12.08%"
-                            percentage="-12%"
-                            icon={<BiPulse />}
+                            cardTitle="Total Users"
+                            numbers={dataFromApi.length}
+                            numbersHeading="Users"
+                            percentage="+40%"
+                            icon={<GoPeople />}
                           />
                         </div>
                       </Col>
                       <Col lg={6}>
-                        <div className="crm-total-deals card">
+                        <div className="total-categories card">
                           <BasicCard
-                            cardTitle="Total Deals"
-                            numbers="2,543"
+                            cardTitle="Total Categories"
+                            numbersHeading="Categories"
+                            numbers={categoryFromApi.length}
                             percentage="+19%"
                             icon={<HiOutlineBriefcase />}
                           />
                         </div>
                       </Col>
                       <Col lg={12}>
-                        <div className="crm-revenue-stats special-card">
+                        <div className="crm-revenue-stats card">
                           <div className="top-special-top">
                             <h5 className="card-heading">Revenue Analytics</h5>
                           </div>

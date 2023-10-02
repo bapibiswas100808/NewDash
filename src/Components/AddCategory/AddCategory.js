@@ -120,7 +120,7 @@ const AddCategory = () => {
                 <div
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}
-                  className="dropzone d-flex align-items-center"
+                  className="dropzone d-flex align-items-center up-img"
                 >
                   <h5>Drag and Drop File picture here</h5>
                   <h5 className="mx-3">Or</h5>

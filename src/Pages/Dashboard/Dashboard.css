@@ -41,24 +41,19 @@
   box-shadow: 0 0.125rem 0 rgba(10, 10, 10, 0.04);
   margin-bottom: 24px;
   z-index: 20;
+  min-height: 150px;
 }
 .special-card {
-  width: 100%;
-  padding: 1rem 2rem 2rem 2rem;
-  border-radius: 0.5rem;
-  background-color: #ffffff;
-  box-shadow: 0 0.125rem 0 rgba(10, 10, 10, 0.04);
-  margin-bottom: 24px;
-  z-index: 20;
+  max-height: 150px;
 }
 
-.crm-target {
-  background-color: #9477e1 !important;
-}
-.target-content {
+.total-earnings {
   position: relative;
 }
-.target-content::after {
+.total-earnings .special-text {
+  display: block !important;
+}
+.total-earnings::after {
   position: absolute;
   content: "";
   height: 100%;
@@ -72,30 +67,30 @@
   opacity: 0.2;
   z-index: -1;
 }
-.crm-target h5 {
+.total-earnings .basic-bottom-left i {
+  display: none;
+}
+/* .total-earnings h5 {
   color: #ffffff !important;
   font-size: 1.135rem !important;
   font-weight: 600;
 }
-.crm-target p {
+.total-earnings h4 {
+  color: #ffffff !important;
+  font-size: 1rem;
+}
+.total-earnings p {
   color: #ffffff !important;
   font-size: 0.75rem;
 }
-.crm-target a {
+.total-earnings a {
   color: #ffffff !important;
   text-decoration: underline !important;
   padding-top: 10px;
   font-weight: 600;
   font-size: 0.813rem;
-}
-.crm-target img {
-  height: 85px;
-  width: 85px;
-}
-.crm-target .target-span {
-  font-weight: 600;
-  color: #f5b849;
-}
+} */
+
 .card-heading {
   position: relative;
 }
@@ -113,29 +108,57 @@
     rgba(35, 183, 229, 0.5) 50%
   );
 }
-.crm-customer .card-icon i {
-  background-color: #985adf;
-}
-.crm-revenue .card-icon i {
-  background-color: #23b7e5;
-}
-.crm-ratio {
-  z-index: 1;
-}
-.crm-ratio .card-icon i {
+.total-earnings .card-icon i {
   background-color: #26bf94;
 }
-.crm-ratio .basic-bottom-right p {
+.total-brands .card-icon i {
+  background-color: #f5b849;
+}
+.total-coupons .card-icon i {
+  background-color: #3a28dc;
+}
+
+.total-products .card-icon i {
+  background-color: rgb(254, 64, 95);
+}
+.total-orders .card-icon i {
+  background-color: #68b425;
+}
+.total-users {
+  z-index: 1;
+}
+.total-users .card-icon i {
+  background-color: #9477e1;
+}
+.total-earnings .basic-bottom-right p {
   color: #e6533c;
 }
 .crm-revenue-stats {
   z-index: 1;
 }
-.crm-total-deals .card-icon i {
-  background-color: #f5b849;
+.total-categories .card-icon i {
+  background-color: #23b7e5;
 }
 .dealer-contact span {
   font-size: 0.75rem;
+}
+.total-brands .brands {
+  display: block !important;
+}
+.total-coupons .coupons {
+  display: block !important;
+}
+.total-products .products {
+  display: block !important;
+}
+.total-categories .categories {
+  display: block !important;
+}
+.total-orders .orders {
+  display: block !important;
+}
+.total-users .users {
+  display: block !important;
 }
 .top-deal-top {
   padding: 1rem 1.25rem;

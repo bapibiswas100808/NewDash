@@ -36,3 +36,11 @@
   height: 20px;
   width: 20px;
 }
+.upload-div .up-img img {
+  max-height: 100px;
+  max-width: 100px;
+}
+.thumb-div .up-img img {
+  max-height: 100px;
+  max-width: 100px;
+}
