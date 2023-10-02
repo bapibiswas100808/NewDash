@@ -50,7 +50,7 @@ const About = () => {
           setRecords((prevRecords) =>
             prevRecords.filter((record) => record.id !== id)
           );
-          navigate("/webpage1");
+          navigate("/users");
         })
         .catch((error) => {
           console.groupCollapsed(error);
