@@ -1,13 +1,13 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { FaBars } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
 import { LuSettings2 } from "react-icons/lu";
 import { HiOutlineLogout } from "react-icons/hi";
-import { BsMoonFill, BsFullscreenExit, BsFullscreen } from "react-icons/bs";
+import { BsFullscreenExit, BsFullscreen } from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
-import { AiOutlineShoppingCart, AiOutlineAppstore } from "react-icons/ai";
+import { MdOutlineDarkMode } from "react-icons/md";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { BsFillSunFill } from "react-icons/bs";
 import "./Header.css";
@@ -17,7 +17,23 @@ import axios from "axios";
 
 const Header = ({ onClick, isOpen }) => {
   const navigate = useNavigate();
+  const profileRef = useRef(null);
   const [profile, setProfile] = useState([]);
+
+  // Click Outside to list off
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setIsProfileOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  // Get Profile Data
   useEffect(() => {
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
     axios
@@ -59,6 +75,7 @@ const Header = ({ onClick, isOpen }) => {
     fetchData();
   }, [countryId]);
 
+  // Theme Selection
   const handleMode = () => {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
   };
@@ -97,6 +114,7 @@ const Header = ({ onClick, isOpen }) => {
       }
     }
   };
+  // Log Out
   const handleLogOut = (e) => {
     e.preventDefault();
     localStorage.removeItem("getToken");
@@ -121,7 +139,7 @@ const Header = ({ onClick, isOpen }) => {
         className="header-area d-flex justify-content-between align-items-center"
       >
         {/* Toogle Bar */}
-        <div className="header-content-left">
+        <div className="header-content-left d-flex align-items-center">
           <div className="bars">
             {isOpen ? (
               window.innerWidth < 992 || window.innerWidth > 992 ? (
@@ -135,65 +153,78 @@ const Header = ({ onClick, isOpen }) => {
               <FaBars onClick={onClick} />
             )}
           </div>
+          {/* Search Button */}
+          <div className="d-none d-lg-block">
+            <div className="ps-4 d-flex align-items-center">
+              <div className="search-input">
+                <input className="px-4 py-1 ps-5" />
+              </div>
+              <div className="ms-3 search-icon position-absolute">
+                <i>
+                  <BsSearch style={{ color: "#536485" }} />
+                </i>
+              </div>
+              <div className="search-button">
+                <button className="px-3 py-1">Search</button>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Header links */}
         <div className="header-content-right d-flex align-items-center">
-          {/* Search Button */}
-          <div className="ps-4 d-none d-lg-block">
-            <div>
-              <i>
-                <BsSearch style={{ color: "#536485" }} />
-              </i>
-            </div>
-          </div>
           {/* Country optios */}
           <div className=" country-image">
             <img className="d-none " src={country.flag} alt="" />
-            {/* {country?.data?.data?.flag && (
+            {country?.data?.data?.flag && (
               <img src={country.data.data.flag} alt="Country Flag" />
-            )} */}
+            )}
           </div>
           {/* Dark/light switch */}
-          <div className="ps-4">
+          <div className="ps-3">
             <div className="switch">
-              <button
-                style={{ color: "#536485" }}
-                className="theme-button"
-                onClick={handleMode}
-              >
-                <i> {theme === "light" ? <BsMoonFill /> : <BsFillSunFill />}</i>
-              </button>
+              <div className="theme-button" onClick={handleMode}>
+                <i className="">
+                  {theme === "light" ? (
+                    <MdOutlineDarkMode className="fs-5" />
+                  ) : (
+                    <BsFillSunFill className="fs-5" />
+                  )}
+                </i>
+              </div>
             </div>
           </div>
           {/* Cart */}
-          <div className="ps-4 d-none d-lg-block">
+          {/* <div className="ps-4 d-none d-lg-block">
             <i>
               <AiOutlineShoppingCart />
             </i>
-          </div>
+          </div> */}
           {/* Notifications */}
-          <div className="ps-4 d-none d-lg-block">
+          <div className="ps-2 ps-lg-3">
             <i>
-              <IoIosNotificationsOutline />
+              <IoIosNotificationsOutline className="fs-4" />
             </i>
           </div>
           {/* App Store */}
-          <div className="ps-4 d-none d-lg-block">
+          {/* <div className="ps-4 d-none d-lg-block">
             <i>
               <AiOutlineAppstore />
             </i>
-          </div>
+          </div> */}
           {/* Full Screen mode */}
-          <div className="ps-4">
-            <button className="screen-button" onClick={handleFullscreen}>
-              <i style={{ color: "#536485" }}>
-                {fullScreen ? <BsFullscreen /> : <BsFullscreenExit />}
-              </i>
-            </button>
+          <div className="ps-2 ps-lg-3">
+            <i style={{ color: "#536485" }} onClick={handleFullscreen}>
+              {fullScreen ? (
+                <BsFullscreen className="fs-5" />
+              ) : (
+                <BsFullscreenExit className="fs-5" />
+              )}
+            </i>
           </div>
           {/* Profile */}
           <div
+            ref={profileRef}
             onClick={(e) => setIsProfileOpen(!isProfilopen)}
             className="ps-4 d-flex justify-content-center align-items-center header-profile"
           >
@@ -205,30 +236,32 @@ const Header = ({ onClick, isOpen }) => {
               <p>Web Developer</p>
             </div>
             {isProfilopen && (
-              <ul className="profile-list d-flex flex-column justify-content-start bg-white mt-2 pe-5 py-3">
-                <NavLink to="/profile">
-                  <li className="profile-list-item pb-2">
-                    <CgProfile className="me-2" />
-                    Profile
-                  </li>
-                </NavLink>
-                <NavLink to="/settings">
-                  <li className="profile-list-item">
-                    <LuSettings2 className="me-2" />
-                    Settings
-                  </li>
-                </NavLink>
-                <NavLink onClick={handleLogOut}>
-                  <li className="profile-list-item pt-2">
-                    <HiOutlineLogout className="me-2" />
-                    Log out
-                  </li>
-                </NavLink>
-              </ul>
+              <div className="profile-list">
+                <ul className="d-flex flex-column justify-content-start mt-2 list-unstyled px-3 py-2 profile-list-inner">
+                  <NavLink to="/profile">
+                    <li className="profile-list-item pb-2">
+                      <CgProfile className="me-2" />
+                      Profile
+                    </li>
+                  </NavLink>
+                  <NavLink to="/settings">
+                    <li className="profile-list-item pb-2">
+                      <LuSettings2 className="me-2" />
+                      Settings
+                    </li>
+                  </NavLink>
+                  <NavLink onClick={handleLogOut}>
+                    <li className="profile-list-item pb-2">
+                      <HiOutlineLogout className="me-2" />
+                      Log out
+                    </li>
+                  </NavLink>
+                </ul>
+              </div>
             )}
           </div>
           {/* Settings */}
-          <div className="ps-4 d-none d-lg-block">
+          <div className="ps-3 ps-lg-4">
             <FiSettings className="settings-button" />
           </div>
         </div>

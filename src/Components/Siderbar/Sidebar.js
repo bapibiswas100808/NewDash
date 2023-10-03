@@ -4,14 +4,15 @@ import {
   MdOutlineContactPage,
   MdOutlineBrandingWatermark,
   MdProductionQuantityLimits,
+  MdOutlineDiscount,
 } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
-import { AiOutlineBorderBottom } from "react-icons/ai";
+import { AiOutlineBorderBottom, AiOutlineNotification } from "react-icons/ai";
 import { GoDot } from "react-icons/go";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 import Logo from "../../images/logo.png";
-import Logo2 from "../../images/favicon1.png";
+import Logo2 from "../../images/favicon2.png";
 
 const Sidebar = ({ isOpen, children, setIsOpen }) => {
   const menuRef = useRef();
@@ -79,6 +80,20 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
       name: "Products",
       icon: <MdProductionQuantityLimits />,
       heading: "Product",
+      subitems: [],
+    },
+    {
+      path: "/notifications",
+      name: "Notifications",
+      icon: <AiOutlineNotification />,
+      heading: "Notification",
+      subitems: [],
+    },
+    {
+      path: "/coupons",
+      name: "Coupon",
+      icon: <MdOutlineDiscount />,
+      heading: "Cuopon",
       subitems: [],
     },
   ];

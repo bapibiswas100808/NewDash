@@ -1,0 +1,9 @@
+.notification-area .action-buttons {
+  display: none !important;
+}
+.notification-area .special-row {
+  display: none;
+}
+.notification-area .add-notification-button {
+  display: block !important;
+}

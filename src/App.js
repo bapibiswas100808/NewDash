@@ -28,6 +28,8 @@ import ViewOrder from "./Components/ViewOrder/ViewOrder";
 import ViewCategory from "./Components/ViewCategory/ViewCategory";
 import ViewBrand from "./Components/ViewBrand/ViewBrand";
 import ViewProduct from "./Components/ViewProduct/ViewProduct";
+import Notification from "./Components/Notifications/Notification";
+import Coupon from "./Components/Coupon/Coupon";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -109,6 +111,16 @@ function App() {
               <Route
                 path="/addbrand"
                 element={<AddBrandWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/notifications"
+                element={
+                  <NotificationWithLayout isOpen={isOpen} toggle={toggle} />
+                }
+              />
+              <Route
+                path="/coupons"
+                element={<CouponWithLayout isOpen={isOpen} toggle={toggle} />}
               />
               <Route
                 path="/viewuser/:id"
@@ -265,6 +277,20 @@ const UpdateWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
       <Update />
+    </WithLayout>
+  );
+};
+const NotificationWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <Notification />
+    </WithLayout>
+  );
+};
+const CouponWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <Coupon />
     </WithLayout>
   );
 };

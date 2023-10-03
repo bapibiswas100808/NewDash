@@ -83,20 +83,36 @@ const About = () => {
           </div>
         </div>
         <div className="about-table">
-          <table className="w-100 table">
+          <table className="w-100 table table-hover border text-nowrap table-bordered">
             <thead className="">
               <tr>
-                <th className="ps-2">ID</th>
-                <th className="ps-3">Name</th>
-                <th className="ps-3">Email</th>
-                <th className="ps-3">Phone</th>
-                <th className="ps-3">Rank</th>
+                <th scope="row" className="">
+                  <input className="form-check-input" type="checkbox" />
+                </th>
+                <th className="ps-2" scope="col">
+                  ID
+                </th>
+                <th className="ps-3" scope="col">
+                  Name
+                </th>
+                <th className="ps-3" scope="col">
+                  Email
+                </th>
+                <th className="ps-3" scope="col">
+                  Phone
+                </th>
+                <th className="ps-3" scope="col">
+                  Rank
+                </th>
                 <th className="text-center">Action</th>
               </tr>
             </thead>
             <tbody>
               {records.map((d, i) => (
                 <tr className="" key={i}>
+                  <td>
+                    <input className="form-check-input" type="checkbox" />
+                  </td>
                   <td>{d.id}</td>
                   <td>{d.name}</td>
                   <td>{d.email}</td>

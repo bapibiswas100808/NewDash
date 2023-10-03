@@ -37,6 +37,7 @@ ChartJS.register(
 
 const Dashboard = () => {
   // const [openDealdrop, setOpenDealDrop] = useState(false);
+  const [profileView, setProfileView] = useState([]);
   const [dataFromApi, setDataFromApi] = useState([]);
   const [productFromApi, setProductFromApi] = useState({});
   const [orderFromApi, setOrderFromApi] = useState({});
@@ -45,6 +46,9 @@ const Dashboard = () => {
   const [categoryFromApi, setCategoryFromApi] = useState({});
   const handleUserView = (apiData) => {
     setDataFromApi(apiData.data);
+  };
+  const handleProfileView = (apiData) => {
+    setProfileView(apiData.data);
   };
   const handleProductView = (apiData) => {
     setProductFromApi(apiData.data.results);
@@ -61,6 +65,7 @@ const Dashboard = () => {
   const handleCategoryView = (apiData) => {
     setCategoryFromApi(apiData.data.results);
   };
+  console.log();
 
   const userData = {
     labels: UserData.map((data) => data.month),
@@ -80,6 +85,10 @@ const Dashboard = () => {
 
   return (
     <section className="crm-div">
+      <GetApi
+        api="https://secom.privateyebd.com/api/v1/auth/profile/"
+        onDataFetched={handleProfileView}
+      />
       <GetApi
         api="https://secom.privateyebd.com/api/v1/auth/admin/user/"
         onDataFetched={handleUserView}
@@ -107,7 +116,9 @@ const Dashboard = () => {
       <div className="crm-area crm-container">
         <div className="crm-intro d-flex justify-content-between">
           <div className="crm-intro-text">
-            <h3>Welcome Back, Jason Tyler!</h3>
+            <h3>
+              Welcome Back, {profileView?.first_name} {profileView?.last_name}!
+            </h3>
             <p>Track Your sales activity, leads and deals here</p>
           </div>
           <div className="crm-buttons d-flex align-items-center">
@@ -265,11 +276,11 @@ const Dashboard = () => {
                         <input
                           placeholder="Search Here"
                           type="text"
-                          className="stats-input"
+                          className="stats-input py-2"
                         />
                       </div>
-                      <div>
-                        <button className="crm-stats-btn">Sort By</button>
+                      <div className="crm-stats-btn">
+                        <button className="px-3 py-2 rounded">Sort By</button>
                       </div>
                     </div>
                   </div>
