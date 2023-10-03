@@ -61,30 +61,22 @@ const Dashboard = () => {
   const handleCategoryView = (apiData) => {
     setCategoryFromApi(apiData.data.results);
   };
-  const [userData, setUserData] = useState(
-    {
-      labels: UserData.map((data) => data.month),
-      datasets: [
-        {
-          label: "Revenue",
-          data: UserData.map((data) => data.revenue),
-          backgroundColor: "#b289ff",
-        },
-        {
-          label: "Profit",
-          data: UserData.map((data) => data.profit),
-          backgroundColor: "#44c2e9",
-        },
-      ],
-    },
-    []
-  );
 
-  console.log(userData);
-  console.log(brandFromApi);
-  // const handleDealDrop = () => {
-  //   setOpenDealDrop(!openDealdrop);
-  // };
+  const userData = {
+    labels: UserData.map((data) => data.month),
+    datasets: [
+      {
+        label: "Revenue",
+        data: UserData.map((data) => data.revenue),
+        backgroundColor: "#b289ff",
+      },
+      {
+        label: "Profit",
+        data: UserData.map((data) => data.profit),
+        backgroundColor: "#44c2e9",
+      },
+    ],
+  };
 
   return (
     <section className="crm-div">

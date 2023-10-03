@@ -17,8 +17,11 @@ const GetApi = ({ api, onDataFetched }) => {
         console.log(err);
       }
     };
+
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return <></>;
 };
 
