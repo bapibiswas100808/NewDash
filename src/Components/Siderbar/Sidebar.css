@@ -14,12 +14,11 @@
   padding-bottom: 60px;
 }
 .sidebar::-webkit-scrollbar {
+  background: #8f69e1;
   width: 0.2rem;
-  height: 30px;
 }
 .sidebar::-webkit-scrollbar-thumb {
   background: #8f69e1;
-  height: 30px;
   border-radius: 5px;
 }
 .sidebar.absolute {
@@ -103,5 +102,13 @@
   }
   .bottom-side-container {
     margin-top: 0;
+  }
+  .sidebar::-webkit-scrollbar {
+    background: none;
+    width: 0rem;
+  }
+  .sidebar::-webkit-scrollbar-thumb {
+    background: #8f69e1;
+    border-radius: 0px;
   }
 }

@@ -150,8 +150,8 @@ const Orders = () => {
             </div>
           </div>
           <div className="order-table-main">
-            <div className="order-table-zone mt-3">
-              <table className="w-100 table text-nowrap table-hover border">
+            <div className="order-table-zone card mt-3">
+              <table className="w-100 table text-nowrap table-hover border table-bordered">
                 <thead className="">
                   <tr className="w-100 text-center">
                     <th scope="row">

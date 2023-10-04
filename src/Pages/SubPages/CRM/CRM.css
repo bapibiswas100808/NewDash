@@ -35,10 +35,10 @@
 .order-drop-button option {
   font-size: 13px;
 }
-.order-table-zone tr {
+/* .order-table-zone tr {
   height: 60px;
   border-bottom: 1px solid #8f69e1;
-}
+} */
 .order-table-zone img {
   height: 50px;
   width: 50px;

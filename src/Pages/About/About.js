@@ -82,7 +82,7 @@ const About = () => {
             </button>
           </div>
         </div>
-        <div className="about-table">
+        <div className="about-table card">
           <table className="w-100 table table-hover border text-nowrap table-bordered">
             <thead className="">
               <tr>

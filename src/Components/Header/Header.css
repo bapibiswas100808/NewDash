@@ -51,7 +51,8 @@
   color: #536485;
 }
 .header-profile-image img {
-  height: 40px;
+  height: 35px;
+  width: 35px;
   margin-right: 5px;
   position: relative;
   border-radius: 50%;

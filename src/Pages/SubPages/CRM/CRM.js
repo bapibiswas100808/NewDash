@@ -258,21 +258,39 @@ const CRM = ({
           </div>
           <div className="order-table-main">
             <div className="order-table-zone">
-              <table className="w-100 table text-nowrap table-hover border ">
+              <table className="w-100 table text-nowrap table-hover border table-bordered ">
                 <thead className="">
                   <tr className="w-100 text-center">
                     <th scope="row" className="">
                       <input className="form-check-input" type="checkbox" />
                     </th>
-                    <th scope="col">{td1}</th>
-                    <th scope="col">{td2}</th>
-                    <th scope="col">{td3}</th>
-                    <th scope="col">{td4}</th>
-                    <th scope="col">{td5}</th>
-                    <th scope="col">{td6}</th>
-                    <th scope="col">{td7}</th>
-                    <th scope="col">{td8}</th>
-                    <th scope="col">{td9}</th>
+                    <th className="th1" scope="col">
+                      {td1}
+                    </th>
+                    <th className="th2" scope="col">
+                      {td2}
+                    </th>
+                    <th className="th3" scope="col">
+                      {td3}
+                    </th>
+                    <th className="th4" scope="col">
+                      {td4}
+                    </th>
+                    <th className="th5" scope="col">
+                      {td5}
+                    </th>
+                    <th className="th6" scope="col">
+                      {td6}
+                    </th>
+                    <th className="th7" scope="col">
+                      {td7}
+                    </th>
+                    <th className="th8" scope="col">
+                      {td8}
+                    </th>
+                    <th className="th9" scope="col">
+                      {td9}
+                    </th>
                     {/* <td>Updated</td> */}
                   </tr>
                 </thead>
@@ -285,10 +303,10 @@ const CRM = ({
                       <td>
                         <img src={d[data1]} alt="" />
                       </td>
-                      <td>{d[data2]}</td>
-                      <td>{d[data3]}</td>
+                      <td className="td2">{d[data2]}</td>
+                      <td className="td3">{d[data3]}</td>
                       {showActiveColumn && (
-                        <td>
+                        <td className="td4">
                           {d[data4] ? "Active " : "Inactive "}
                           <BsDot
                             className="fs-2"
@@ -297,7 +315,7 @@ const CRM = ({
                         </td>
                       )}
                       {showActiveMenu && (
-                        <td>
+                        <td className="td5">
                           {d[data5] ? "Yes" : "No"}
                           <BsDot
                             className="fs-3"
@@ -305,9 +323,9 @@ const CRM = ({
                           />
                         </td>
                       )}
-                      <td>{d[data6]}</td>
-                      <td>{d[data7]}</td>
-                      <td>{d[data8]}</td>
+                      <td className="td6">{d[data6]}</td>
+                      <td className="td7">{d[data7]}</td>
+                      <td className="td8">{d[data8]}</td>
                       {/* <td>{d.updated_at}</td> */}
                       <td>
                         <div className="action-buttons d-flex align-items-center justify-content-center">

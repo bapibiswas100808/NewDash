@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./ViewOrder.css";
 
 const ViewOrder = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [order, setOrder] = useState({});
   const [coupon, setCoupon] = useState({});
   const [cancel, setCancel] = useState([]);
@@ -127,6 +128,7 @@ const ViewOrder = () => {
       )
       .then((res) => {
         console.log(res);
+        navigate("/orders");
       })
       .catch((err) => {
         console.log(err.response.data);
