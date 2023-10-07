@@ -6,7 +6,12 @@ import { BsFilterSquare } from "react-icons/bs";
 import { BiExport, BiPulse } from "react-icons/bi";
 import { HiOutlineBriefcase, HiTemplate } from "react-icons/hi";
 import { GoPeople } from "react-icons/go";
-import { AiOutlineDownload, AiOutlineEdit } from "react-icons/ai";
+import {
+  AiOutlineDownload,
+  AiOutlineEdit,
+  AiOutlineApartment,
+  AiFillNotification,
+} from "react-icons/ai";
 import { TbCalendarEvent } from "react-icons/tb";
 import BasicCard from "../../Components/BasicCard/BasicCard";
 import dealer1 from "../../images/topdealer1.jpg";
@@ -567,7 +572,7 @@ const Dashboard = () => {
                         numbersHeading="Couriers"
                         numbers={cartFromApi.length}
                         percentage="+5%"
-                        icon={<HiOutlineBriefcase />}
+                        icon={<AiOutlineApartment />}
                       />
                     </div>
                   </Col>
@@ -578,7 +583,7 @@ const Dashboard = () => {
                         numbersHeading="Notifications"
                         numbers={notificationFromApi.length}
                         percentage="+30%"
-                        icon={<HiOutlineBriefcase />}
+                        icon={<AiFillNotification />}
                       />
                     </div>
                   </Col>

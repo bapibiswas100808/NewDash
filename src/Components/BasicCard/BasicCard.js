@@ -56,7 +56,7 @@ const BasicCard = ({
                 <NavLink className="notifications d-none" to="/notifications">
                   View All
                 </NavLink>
-                <NavLink className="carts d-none" to="/carts">
+                <NavLink className="carts d-none" to="">
                   View All
                 </NavLink>
                 <h6 className="fs-6 d-none special-text">{specialText}</h6>

@@ -356,7 +356,9 @@ const CRM = ({
                           {d[data4] ? "Active " : "Inactive "}
                           <BsDot
                             className="fs-2"
-                            style={{ color: d[data4] ? "#03AC13" : "red" }}
+                            style={{
+                              color: d[data4] ? "#03AC13" : "red",
+                            }}
                           />
                         </td>
                       )}
@@ -365,7 +367,9 @@ const CRM = ({
                           {d[data5] ? "Yes" : "No"}
                           <BsDot
                             className="fs-3"
-                            style={{ color: d[data4] ? "#03AC13" : "red" }}
+                            style={{
+                              color: d[data5] ? "#03AC13" : "red",
+                            }}
                           />
                         </td>
                       )}
