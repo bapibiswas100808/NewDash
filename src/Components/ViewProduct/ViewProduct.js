@@ -19,6 +19,9 @@ const ViewProduct = () => {
   const [newCategory, setNewCategory] = useState([]);
   const [selectCategory, setSelectCategory] = useState();
   const inputRef = useRef();
+  const [file, setFile] = useState(null);
+  const [productImageId, setProductImageId] = useState(null);
+  const inputRefp = useRef();
   const inputThumbRef = useRef();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -140,6 +143,39 @@ const ViewProduct = () => {
 
     fetchData();
   }, []);
+  useEffect(() => {
+    const imageForm = new FormData();
+    imageForm.append("document", file);
+    imageForm.append("doc_type", 0);
+    console.log(imageForm);
+    const accessToken = `Token ${localStorage.getItem("getToken")}`;
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          "https://secom.privateyebd.com/api/v1/auth/documents/upload/",
+          imageForm,
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        console.log(response.data);
+        setProductImageId(response.data.id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [file]);
+  const handleProductSelectImage = () => {
+    inputRefp.current.click();
+  };
+  const handleProductSelectFile = (e) => {
+    e.preventDefault();
+    setFile(e.target.files[0]);
+    console.log(e.target.files[0]);
+  };
   const handleBrand = (e) => {
     e.preventDefault();
     const selectedBrandId = e.target.value;
@@ -210,7 +246,7 @@ const ViewProduct = () => {
     const brand = selectBrand;
     const category = selectCategory;
     const thumbnail = thumbId;
-    const images = [imageId];
+    const images = file ? [productImageId] : [imageId];
     const name = form.productName.value;
     const description = form.desName.value;
     const quantity = form.quantityName.value;
@@ -258,7 +294,19 @@ const ViewProduct = () => {
         <h2 className="my-3">Product Review</h2>
         <div className="view-product-content card">
           <div className="view-product-image">
-            <img src={viewProduct.thumbnail} alt="" />
+            <input
+              defaultValue={viewProduct?.image_id}
+              className="ms-2 rounded"
+              type="file"
+              hidden
+              ref={inputRefp}
+              onChange={handleProductSelectFile}
+            />
+            <img
+              onClick={handleProductSelectImage}
+              src={file ? URL.createObjectURL(file) : viewProduct?.thumbnail}
+              alt=""
+            />
           </div>
 
           <form onSubmit={handleUpdateProduct}>

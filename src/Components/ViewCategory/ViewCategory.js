@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./ViewCategory.css";
@@ -8,7 +8,10 @@ import { Col, Row } from "react-bootstrap";
 const ViewCategory = () => {
   const [viewCategory, setViewCategory] = useState({});
   const [categoryType, setCategoryType] = useState({});
+  const [file, setFile] = useState(null);
+  const [imageId, setImageId] = useState(null);
   const navigate = useNavigate();
+  const inputRef = useRef();
   const { id } = useParams();
   useEffect(() => {
     const fetchData = async () => {
@@ -30,12 +33,45 @@ const ViewCategory = () => {
     };
     fetchData();
   }, [id]);
+  useEffect(() => {
+    const imageForm = new FormData();
+    imageForm.append("document", file);
+    imageForm.append("doc_type", 0);
+    console.log(imageForm);
+    const accessToken = `Token ${localStorage.getItem("getToken")}`;
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          "https://secom.privateyebd.com/api/v1/auth/documents/upload/",
+          imageForm,
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        console.log(response.data);
+        setImageId(response.data.id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [file]);
   const handleCategoryType = (e) => {
     e.preventDefault();
     const type = e.target.value;
     setCategoryType(type);
   };
   console.log(categoryType);
+  const handleSelectImage = () => {
+    inputRef.current.click();
+  };
+  const handleSelectFile = (e) => {
+    e.preventDefault();
+    setFile(e.target.files[0]);
+    console.log(e.target.files[0]);
+  };
   const handleCategorySubmit = async (event) => {
     event.preventDefault();
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
@@ -45,7 +81,7 @@ const ViewCategory = () => {
     const rank = form.rankName.value;
     const is_active = viewCategory.is_active;
     const is_menu = viewCategory.is_menu;
-    const image = viewCategory.image;
+    const image = file ? imageId : viewCategory.image;
     const categoryForm = {
       name,
       description,
@@ -83,7 +119,19 @@ const ViewCategory = () => {
           <form onSubmit={handleCategorySubmit}>
             <div className="view-category-image">
               <label className="mb-2">Image</label> <br />
-              <img src={viewCategory.image_url} alt="" />
+              <input
+                defaultValue={viewCategory?.image_id}
+                className="ms-2 rounded"
+                type="file"
+                hidden
+                ref={inputRef}
+                onChange={handleSelectFile}
+              />
+              <img
+                onClick={handleSelectImage}
+                src={file ? URL.createObjectURL(file) : viewCategory?.image_url}
+                alt=""
+              />
             </div>
             <Row>
               <Col lg={6}>

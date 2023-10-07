@@ -276,7 +276,7 @@ const Dashboard = () => {
                         <input
                           placeholder="Search Here"
                           type="text"
-                          className="stats-input py-2"
+                          className="stats-input py-2 rounded"
                         />
                       </div>
                       <div className="crm-stats-btn">
