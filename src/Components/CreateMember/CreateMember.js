@@ -34,7 +34,7 @@ const CreateMember = () => {
       .then((res) => {
         console.log(res.data);
         // setQrcontent(res.data);
-        navigate("/webpage1");
+        navigate("/users");
       })
       .catch((error) => {
         console.log(error);

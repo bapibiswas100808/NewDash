@@ -201,7 +201,7 @@ const Header = ({ onClick, isOpen }) => {
             </i>
           </div> */}
           {/* Notifications */}
-          <div className="ps-2 ps-lg-3">
+          <div className="ps-2">
             <i>
               <IoIosNotificationsOutline className="fs-4" />
             </i>
@@ -213,7 +213,7 @@ const Header = ({ onClick, isOpen }) => {
             </i>
           </div> */}
           {/* Full Screen mode */}
-          <div className="ps-2 ps-lg-3">
+          <div className="ps-2">
             <i style={{ color: "#536485" }} onClick={handleFullscreen}>
               {fullScreen ? (
                 <BsFullscreen className="fs-5" />

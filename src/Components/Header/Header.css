@@ -12,13 +12,13 @@
   cursor: pointer;
 }
 .search-input input {
-  border: 1px solid #8f69e1;
+  border: 1px solid #111c43;
   border-radius: 10px 0 0 10px;
 }
 .search-button button {
   border: none;
   border-radius: 0 10px 10px 0;
-  background-color: #8f69e1;
+  background-color: #111c43;
   color: white;
   border: 1px solid #8f69e1;
 }
@@ -70,7 +70,7 @@
 .profile-list li {
   border: 1px solid #536485;
   background-color: #8f69e1;
-  padding: 5px 10px;
+  padding: 3px 10px;
   border-radius: 5px;
   color: white;
   margin-bottom: 10px;

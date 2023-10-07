@@ -59,7 +59,7 @@ const ViewUser = () => {
 
       console.log(response);
       alert("Updated Successfully!");
-      navigate("/webpage1");
+      navigate("/users");
     } catch (error) {
       console.log(error.response.data);
     }

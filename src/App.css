@@ -24,6 +24,7 @@ p {
   --var-bar-bg: #252729;
   --var-text-color: #8c99bc;
   --var-heading-color: #333335;
+  --var-card-bg: #ffffff;
 }
 .dark {
   --var-main-color: #252729;
@@ -31,7 +32,10 @@ p {
   --var-header-bg: #1a1c1e;
   --var-bar-bg: #a3a4a5;
   --var-text-color: #929280;
-  --var-heading-color: #bebfbf;
+  --var-heading-color: #086666;
+  --var-card-bg: #d8d8d5;
+  --bs-body-bg: #8c99bc;
+  --bs-table-color-state: #8c99bc;
 }
 
 main {
@@ -56,6 +60,18 @@ p {
 }
 .bars {
   color: var(--var-bar-bg);
+}
+.card {
+  background-color: var(--var-card-bg) !important;
+  color: var(--var-card-color);
+}
+table {
+  background-color: var(--bs-body-bg) !important;
+}
+input,
+textarea,
+select {
+  background-color: var(--bs-table-color-state) !important;
 }
 @media (max-width: 991px) {
   .crm-container {

@@ -68,6 +68,28 @@ const About = () => {
     1: "Admin",
     2: "Delivery Man",
   };
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordPerPage = 10;
+  const lastIndex = currentPage * recordPerPage;
+  const firstIndex = lastIndex - recordPerPage;
+  const record = records?.slice(firstIndex, lastIndex);
+  const nPage = Math.ceil(records.length / recordPerPage);
+  const numbers = [...Array(nPage + 1).keys()].slice(1);
+  const prePage = () => {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const changePage = (id) => {
+    setCurrentPage(id);
+  };
+
+  const nextPage = () => {
+    if (currentPage !== nPage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <div className="about-area">
@@ -84,7 +106,7 @@ const About = () => {
         </div>
         <div className="about-table card">
           <table className="w-100 table table-hover border text-nowrap table-bordered">
-            <thead className="">
+            <thead className="text-center">
               <tr>
                 <th scope="row" className="">
                   <input className="form-check-input" type="checkbox" />
@@ -107,8 +129,8 @@ const About = () => {
                 <th className="text-center">Action</th>
               </tr>
             </thead>
-            <tbody>
-              {records.map((d, i) => (
+            <tbody className="text-center">
+              {record.map((d, i) => (
                 <tr className="" key={i}>
                   <td>
                     <input className="form-check-input" type="checkbox" />
@@ -171,6 +193,27 @@ const About = () => {
               ))}
             </tbody>
           </table>
+          <nav className="mt-2">
+            <ul className="pagination pagi-list">
+              <li className="page-link" onClick={prePage}>
+                Prev
+              </li>
+              {numbers.map((n, i) => (
+                <li
+                  className={`page-link ${
+                    currentPage === n ? "active-page" : ""
+                  }`}
+                  key={i}
+                  onClick={() => changePage(n)}
+                >
+                  {n}
+                </li>
+              ))}
+              <li className="page-link" onClick={nextPage}>
+                Next
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>

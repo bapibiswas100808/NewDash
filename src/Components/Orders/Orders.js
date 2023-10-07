@@ -65,7 +65,7 @@ const Orders = () => {
     }
   };
   const [currentPage, setCurrentPage] = useState(1);
-  const recordPerPage = 5;
+  const recordPerPage = 10;
   const lastIndex = currentPage * recordPerPage;
   const firstIndex = lastIndex - recordPerPage;
   const record = records?.slice(firstIndex, lastIndex);
@@ -86,9 +86,9 @@ const Orders = () => {
       setCurrentPage(currentPage + 1);
     }
   };
-  const totalRows = 10;
-  const emptyRowCount = totalRows - recordPerPage;
-  const emptyRows = [...Array(emptyRowCount).keys()];
+  // const totalRows = 10;
+  // const emptyRowCount = totalRows - recordPerPage;
+  // const emptyRows = [...Array(emptyRowCount).keys()];
   const getStatusText = (orderStatus) => {
     switch (orderStatus) {
       case 0:
@@ -192,11 +192,11 @@ const Orders = () => {
                       </td>
                     </tr>
                   ))}
-                  {emptyRows.map((_, i) => (
+                  {/* {emptyRows.map((_, i) => (
                     <tr key={`empty-${i}`}>
                       <td></td>
                     </tr>
-                  ))}
+                  ))} */}
                 </tbody>
               </table>
             </div>

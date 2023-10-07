@@ -251,7 +251,7 @@ const AddProduct = () => {
           <div>
             <label className="me-3">Brand Name</label> <br />
             <select
-              className="w-100 px-2 py-2 rounded"
+              className="w-100 px-2 py-2 rounded form-select"
               onChange={handleBrand}
               value={selectBrand}
             >
@@ -265,7 +265,7 @@ const AddProduct = () => {
           <div className="mt-3">
             <label className="me-3">Category Name</label> <br />
             <select
-              className="w-100 px-2 py-2 rounded"
+              className="w-100 px-2 py-2 rounded form-select"
               onChange={handleCategory}
               value={selectCategory}
             >
@@ -279,7 +279,7 @@ const AddProduct = () => {
           <div className="mt-3">
             <label className="me-3">Stock Status</label> <br />
             <select
-              className="w-100 px-2 py-2 rounded"
+              className="w-100 px-2 py-2 rounded form-select"
               value={newStatus}
               onChange={handleStatus}
             >
@@ -469,7 +469,7 @@ const AddProduct = () => {
             />
           </div>
 
-          <button className="w-100 px-3 py-2 rounded mt-3" type="submit">
+          <button className="w-100 px-3 py-2 rounded mt-3 mb-5" type="submit">
             Add New Product
           </button>
         </form>
