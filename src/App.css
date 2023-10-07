@@ -26,6 +26,7 @@ p {
   --var-heading-color: #333335;
   --var-card-bg: #ffffff;
   --bs-table-text-color: #333335;
+  --bs-top-bg-sidebar: #111c43;
 }
 .dark {
   --var-main-color: #252729;
@@ -39,6 +40,7 @@ p {
   --bs-table-color-state: #8c99bc;
   --bs-table-text-color: #ffffff;
   --bs-footer-color: #1a1c1e;
+  --bs-top-bg-sidebar: #1a1c1e;
 }
 
 main {
@@ -46,6 +48,9 @@ main {
 }
 .footer {
   background-color: var(--bs-footer-color) !important;
+}
+.top-side {
+  background-color: var(--bs-top-bg-sidebar);
 }
 h1,
 h2,
