@@ -124,6 +124,12 @@
 .total-orders .card-icon i {
   background-color: #68b425;
 }
+.total-notifications .card-icon i {
+  background-color: #68b425;
+}
+.total-carts .card-icon i {
+  background-color: #f5b849;
+}
 .total-users {
   z-index: 1;
 }
@@ -160,6 +166,13 @@
 .total-users .users {
   display: block !important;
 }
+.total-notifications .notifications {
+  display: block !important;
+}
+.total-carts .carts {
+  display: block !important;
+}
+
 .top-deal-top {
   padding: 1rem 1.25rem;
   border-radius: 0.625rem 0.625rem 0 0;

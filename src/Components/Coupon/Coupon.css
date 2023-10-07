@@ -1,0 +1,39 @@
+.coupon-area .th7 {
+  display: none;
+}
+.coupon-area .th8 {
+  display: none;
+}
+.coupon-area .th9 {
+  display: none;
+}
+.coupon-area .td1 {
+  display: none;
+}
+/* .coupon-area .td4 {
+  display: none;
+} */
+/* .coupon-area .td5 {
+  display: none;
+} */
+.coupon-area .add-brand-button {
+  display: none;
+}
+.coupon-area .add-product-button {
+  display: none;
+}
+.coupon-area .add-category-button {
+  display: none;
+}
+.coupon-area .add-coupon-button {
+  display: block !important;
+}
+.coupon-area .view-brand {
+  display: none;
+}
+.coupon-area .view-category {
+  display: none;
+}
+.coupon-area .view-product {
+  display: none;
+}

@@ -10,6 +10,7 @@
   padding: 10px;
   border: 1px solid #8f69e1;
   border-radius: 10px;
+  cursor: pointer;
 }
 .view-brand-area button {
   background-color: #23b7e5;

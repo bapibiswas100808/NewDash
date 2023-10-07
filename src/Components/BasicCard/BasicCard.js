@@ -53,6 +53,12 @@ const BasicCard = ({
                 <NavLink className="orders d-none" to="/orders">
                   View All
                 </NavLink>
+                <NavLink className="notifications d-none" to="/notifications">
+                  View All
+                </NavLink>
+                <NavLink className="carts d-none" to="/carts">
+                  View All
+                </NavLink>
                 <h6 className="fs-6 d-none special-text">{specialText}</h6>
               </div>
               <div>

@@ -19,6 +19,7 @@ const CRM = ({
   buttonName1,
   buttonName2,
   buttonName3,
+  buttonName4,
   td1,
   td2,
   td3,
@@ -53,8 +54,12 @@ const CRM = ({
           },
         });
         console.log(response.data.results);
-        setRecords(response.data.results);
-        setOriginalRecords(response.data.results);
+        const specialresponse = response.data;
+        const responseRecord = Array.isArray(specialresponse)
+          ? specialresponse
+          : specialresponse.results;
+        setRecords(responseRecord);
+        setOriginalRecords(responseRecord);
       } catch (error) {
         console.error("Error fetching profile:", error);
       }
@@ -106,6 +111,9 @@ const CRM = ({
   };
   const handleAddCategory = () => {
     navigate("/addcategory");
+  };
+  const handleAddCoupon = () => {
+    navigate("/addcoupon");
   };
   const handleDeleteCategory = async (id) => {
     try {
@@ -203,6 +211,38 @@ const CRM = ({
       console.error(error);
     }
   };
+  const handleDeleteCoupon = async (id) => {
+    try {
+      const accessToken = `Token ${localStorage.getItem("getToken")}`;
+      const shouldDelete = window.confirm("Do You Want to Delete?");
+
+      if (shouldDelete) {
+        const response = await axios.delete(
+          `https://secom.privateyebd.com/api/v1/order/admin/coupon/${id}/`,
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+
+        console.log(response);
+        alert("Deleted Succesfully");
+        const newCategory = await axios.get(
+          "https://secom.privateyebd.com/api/v1/order/admin/coupon/",
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        setRecords(newCategory.data);
+        navigate("/coupons");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="orders-area">
@@ -254,6 +294,12 @@ const CRM = ({
               >
                 {buttonName3}
               </button>
+              <button
+                onClick={handleAddCoupon}
+                className="px-3 py-2 rounded mt-4 mb-2 add-coupon-button d-none"
+              >
+                {buttonName4}
+              </button>
             </div>
           </div>
           <div className="order-table-main">
@@ -300,7 +346,7 @@ const CRM = ({
                       <td>
                         <input className="form-check-input" type="checkbox" />
                       </td>
-                      <td>
+                      <td className="td1">
                         <img src={d[data1]} alt="" />
                       </td>
                       <td className="td2">{d[data2]}</td>
@@ -348,6 +394,12 @@ const CRM = ({
                             >
                               <BsFillEyeFill />
                             </NavLink>
+                            <NavLink
+                              className="view-coupon"
+                              to={`/viewcoupon/${d.id}`}
+                            >
+                              <BsFillEyeFill />
+                            </NavLink>
                           </div>
                           <div className="edit-button me-2 action-button">
                             <NavLink
@@ -368,6 +420,12 @@ const CRM = ({
                             >
                               <GrEdit />
                             </NavLink>
+                            <NavLink
+                              className="view-coupon"
+                              to={`/viewcoupon/${d.id}`}
+                            >
+                              <GrEdit />
+                            </NavLink>
                           </div>
                           <div className="delete-button action-button">
                             <NavLink
@@ -385,6 +443,12 @@ const CRM = ({
                             <NavLink
                               className="view-product"
                               onClick={() => handleDeleteProduct(d.id)}
+                            >
+                              <AiFillDelete />
+                            </NavLink>
+                            <NavLink
+                              className="view-coupon"
+                              onClick={() => handleDeleteCoupon(d.id)}
                             >
                               <AiFillDelete />
                             </NavLink>

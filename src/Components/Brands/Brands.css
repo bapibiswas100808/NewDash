@@ -10,6 +10,12 @@
 .brand-area .view-category {
   display: none;
 }
+.brand-area .view-coupon {
+  display: none;
+}
+.brand-area .view-notification {
+  display: none;
+}
 .brand-area .td3 {
   display: none;
 }

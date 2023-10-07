@@ -30,6 +30,8 @@ import ViewBrand from "./Components/ViewBrand/ViewBrand";
 import ViewProduct from "./Components/ViewProduct/ViewProduct";
 import Notification from "./Components/Notifications/Notification";
 import Coupon from "./Components/Coupon/Coupon";
+import AddCoupon from "./Components/AddCoupon/AddCoupon";
+import ViewCoupon from "./Components/ViewCoupon/ViewCoupon";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -111,6 +113,18 @@ function App() {
               <Route
                 path="/addbrand"
                 element={<AddBrandWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/addcoupon"
+                element={
+                  <AddCouponWithLayout isOpen={isOpen} toggle={toggle} />
+                }
+              />
+              <Route
+                path="/viewcoupon/:id"
+                element={
+                  <ViewCouponWithLayout isOpen={isOpen} toggle={toggle} />
+                }
               />
               <Route
                 path="/notifications"
@@ -270,6 +284,20 @@ const AddBrandWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
       <AddBrand />
+    </WithLayout>
+  );
+};
+const AddCouponWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <AddCoupon />
+    </WithLayout>
+  );
+};
+const ViewCouponWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <ViewCoupon />
     </WithLayout>
   );
 };

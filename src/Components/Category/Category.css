@@ -13,6 +13,12 @@
 .category-area .view-brand {
   display: none;
 }
+.category-area .view-coupon {
+  display: none;
+}
+.category-area .view-notification {
+  display: none;
+}
 .category-area .th6 {
   display: none;
 }

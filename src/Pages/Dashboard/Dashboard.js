@@ -44,6 +44,8 @@ const Dashboard = () => {
   const [couponFromApi, setCouponFromApi] = useState({});
   const [brandFromApi, setBrandFromApi] = useState({});
   const [categoryFromApi, setCategoryFromApi] = useState({});
+  const [notificationFromApi, setNotificationFromApi] = useState([]);
+  const [cartFromApi, setCartFromApi] = useState([]);
   const handleUserView = (apiData) => {
     setDataFromApi(apiData.data);
   };
@@ -64,6 +66,13 @@ const Dashboard = () => {
   };
   const handleCategoryView = (apiData) => {
     setCategoryFromApi(apiData.data.results);
+  };
+  const handleNotificationView = (apiData) => {
+    setNotificationFromApi(apiData.data);
+  };
+  const handleCartView = (apiData) => {
+    console.log(apiData.data);
+    setCartFromApi(apiData.data);
   };
   console.log();
 
@@ -112,6 +121,14 @@ const Dashboard = () => {
       <GetApi
         api="https://secom.privateyebd.com/api/v1/inventory/admin/categories/"
         onDataFetched={handleCategoryView}
+      />
+      <GetApi
+        api="https://secom.privateyebd.com/api/v1/notification/admin/notification/"
+        onDataFetched={handleNotificationView}
+      />
+      <GetApi
+        api="https://secom.privateyebd.com/api/v1/courier/admin/courier_company/"
+        onDataFetched={handleCartView}
       />
       <div className="crm-area crm-container">
         <div className="crm-intro d-flex justify-content-between">
@@ -542,6 +559,32 @@ const Dashboard = () => {
                 </div>
               </Col>
               <Col lg={12}>
+                <Row>
+                  <Col lg={6}>
+                    <div className="total-carts card">
+                      <BasicCard
+                        cardTitle="Courier Companies"
+                        numbersHeading="Couriers"
+                        numbers={cartFromApi.length}
+                        percentage="+5%"
+                        icon={<HiOutlineBriefcase />}
+                      />
+                    </div>
+                  </Col>
+                  <Col lg={6}>
+                    <div className="total-notifications card">
+                      <BasicCard
+                        cardTitle="Total Notifications"
+                        numbersHeading="Notifications"
+                        numbers={notificationFromApi.length}
+                        percentage="+30%"
+                        icon={<HiOutlineBriefcase />}
+                      />
+                    </div>
+                  </Col>
+                </Row>
+              </Col>
+              <Col lg={12}>
                 <div className="crm-leads card">
                   <div className="crm-leads-heading top-special-top">
                     <h5 className="card-heading">Leads By Source</h5>{" "}
@@ -550,20 +593,6 @@ const Dashboard = () => {
                     <PercentageChart chartData={userData} />
                   </div>
                 </div>
-              </Col>
-              <Col lg={12}>
-                <Row>
-                  <Col lg={6}>
-                    <div className="crm-status card">
-                      <h5 className="card-heading">Deals Status</h5>
-                    </div>
-                  </Col>
-                  <Col lg={6}>
-                    <div className="crm-activity card">
-                      <h5 className="card-heading">Recent Activity</h5>
-                    </div>
-                  </Col>
-                </Row>
               </Col>
             </Row>
           </div>
