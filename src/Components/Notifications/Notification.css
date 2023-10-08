@@ -1,7 +1,40 @@
-.notification-area .action-buttons {
-  display: none !important;
+.notification-area .td1 {
+  display: none;
 }
-.notification-area .special-row {
+.notification-area .td6 {
+  display: none;
+}
+.notification-area .td7 {
+  display: none;
+}
+.notification-area .td8 {
+  display: none;
+}
+.notification-area .td9 {
+  display: none;
+}
+.notification-area .th5 {
+  display: none;
+}
+.notification-area .th6 {
+  display: none;
+}
+.notification-area .th7 {
+  display: none;
+}
+.notification-area .th8 {
+  display: none;
+}
+.notification-area .th9 {
+  display: none;
+}
+.notification-area .add-brand-button {
+  display: none;
+}
+.notification-area .add-category-button {
+  display: none;
+}
+.notification-area .add-product-button {
   display: none;
 }
 .notification-area .add-notification-button {

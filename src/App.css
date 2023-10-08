@@ -27,6 +27,7 @@ p {
   --var-card-bg: #ffffff;
   --bs-table-text-color: #333335;
   --bs-top-bg-sidebar: #111c43;
+  --bs-footer-color: #ffffff;
 }
 .dark {
   --var-main-color: #252729;

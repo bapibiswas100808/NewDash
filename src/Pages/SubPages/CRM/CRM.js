@@ -20,6 +20,7 @@ const CRM = ({
   buttonName2,
   buttonName3,
   buttonName4,
+  buttonName5,
   td1,
   td2,
   td3,
@@ -73,7 +74,15 @@ const CRM = ({
       setRecords(originalRecords);
     } else {
       setRecords(
-        originalRecords.filter((f) => f.name.toLowerCase().includes(searchTerm))
+        originalRecords.filter((record) => {
+          const lowercaseName = record.name?.toLowerCase() || "";
+          const lowercaseMessage = record.message?.toLowerCase() || "";
+
+          return (
+            lowercaseName.includes(searchTerm) ||
+            lowercaseMessage.includes(searchTerm)
+          );
+        })
       );
     }
   };
@@ -114,6 +123,9 @@ const CRM = ({
   };
   const handleAddCoupon = () => {
     navigate("/addcoupon");
+  };
+  const handleAddNotification = () => {
+    navigate("/addnotification");
   };
   const handleDeleteCategory = async (id) => {
     try {
@@ -300,6 +312,12 @@ const CRM = ({
               >
                 {buttonName4}
               </button>
+              <button
+                onClick={handleAddNotification}
+                className="px-3 py-2 rounded mt-4 mb-2 add-notification-button d-none"
+              >
+                {buttonName5}
+              </button>
             </div>
           </div>
           <div className="order-table-main">
@@ -377,7 +395,7 @@ const CRM = ({
                       <td className="td7">{d[data7]}</td>
                       <td className="td8">{d[data8]}</td>
                       {/* <td>{d.updated_at}</td> */}
-                      <td>
+                      <td className="td9">
                         <div className="action-buttons d-flex align-items-center justify-content-center">
                           <div className="show-button me-2 action-button">
                             <NavLink

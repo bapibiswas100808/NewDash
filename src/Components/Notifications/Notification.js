@@ -1,25 +1,30 @@
-// import CRM from "../../Pages/SubPages/CRM/CRM";
+import CRM from "../../Pages/SubPages/CRM/CRM";
 import "./Notification.css";
 const Notification = () => {
   return (
     <div className="notification-area">
-      <h2>Notification Area</h2>
-      {/* <CRM
-        pageApi="https://secom.privateyebd.com/api/v1/notification/admin/notification/"
-        heading="Notifications"
-        pages="Pages"
-        pageName="Notifications"
-        buttonName4="Add New Notification"
-        td1="id"
-        td2="Message"
-        td4="Notification"
-        td5="Is Read?"
-        data2="id"
-        data3="message"
-        data7="notification_type"
-        data8="is_read"
-        showActiveColumn={true}
-      /> */}
+      <div className="project-container">
+        <h2 className="my-4">Notification Area</h2>
+        <div className="card">
+          <CRM
+            pageApi="https://secom.privateyebd.com/api/v1/notification/admin/notification/"
+            heading="Notifications"
+            pages="Pages"
+            pageName="Notifications"
+            buttonName5="Add New Notification"
+            td1="id"
+            td2="Message"
+            td3="Is Read?"
+            td4="Notification"
+            data2="id"
+            data3="message"
+            data4="is_read"
+            data5="notification_type"
+            showActiveColumn={true}
+            showActiveMenu={true}
+          />
+        </div>
+      </div>
     </div>
   );
 };

@@ -32,6 +32,7 @@ import Notification from "./Components/Notifications/Notification";
 import Coupon from "./Components/Coupon/Coupon";
 import AddCoupon from "./Components/AddCoupon/AddCoupon";
 import ViewCoupon from "./Components/ViewCoupon/ViewCoupon";
+import AddNotification from "./Components/AddNotification/AddNotification";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -130,6 +131,12 @@ function App() {
                 path="/notifications"
                 element={
                   <NotificationWithLayout isOpen={isOpen} toggle={toggle} />
+                }
+              />
+              <Route
+                path="/addnotification"
+                element={
+                  <AddNotificationWithLayout isOpen={isOpen} toggle={toggle} />
                 }
               />
               <Route
@@ -291,6 +298,13 @@ const AddCouponWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
       <AddCoupon />
+    </WithLayout>
+  );
+};
+const AddNotificationWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <AddNotification />
     </WithLayout>
   );
 };
