@@ -16,11 +16,14 @@ const CRM = ({
   heading,
   pages,
   pageName,
+  tableHeading,
   buttonName1,
   buttonName2,
   buttonName3,
   buttonName4,
   buttonName5,
+  buttonName6,
+  buttonName7,
   td1,
   td2,
   td3,
@@ -255,6 +258,8 @@ const CRM = ({
       console.error(error);
     }
   };
+  const handleDeletefaq = () => {};
+  const handleDeletePage = () => {};
 
   return (
     <div className="orders-area">
@@ -277,11 +282,12 @@ const CRM = ({
           <div className="order-table-top d-flex justify-content-between align-items-center">
             <div className="order-search d-flex align-items-center">
               <span className="search">
-                <AiOutlineSearch className="fs-4" />
+                <AiOutlineSearch className="fs-4 table-search" />
               </span>
               <div>
+                <h2 className="table-heading fs-5 d-none">{tableHeading}</h2>
                 <input
-                  className="form-control px-5"
+                  className="form-control px-5 table-search"
                   placeholder="Type to search by Name"
                   onChange={handleSearch}
                 />
@@ -317,6 +323,18 @@ const CRM = ({
                 className="px-3 py-2 rounded mt-4 mb-2 add-notification-button d-none"
               >
                 {buttonName5}
+              </button>
+              <button
+                onClick={handleAddNotification}
+                className="px-3 py-2 rounded mt-4 mb-2 add-faq-button d-none"
+              >
+                {buttonName6}
+              </button>
+              <button
+                onClick={handleAddNotification}
+                className="px-3 py-2 rounded mt-4 mb-2 add-page-button d-none"
+              >
+                {buttonName7}
               </button>
             </div>
           </div>
@@ -422,6 +440,18 @@ const CRM = ({
                             >
                               <BsFillEyeFill />
                             </NavLink>
+                            <NavLink
+                              className="view-faq d-none"
+                              to={`/viewfaq/${d.id}`}
+                            >
+                              <BsFillEyeFill />
+                            </NavLink>
+                            <NavLink
+                              className="view-page d-none"
+                              to={`/viewpage/${d.id}`}
+                            >
+                              <BsFillEyeFill />
+                            </NavLink>
                           </div>
                           <div className="edit-button me-2 action-button">
                             <NavLink
@@ -448,6 +478,18 @@ const CRM = ({
                             >
                               <GrEdit />
                             </NavLink>
+                            <NavLink
+                              className="view-faq d-none"
+                              to={`/viewfaq/${d.id}`}
+                            >
+                              <GrEdit />
+                            </NavLink>
+                            <NavLink
+                              className="view-page d-none"
+                              to={`/viewpage/${d.id}`}
+                            >
+                              <GrEdit />
+                            </NavLink>
                           </div>
                           <div className="delete-button action-button">
                             <NavLink
@@ -471,6 +513,18 @@ const CRM = ({
                             <NavLink
                               className="view-coupon"
                               onClick={() => handleDeleteCoupon(d.id)}
+                            >
+                              <AiFillDelete />
+                            </NavLink>
+                            <NavLink
+                              className="view-faq d-none"
+                              onClick={() => handleDeletefaq(d.id)}
+                            >
+                              <AiFillDelete />
+                            </NavLink>
+                            <NavLink
+                              className="view-page d-none"
+                              onClick={() => handleDeletePage(d.id)}
                             >
                               <AiFillDelete />
                             </NavLink>

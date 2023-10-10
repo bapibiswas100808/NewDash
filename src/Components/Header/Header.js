@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { FaBars } from "react-icons/fa";
+import { AiOutlineGlobal } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
-import { CgProfile } from "react-icons/cg";
+import { CgProfile, CgWebsite } from "react-icons/cg";
 import { LuSettings2 } from "react-icons/lu";
 import { HiOutlineLogout } from "react-icons/hi";
 import { BsFullscreenExit, BsFullscreen } from "react-icons/bs";
@@ -18,6 +19,7 @@ import axios from "axios";
 const Header = ({ onClick, isOpen }) => {
   const navigate = useNavigate();
   const profileRef = useRef(null);
+  const settingRef = useRef(null);
   const [profile, setProfile] = useState([]);
 
   // Click Outside to list off
@@ -25,6 +27,18 @@ const Header = ({ onClick, isOpen }) => {
     const handleClickOutside = (event) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setIsProfileOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+  // Click Outside to seting off
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (settingRef.current && !settingRef.current.contains(event.target)) {
+        setIsSettingsOpen(false);
       }
     };
     document.addEventListener("click", handleClickOutside);
@@ -56,7 +70,8 @@ const Header = ({ onClick, isOpen }) => {
 
   // Theme Selection
   const { theme, setTheme } = useContext(Themecontext);
-  const [isProfilopen, setIsProfileOpen] = useState(false);
+  const [isProfileopen, setIsProfileOpen] = useState(false);
+  const [isSettingsopen, setIsSettingsOpen] = useState(false);
   // const [countries, setCountries] = useState("");
   const [country, setCountry] = useState({});
   useEffect(() => {
@@ -225,7 +240,7 @@ const Header = ({ onClick, isOpen }) => {
           {/* Profile */}
           <div
             ref={profileRef}
-            onClick={(e) => setIsProfileOpen(!isProfilopen)}
+            onClick={(e) => setIsProfileOpen(!isProfileopen)}
             className="ps-4 d-flex justify-content-center align-items-center header-profile"
           >
             <div className="header-profile-image">
@@ -235,7 +250,7 @@ const Header = ({ onClick, isOpen }) => {
               <h5 className="profile-heading">{firstName}</h5>
               <p>Web Developer</p>
             </div>
-            {isProfilopen && (
+            {isProfileopen && (
               <div className="profile-list">
                 <ul className="d-flex flex-column justify-content-start mt-2 list-unstyled px-3 py-2 profile-list-inner">
                   <NavLink to="/profile">
@@ -261,9 +276,31 @@ const Header = ({ onClick, isOpen }) => {
             )}
           </div>
           {/* Settings */}
-          <div className="ps-3 ps-lg-4">
+          <div
+            ref={settingRef}
+            className="ps-3 ps-lg-4"
+            onClick={(e) => setIsSettingsOpen(!isSettingsopen)}
+          >
             <FiSettings className="settings-button" />
           </div>
+          {isSettingsopen && (
+            <div className="settings-options">
+              <ul className="list-unstyled">
+                <NavLink to="/globalsetting">
+                  <li>
+                    <AiOutlineGlobal className="me-2" />
+                    Global Settings
+                  </li>
+                </NavLink>
+                <NavLink to="/websitesetting">
+                  <li>
+                    <CgWebsite className="me-2" />
+                    Website Settings
+                  </li>
+                </NavLink>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </section>

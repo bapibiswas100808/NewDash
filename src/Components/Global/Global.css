@@ -1,0 +1,143 @@
+.global-content {
+  display: none;
+}
+.global-faq-area .table-search {
+  display: none !important;
+}
+.global-page-area .table-search {
+  display: none !important;
+}
+
+.global-faq-area .table-heading {
+  display: block !important;
+}
+.global-page-area .table-heading {
+  display: block !important;
+}
+.global-faq-area .add-faq-button {
+  display: block !important;
+}
+.global-page-area .add-faq-button {
+  display: none !important;
+}
+.global-page-area .add-page-button {
+  display: block !important;
+}
+.global-faq-area .add-category-button {
+  display: none !important;
+}
+.global-page-area .add-category-button {
+  display: none !important;
+}
+.global-faq-area .add-product-button {
+  display: none !important;
+}
+.global-page-area .add-product-button {
+  display: none !important;
+}
+.global-faq-area .add-brand-button {
+  display: none !important;
+}
+.global-page-area .add-brand-button {
+  display: none !important;
+}
+.global-faq-area .view-brand {
+  display: none;
+}
+.global-page-area .view-brand {
+  display: none;
+}
+.global-faq-area .view-category {
+  display: none;
+}
+.global-page-area .view-category {
+  display: none;
+}
+.global-faq-area .view-product {
+  display: none;
+}
+.global-page-area .view-product {
+  display: none;
+}
+.global-faq-area .view-coupon {
+  display: none;
+}
+.global-page-area .view-coupon {
+  display: none;
+}
+.global-faq-area .view-faq {
+  display: block !important;
+}
+.global-page-area .view-faq {
+  display: none !important;
+}
+.global-page-area .view-page {
+  display: block !important;
+}
+.global-active-content {
+  display: block;
+}
+.global-tabs {
+  cursor: pointer;
+}
+.global-active-tabs {
+  border-bottom: 1px solid red;
+}
+.global-faq-area .th3 {
+  display: none;
+}
+.global-faq-area .th4 {
+  display: none;
+}
+.global-page-area .th4 {
+  display: none;
+}
+.global-faq-area .th5 {
+  display: none;
+}
+.global-page-area .th5 {
+  display: none;
+}
+.global-faq-area .th6 {
+  display: none;
+}
+.global-page-area .th6 {
+  display: none;
+}
+.global-faq-area .th7 {
+  display: none;
+}
+.global-page-area .th7 {
+  display: none;
+}
+.global-faq-area .th8 {
+  display: none;
+}
+.global-page-area .th8 {
+  display: none;
+}
+
+.global-faq-area .td1 {
+  display: none;
+}
+.global-page-area .td1 {
+  display: none;
+}
+.global-faq-area .td6 {
+  display: none;
+}
+.global-page-area .td6 {
+  display: none;
+}
+.global-faq-area .td7 {
+  display: none;
+}
+.global-page-area .td7 {
+  display: none;
+}
+.global-faq-area .td8 {
+  display: none;
+}
+.global-page-area .td8 {
+  display: none;
+}

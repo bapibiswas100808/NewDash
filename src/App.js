@@ -33,6 +33,8 @@ import Coupon from "./Components/Coupon/Coupon";
 import AddCoupon from "./Components/AddCoupon/AddCoupon";
 import ViewCoupon from "./Components/ViewCoupon/ViewCoupon";
 import AddNotification from "./Components/AddNotification/AddNotification";
+import Global from "./Components/Global/Global";
+import Website from "./Components/Website/Website";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -162,6 +164,14 @@ function App() {
               <Route
                 path="/create"
                 element={<CreateWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/globalsetting"
+                element={<GlobalWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/websitesetting"
+                element={<WebsiteWithLayout isOpen={isOpen} toggle={toggle} />}
               />
             </Routes>
           </BrowserRouter>
@@ -333,6 +343,20 @@ const CouponWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
       <Coupon />
+    </WithLayout>
+  );
+};
+const GlobalWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <Global />
+    </WithLayout>
+  );
+};
+const WebsiteWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <Website />
     </WithLayout>
   );
 };

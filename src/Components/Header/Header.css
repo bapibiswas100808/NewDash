@@ -88,6 +88,28 @@
   height: 20px;
   animation: rotatelogo 5s linear infinite;
   cursor: pointer;
+  position: relative;
+}
+.settings-options {
+  position: absolute;
+  right: 10px;
+  top: 60px;
+  background-color: #1d284d;
+  padding: 20px 15px;
+  border-radius: 10px;
+}
+.settings-options li {
+  color: white;
+  background-color: #8f69e1;
+  border: 1px solid #536485;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+.settings-options li:hover {
+  background-color: #23b7e5;
+  color: white;
 }
 
 @keyframes rotatelogo {
