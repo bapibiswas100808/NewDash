@@ -76,7 +76,7 @@ const AddNotification = () => {
   return (
     <section className="add-notification-area">
       <div className="project-container">
-        <h2 className="fs-5">Add Notifications</h2>
+        <h2 className="fs-5 my-4">Add Notifications</h2>
         <div className="add-notification-content card">
           <form onSubmit={handleAddNotification}>
             <div className="notification-type mb-3">

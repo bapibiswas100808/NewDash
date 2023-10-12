@@ -86,7 +86,7 @@ const AddBrand = () => {
       });
   };
   return (
-    <section>
+    <section className="add-brand-zone">
       <div className="project-container">
         <div className="add-brand-area">
           <div className="add-brand-top my-3">

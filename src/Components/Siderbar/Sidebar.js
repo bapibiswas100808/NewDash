@@ -9,13 +9,14 @@ import {
 import { BiCategory } from "react-icons/bi";
 import { AiOutlineBorderBottom, AiOutlineNotification } from "react-icons/ai";
 import { GoDot } from "react-icons/go";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./Sidebar.css";
 import Logo from "../../images/logo.png";
 import Logo2 from "../../images/favicon2.png";
 
 const Sidebar = ({ isOpen, children, setIsOpen }) => {
   const menuRef = useRef();
+  const location = useLocation();
   useEffect(() => {
     const handler = (e) => {
       if (
@@ -37,6 +38,23 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
       }
     };
   }, [setIsOpen, isOpen]);
+
+  // Resize for mobile respnsive
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 992) {
+        setIsOpen(true);
+      } else {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [setIsOpen]);
 
   // Menu Items
   const menuItem = [
@@ -100,6 +118,16 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
   // Menu and Hover
   const [activeMenu, setActiveMenu] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
+
+  //  Handling Active Menu
+  const getMenuIndex = (path) => {
+    return menuItem.findIndex((menu) => menu.path === path);
+  };
+  useEffect(() => {
+    const currentPath = location.pathname;
+    const activatedMenu = getMenuIndex(currentPath);
+    setActiveMenu(activatedMenu);
+  }, [location.pathname]);
 
   const handleMenuClick = (index) => {
     console.log(index);
@@ -166,12 +194,9 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
                       padding: isOpen || isHovered ? "6px 17px" : "0",
                     }}
                     onClick={() => handleMenuClick(index)}
-                    className={`d-flex align-items-center justify-content-between link ${
-                      (isOpen && activeMenu === index) ||
-                      (!isOpen && activeMenu === index)
-                        ? "active"
-                        : ""
-                    }`}
+                    className={`d-flex align-items-center justify-content-between link 
+                    ${activeMenu === index ? "link-active" : ""}
+                    `}
                   >
                     {/* Icon and Text in link */}
                     <div className="icon-text d-flex align-items-center justify-content-center">

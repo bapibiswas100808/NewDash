@@ -35,9 +35,10 @@ import ViewCoupon from "./Components/ViewCoupon/ViewCoupon";
 import AddNotification from "./Components/AddNotification/AddNotification";
 import Global from "./Components/Global/Global";
 import Website from "./Components/Website/Website";
+import PrivateAuth from "./Components/PrivateAuth/PrivateAuth";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [theme, setTheme] = useState("light");
   const toggle = () => setIsOpen(!isOpen);
 
@@ -51,156 +52,178 @@ function App() {
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/verification" element={<Verification />} />
-              <Route
-                path="/dashboard"
-                element={
-                  <DashboardWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/users"
-                element={<AboutWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/orders"
-                element={<OrdersWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/vieworder/:id"
-                element={
-                  <ViewOrderWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/categories"
-                element={<CategoryWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/viewcategory/:id"
-                element={
-                  <ViewCategoryWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/editcategory/:id"
-                element={
-                  <ViewCategoryWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/brands"
-                element={<BrandsWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/viewbrand/:id"
-                element={
-                  <ViewBrandsWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/editbrand/:id"
-                element={
-                  <ViewBrandsWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/products"
-                element={<ProductsWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/viewproduct/:id"
-                element={
-                  <ViewProductsWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/editproduct/:id"
-                element={
-                  <ViewProductsWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/addproduct"
-                element={
-                  <AddProductWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/addcategory"
-                element={
-                  <AddCategoryWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/addbrand"
-                element={<AddBrandWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/addcoupon"
-                element={
-                  <AddCouponWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/viewcoupon/:id"
-                element={
-                  <ViewCouponWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/editcoupon/:id"
-                element={
-                  <ViewCouponWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/notifications"
-                element={
-                  <NotificationWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/addnotification"
-                element={
-                  <AddNotificationWithLayout isOpen={isOpen} toggle={toggle} />
-                }
-              />
-              <Route
-                path="/coupons"
-                element={<CouponWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/viewuser/:id"
-                element={<ViewUserWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/edituser/:id"
-                element={<ViewUserWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/profile"
-                element={<ProfileWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/settings"
-                element={<SettingsWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/update/:id"
-                element={<UpdateWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/create"
-                element={<CreateWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/globalsetting"
-                element={<GlobalWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
-              <Route
-                path="/websitesetting"
-                element={<WebsiteWithLayout isOpen={isOpen} toggle={toggle} />}
-              />
+
+              <Route element={<PrivateAuth />}>
+                <Route
+                  path="/dashboard"
+                  element={
+                    <DashboardWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/users"
+                  element={<AboutWithLayout isOpen={isOpen} toggle={toggle} />}
+                />
+                <Route
+                  path="/orders"
+                  element={<OrdersWithLayout isOpen={isOpen} toggle={toggle} />}
+                />
+                <Route
+                  path="/vieworder/:id"
+                  element={
+                    <ViewOrderWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/categories"
+                  element={
+                    <CategoryWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/viewcategory/:id"
+                  element={
+                    <ViewCategoryWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/editcategory/:id"
+                  element={
+                    <ViewCategoryWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/brands"
+                  element={<BrandsWithLayout isOpen={isOpen} toggle={toggle} />}
+                />
+                <Route
+                  path="/viewbrand/:id"
+                  element={
+                    <ViewBrandsWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/editbrand/:id"
+                  element={
+                    <ViewBrandsWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/products"
+                  element={
+                    <ProductsWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/viewproduct/:id"
+                  element={
+                    <ViewProductsWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/editproduct/:id"
+                  element={
+                    <ViewProductsWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/addproduct"
+                  element={
+                    <AddProductWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/addcategory"
+                  element={
+                    <AddCategoryWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/addbrand"
+                  element={
+                    <AddBrandWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/addcoupon"
+                  element={
+                    <AddCouponWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/viewcoupon/:id"
+                  element={
+                    <ViewCouponWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/editcoupon/:id"
+                  element={
+                    <ViewCouponWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/notifications"
+                  element={
+                    <NotificationWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/addnotification"
+                  element={
+                    <AddNotificationWithLayout
+                      isOpen={isOpen}
+                      toggle={toggle}
+                    />
+                  }
+                />
+                <Route
+                  path="/coupons"
+                  element={<CouponWithLayout isOpen={isOpen} toggle={toggle} />}
+                />
+                <Route
+                  path="/viewuser/:id"
+                  element={
+                    <ViewUserWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/edituser/:id"
+                  element={
+                    <ViewUserWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/profile"
+                  element={
+                    <ProfileWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/settings"
+                  element={
+                    <SettingsWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/update/:id"
+                  element={<UpdateWithLayout isOpen={isOpen} toggle={toggle} />}
+                />
+                <Route
+                  path="/create"
+                  element={<CreateWithLayout isOpen={isOpen} toggle={toggle} />}
+                />
+                <Route
+                  path="/globalsetting"
+                  element={<GlobalWithLayout isOpen={isOpen} toggle={toggle} />}
+                />
+                <Route
+                  path="/websitesetting"
+                  element={
+                    <WebsiteWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+              </Route>
             </Routes>
           </BrowserRouter>
         </div>

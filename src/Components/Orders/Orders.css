@@ -1,3 +1,6 @@
+.orders-area{
+  min-height: 100vh;
+}
 .orders-top button {
   border: none;
   background-color: #23b7e5;
