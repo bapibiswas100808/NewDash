@@ -123,11 +123,15 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
   const getMenuIndex = (path) => {
     return menuItem.findIndex((menu) => menu.path === path);
   };
-  useEffect(() => {
-    const currentPath = location.pathname;
-    const activatedMenu = getMenuIndex(currentPath);
-    setActiveMenu(activatedMenu);
-  });
+  useEffect(
+    () => {
+      const currentPath = location.pathname;
+      const activatedMenu = getMenuIndex(currentPath);
+      setActiveMenu(activatedMenu);
+    },
+    // eslint-disable-next-line
+    [location.pathname, setActiveMenu]
+  );
 
   const handleMenuClick = (index) => {
     console.log(index);
