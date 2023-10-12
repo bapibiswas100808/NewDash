@@ -1,19 +1,22 @@
 import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./ViewUser.css";
 
 const ViewUser = () => {
   const navigate = useNavigate();
+  const userRef = useRef();
+  const [image, setImage] = useState(null);
+  const [imageId, setImageId] = useState(null);
   const [userDetails, setUserdetails] = useState({
     first_name: "",
     last_name: "",
     gender: "",
     dob: "",
     bio: "",
-    image: "",
+    image: imageId,
     email: "",
     mobile: "",
   });
@@ -42,6 +45,38 @@ const ViewUser = () => {
 
     fetchData();
   }, [id]);
+  const handleUserImage = () => {
+    userRef.current.click();
+  };
+  const handleSelectImage = (e) => {
+    setImage(e.target.files[0]);
+  };
+  useEffect(() => {
+    const imageForm = new FormData();
+    imageForm.append("document", image);
+    imageForm.append("doc_type", 0);
+    console.log(imageForm);
+    const accessToken = `Token ${localStorage.getItem("getToken")}`;
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          "https://secom.privateyebd.com/api/v1/auth/documents/upload/",
+          imageForm,
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        console.log(response.data);
+        setImageId(response.data.id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [image]);
+  const editRoute = window.location.pathname.includes("/edituser");
   const handleUserUpdate = async (e) => {
     e.preventDefault();
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
@@ -64,6 +99,7 @@ const ViewUser = () => {
       console.log(error.response.data);
     }
   };
+  console.log(image);
 
   return (
     <section>
@@ -72,7 +108,20 @@ const ViewUser = () => {
           <form onSubmit={handleUserUpdate}>
             <div className="view-user-image mb-3">
               <label>User Image</label> <br />
-              <img src={userDetails.profile_pic} alt="" />
+              <input
+                type="file"
+                defaultValue={userDetails?.profile_pic}
+                hidden
+                ref={userRef}
+                onChange={handleSelectImage}
+              />
+              <img
+                onClick={handleUserImage}
+                src={
+                  image ? URL.createObjectURL(image) : userDetails.profile_pic
+                }
+                alt=""
+              />
             </div>
             <div className="view-user-id mb-3">
               <label>User ID</label> <br />
@@ -81,7 +130,7 @@ const ViewUser = () => {
                 type="text"
                 value={userDetails.id}
                 onChange={(e) => setUserdetails(e.target.value)}
-                readOnly
+                disabled={!editRoute}
               />
             </div>
             <div className="view-user-fname mb-3">
@@ -91,6 +140,7 @@ const ViewUser = () => {
                 type="text"
                 value={userDetails.first_name}
                 name="first_name"
+                disabled={!editRoute}
                 onChange={(e) =>
                   setUserdetails({
                     ...userDetails,
@@ -106,6 +156,7 @@ const ViewUser = () => {
                 type="text"
                 value={userDetails.last_name}
                 name="last_name"
+                disabled={!editRoute}
                 onChange={(e) =>
                   setUserdetails({
                     ...userDetails,
@@ -121,6 +172,7 @@ const ViewUser = () => {
                 type="email"
                 value={userDetails.email}
                 name="email"
+                disabled={!editRoute}
                 onChange={(e) =>
                   setUserdetails({
                     ...userDetails,
@@ -136,6 +188,7 @@ const ViewUser = () => {
                 type="text"
                 value={userDetails.mobile}
                 name="mobile"
+                disabled={!editRoute}
                 onChange={(e) =>
                   setUserdetails({
                     ...userDetails,
@@ -145,7 +198,11 @@ const ViewUser = () => {
               />
             </div>
             <div className="user-update-button my-3">
-              <button type="submit" className="px-3 py-1 rounded">
+              <button
+                style={{ display: editRoute ? "block" : "none" }}
+                type="submit"
+                className="px-3 py-1 rounded"
+              >
                 Update
               </button>
             </div>

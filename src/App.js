@@ -82,6 +82,12 @@ function App() {
                 }
               />
               <Route
+                path="/editcategory/:id"
+                element={
+                  <ViewCategoryWithLayout isOpen={isOpen} toggle={toggle} />
+                }
+              />
+              <Route
                 path="/brands"
                 element={<BrandsWithLayout isOpen={isOpen} toggle={toggle} />}
               />
@@ -92,11 +98,23 @@ function App() {
                 }
               />
               <Route
+                path="/editbrand/:id"
+                element={
+                  <ViewBrandsWithLayout isOpen={isOpen} toggle={toggle} />
+                }
+              />
+              <Route
                 path="/products"
                 element={<ProductsWithLayout isOpen={isOpen} toggle={toggle} />}
               />
               <Route
                 path="/viewproduct/:id"
+                element={
+                  <ViewProductsWithLayout isOpen={isOpen} toggle={toggle} />
+                }
+              />
+              <Route
+                path="/editproduct/:id"
                 element={
                   <ViewProductsWithLayout isOpen={isOpen} toggle={toggle} />
                 }
@@ -130,6 +148,12 @@ function App() {
                 }
               />
               <Route
+                path="/editcoupon/:id"
+                element={
+                  <ViewCouponWithLayout isOpen={isOpen} toggle={toggle} />
+                }
+              />
+              <Route
                 path="/notifications"
                 element={
                   <NotificationWithLayout isOpen={isOpen} toggle={toggle} />
@@ -147,6 +171,10 @@ function App() {
               />
               <Route
                 path="/viewuser/:id"
+                element={<ViewUserWithLayout isOpen={isOpen} toggle={toggle} />}
+              />
+              <Route
+                path="/edituser/:id"
                 element={<ViewUserWithLayout isOpen={isOpen} toggle={toggle} />}
               />
               <Route

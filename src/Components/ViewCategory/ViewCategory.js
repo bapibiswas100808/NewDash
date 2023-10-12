@@ -58,6 +58,7 @@ const ViewCategory = () => {
     };
     fetchData();
   }, [file]);
+  const editRoute = window.location.pathname.includes("/editcategory");
   const handleCategoryType = (e) => {
     e.preventDefault();
     const type = e.target.value;
@@ -114,7 +115,9 @@ const ViewCategory = () => {
   return (
     <section className="view-ategory-zone">
       <div className="view-category-area project-container">
-        <h2 className="my-4">Categories</h2>
+        <h2 className="my-4 fs-4">
+          {editRoute ? "Update Category" : `Category No : ${id}`}
+        </h2>
         <div className="view-category-content card">
           <form onSubmit={handleCategorySubmit}>
             <div className="view-category-image">
@@ -126,6 +129,7 @@ const ViewCategory = () => {
                 hidden
                 ref={inputRef}
                 onChange={handleSelectFile}
+                disabled={!editRoute}
               />
               <img
                 onClick={handleSelectImage}
@@ -142,6 +146,7 @@ const ViewCategory = () => {
                     type="text"
                     defaultValue={viewCategory.name}
                     name="fName"
+                    disabled={!editRoute}
                   />
                 </div>
               </Col>
@@ -153,6 +158,7 @@ const ViewCategory = () => {
                     type="text"
                     defaultValue={viewCategory.code}
                     name="codeName"
+                    disabled={!editRoute}
                   />
                 </div>
               </Col>
@@ -164,6 +170,7 @@ const ViewCategory = () => {
                     type="text"
                     defaultValue={viewCategory.rank}
                     name="rankName"
+                    disabled={!editRoute}
                   />
                 </div>
               </Col>
@@ -186,11 +193,16 @@ const ViewCategory = () => {
                     className="px-3 py-4 w-100 rounded"
                     defaultValue={viewCategory.description}
                     name="desName"
+                    disabled={!editRoute}
                   />
                 </div>
               </Col>
             </Row>
-            <button type="submit" className="px-3 py-2 rounded w-100 my-4">
+            <button
+              style={{ display: editRoute ? "block" : "none" }}
+              type="submit"
+              className="px-3 py-2 rounded w-100 my-4"
+            >
               Update Category
             </button>
           </form>

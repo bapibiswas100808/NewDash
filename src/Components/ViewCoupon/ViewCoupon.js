@@ -27,6 +27,7 @@ const ViewCoupon = () => {
     };
     fetchData();
   }, [accessToken, id]);
+  const isEditable = window.location.pathname.includes(`/editcoupon/${id}`);
   const [couponType, setCouponType] = useState(0);
   const [isActiveChecked, setIsActiveChecked] = useState(false);
   const handleCouponType = (e) => {
@@ -88,7 +89,9 @@ const ViewCoupon = () => {
   return (
     <section className="add-coupon-area">
       <div className="project-container">
-        <h2 className="fs-4 my-3">Add Coupon</h2>
+        <h2 className="fs-4 my-3">
+          {isEditable ? "Update Coupon" : `Coupon No. ${id}`}
+        </h2>
         <div className="add-coupon-content card">
           <form onSubmit={handleCouponAdd}>
             <div className="coupon-name mb-3">
@@ -99,6 +102,7 @@ const ViewCoupon = () => {
                 placeholder="Coupon Name"
                 name="couponName"
                 defaultValue={viewCoupon.name}
+                readOnly={!isEditable}
               />
             </div>
             <div className="coupon-code mb-3">
@@ -109,6 +113,7 @@ const ViewCoupon = () => {
                 placeholder="Coupon Code"
                 name="couponCode"
                 defaultValue={viewCoupon.code}
+                readOnly={!isEditable}
               />
             </div>
             <div className="coupon-start-end mb-3">
@@ -118,9 +123,10 @@ const ViewCoupon = () => {
                     <label className="mb-2">Start Date</label>
                     <input
                       className="w-100 px-3 py-2 rounded"
-                      type="date"
+                      type={isEditable ? "date" : "text"}
                       name="couponStart"
                       defaultValue={viewCoupon.start_date}
+                      readOnly={!isEditable}
                     />
                   </div>
                 </Col>
@@ -129,9 +135,10 @@ const ViewCoupon = () => {
                     <label className="mb-2">End Date</label>
                     <input
                       className="w-100 px-3 py-2 rounded"
-                      type="date"
+                      type={isEditable ? "date" : "text"}
                       name="couponEnd"
                       defaultValue={viewCoupon.expiry_date}
+                      readOnly={!isEditable}
                     />
                   </div>
                 </Col>
@@ -156,6 +163,7 @@ const ViewCoupon = () => {
                       name="priceMinimum"
                       placeholder="Minimum price"
                       defaultValue={viewCoupon.minimum_price}
+                      readOnly={!isEditable}
                     />
                   </div>
                 </Col>
@@ -168,6 +176,7 @@ const ViewCoupon = () => {
                       name="priceMaximum"
                       placeholder="maximum price"
                       defaultValue={viewCoupon.maximum_price}
+                      readOnly={!isEditable}
                     />
                   </div>
                 </Col>
@@ -180,6 +189,7 @@ const ViewCoupon = () => {
                       name="discountMaximum"
                       placeholder="Maximum discount"
                       defaultValue={viewCoupon.maximum_discount_amount}
+                      readOnly={!isEditable}
                     />
                   </div>
                 </Col>
@@ -192,6 +202,7 @@ const ViewCoupon = () => {
                       name="discountPercentage"
                       placeholder="Discount Percentage"
                       defaultValue={viewCoupon.discount_percentage}
+                      readOnly={!isEditable}
                     />
                   </div>
                 </Col>
@@ -204,6 +215,7 @@ const ViewCoupon = () => {
                       name="couponPrice"
                       placeholder="Coupon Price"
                       defaultValue={viewCoupon.price}
+                      readOnly={!isEditable}
                     />
                   </div>
                 </Col>
@@ -216,6 +228,7 @@ const ViewCoupon = () => {
                       name="maxUsage"
                       placeholder="Max Usage"
                       defaultValue={viewCoupon.max_usage}
+                      readOnly={!isEditable}
                     />
                   </div>
                 </Col>
@@ -228,6 +241,7 @@ const ViewCoupon = () => {
                       name="remainingCount"
                       placeholder="Remaining Count"
                       defaultValue={viewCoupon.remaining_count}
+                      readOnly={!isEditable}
                     />
                   </div>
                 </Col>
@@ -240,6 +254,7 @@ const ViewCoupon = () => {
                       name="usageCount"
                       placeholder="Usage count"
                       defaultValue={viewCoupon.usage_count}
+                      readOnly={!isEditable}
                     />
                   </div>
                 </Col>
@@ -254,8 +269,12 @@ const ViewCoupon = () => {
                 onChange={handleActiveCheck}
               />
             </div>
-            <button type="submit" className="px-3 py-2 rounded my-3 w-100">
-              Update Coupon
+            <button
+              type="submit"
+              className="px-3 py-2 rounded my-3 w-100"
+              style={{ display: isEditable ? "block" : "none" }}
+            >
+              {isEditable ? "Update Coupon" : `Coupon No. ${id}`}
             </button>
           </form>
         </div>

@@ -58,6 +58,7 @@ const CRM = ({
           },
         });
         console.log(response.data.results);
+        console.log(response.data);
         const specialresponse = response.data;
         const responseRecord = Array.isArray(specialresponse)
           ? specialresponse
@@ -456,25 +457,25 @@ const CRM = ({
                           <div className="edit-button me-2 action-button">
                             <NavLink
                               className="view-category"
-                              to={`/viewcategory/${d.id}`}
+                              to={`/editcategory/${d.id}`}
                             >
                               <GrEdit />
                             </NavLink>
                             <NavLink
                               className="view-brand"
-                              to={`/viewbrand/${d.id}`}
+                              to={`/editbrand/${d.id}`}
                             >
                               <GrEdit />
                             </NavLink>
                             <NavLink
                               className="view-product"
-                              to={`/viewproduct/${d.id}`}
+                              to={`/editproduct/${d.id}`}
                             >
                               <GrEdit />
                             </NavLink>
                             <NavLink
                               className="view-coupon"
-                              to={`/viewcoupon/${d.id}`}
+                              to={`/editcoupon/${d.id}`}
                             >
                               <GrEdit />
                             </NavLink>

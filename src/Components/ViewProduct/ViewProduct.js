@@ -168,6 +168,7 @@ const ViewProduct = () => {
     };
     fetchData();
   }, [file]);
+  const isEditroute = window.location.pathname.includes("/editproduct");
   const handleProductSelectImage = () => {
     inputRefp.current.click();
   };
@@ -291,7 +292,9 @@ const ViewProduct = () => {
   return (
     <section>
       <div className="view-product-area project-container">
-        <h2 className="my-3">Product Review</h2>
+        <h2 className="my-3 fs-4">
+          {isEditroute ? "Update Product" : `Product No : ${id}`}
+        </h2>
         <div className="view-product-content card">
           <div className="view-product-image">
             <input
@@ -301,6 +304,7 @@ const ViewProduct = () => {
               hidden
               ref={inputRefp}
               onChange={handleProductSelectFile}
+              disabled={!isEditroute}
             />
             <img
               onClick={handleProductSelectImage}
@@ -317,6 +321,7 @@ const ViewProduct = () => {
                 type="text"
                 defaultValue={viewProduct.name}
                 name="productName"
+                disabled={!isEditroute}
               />
             </div>
             <div>
@@ -336,20 +341,34 @@ const ViewProduct = () => {
             </div>
             <div className="mt-3">
               <label className="me-3">Category Name</label> <br />
-              <select
-                className="w-100 px-2 py-2 rounded form-select"
-                onChange={handleCategory}
-                value={selectCategory}
-              >
-                <option>------</option>
-                {newCategory.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.name}
-                  </option>
-                ))}
-              </select>
+              {!isEditroute ? (
+                <div>
+                  <input
+                    type="text"
+                    className="w-100 px-2 py-2 rounded"
+                    defaultValue={viewProduct.category_name}
+                    disabled={!isEditroute}
+                  />
+                </div>
+              ) : (
+                <select
+                  className="w-100 px-2 py-2 rounded form-select"
+                  onChange={handleCategory}
+                  value={selectCategory}
+                >
+                  <option>------</option>
+                  {newCategory.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              )}
             </div>
-            <div className="upload-div mt-3">
+            <div
+              style={{ display: isEditroute ? "block" : "none" }}
+              className="upload-div mt-3"
+            >
               <label>Upload Image</label>
               <div
                 onDragOver={handleDragOver}
@@ -388,7 +407,10 @@ const ViewProduct = () => {
                 </button>
               </div>
             </div>
-            <div className="thumb-div mt-3">
+            <div
+              style={{ display: isEditroute ? "block" : "none" }}
+              className="thumb-div mt-3"
+            >
               <label>Upload Thumbnail</label>
               <div
                 onDragOver={handleThumbDragOver}
@@ -428,6 +450,7 @@ const ViewProduct = () => {
                 type="text"
                 defaultValue={viewProduct.description}
                 name="desName"
+                disabled={!isEditroute}
               />
             </div>
             <div className="view-product-quantity mb-3">
@@ -437,6 +460,7 @@ const ViewProduct = () => {
                 type="text"
                 defaultValue={viewProduct.quantity}
                 name="quantityName"
+                disabled={!isEditroute}
               />
             </div>
             <div className="view-product-cost mb-3">
@@ -446,6 +470,7 @@ const ViewProduct = () => {
                 type="text"
                 defaultValue={viewProduct.cost}
                 name="costName"
+                disabled={!isEditroute}
               />
             </div>
             <div className="view-product-price mb-3">
@@ -455,6 +480,7 @@ const ViewProduct = () => {
                 type="text"
                 defaultValue={viewProduct.price}
                 name="priceName"
+                disabled={!isEditroute}
               />
             </div>
             <div className="view-product-vat mb-3">
@@ -464,6 +490,7 @@ const ViewProduct = () => {
                 type="text"
                 defaultValue={viewProduct.vat}
                 name="vatName"
+                disabled={!isEditroute}
               />
             </div>
             <div className="view-product-stock mb-3">
@@ -513,7 +540,11 @@ const ViewProduct = () => {
                 </Col>
               </Row>
             </div>
-            <button type="submit" className="px-3 py-2 my-4 w-100 rounded">
+            <button
+              style={{ display: isEditroute ? "block" : "none" }}
+              type="submit"
+              className="px-3 py-2 my-4 w-100 rounded"
+            >
               Update Product
             </button>
           </form>

@@ -158,7 +158,7 @@ const About = () => {
                       </div>
                       <div className="update-button-div">
                         <Link
-                          to={`/viewuser/${d.id}`}
+                          to={`/edituser/${d.id}`}
                           className=" btn-success ms-0 ms-lg-2 px-2 rounded update-button"
                           style={{
                             border: "1px solid #828080",
@@ -193,28 +193,29 @@ const About = () => {
               ))}
             </tbody>
           </table>
-          <nav className="mt-2">
-            <ul className="pagination pagi-list">
-              <li className="page-link" onClick={prePage}>
-                Prev
-              </li>
-              {numbers.map((n, i) => (
-                <li
-                  className={`page-link ${
-                    currentPage === n ? "active-page" : ""
-                  }`}
-                  key={i}
-                  onClick={() => changePage(n)}
-                >
-                  {n}
-                </li>
-              ))}
-              <li className="page-link" onClick={nextPage}>
-                Next
-              </li>
-            </ul>
-          </nav>
         </div>
+
+        <nav className="mt-2">
+          <ul className="pagination pagi-list">
+            <li className="page-link" onClick={prePage}>
+              Prev
+            </li>
+            {numbers.map((n, i) => (
+              <li
+                className={`page-link ${
+                  currentPage === n ? "active-page" : ""
+                }`}
+                key={i}
+                onClick={() => changePage(n)}
+              >
+                {n}
+              </li>
+            ))}
+            <li className="page-link" onClick={nextPage}>
+              Next
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );

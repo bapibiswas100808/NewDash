@@ -57,6 +57,7 @@ const ViewBrand = () => {
     };
     fetchData();
   }, [file]);
+  const isEditRoute = window.location.pathname.includes("/editbrand");
   const handleSelectImage = () => {
     inputRef.current.click();
   };
@@ -96,7 +97,9 @@ const ViewBrand = () => {
   return (
     <section>
       <div className="view-brand-area project-container">
-        <h2 className=""> View Brand</h2>
+        <h2 className="fs-4 my-4">
+          {isEditRoute ? "Update Brand" : `Brand No : ${id}`}
+        </h2>
         <div className="view-brand-content card">
           <div className="view-brand-image">
             <input
@@ -104,6 +107,7 @@ const ViewBrand = () => {
               className="ms-2 rounded"
               type="file"
               hidden
+              disabled={!isEditRoute}
               ref={inputRef}
               onChange={handleSelectFile}
             />
@@ -120,9 +124,14 @@ const ViewBrand = () => {
                 type="text"
                 defaultValue={viewBrand?.name}
                 name="brandName"
+                disabled={!isEditRoute}
               />
             </div>
-            <button type="submit" className="w-100 px-3 py-2 mb-4 rounded">
+            <button
+              style={{ display: isEditRoute ? "block" : "none" }}
+              type="submit"
+              className="w-100 px-3 py-2 mb-4 rounded"
+            >
               Update Brand
             </button>
           </form>
