@@ -127,7 +127,7 @@ const Sidebar = ({ isOpen, children, setIsOpen }) => {
     const currentPath = location.pathname;
     const activatedMenu = getMenuIndex(currentPath);
     setActiveMenu(activatedMenu);
-  }, [location.pathname, getMenuIndex]);
+  }, []);
 
   const handleMenuClick = (index) => {
     console.log(index);
