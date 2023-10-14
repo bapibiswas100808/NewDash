@@ -1,5 +1,11 @@
-.global-content {
+/* .global-content {
   display: none;
+} */
+.global-tabs a {
+  color: #111c43;
+}
+.global-active {
+  border-bottom: 1px solid red;
 }
 .global-faq-area .table-search {
   display: none !important;

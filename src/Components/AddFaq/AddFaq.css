@@ -1,0 +1,14 @@
+.add-faq-area {
+  min-height: 100vh;
+}
+.add-faq-area button {
+  border: none;
+  background-color: #23b7e5;
+  color: #ffffff;
+}
+
+.add-faq-area button:hover {
+  border: none;
+  background-color: #af8ef4;
+  color: #ffffff;
+}

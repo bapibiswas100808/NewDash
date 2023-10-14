@@ -36,6 +36,13 @@ import AddNotification from "./Components/AddNotification/AddNotification";
 import Global from "./Components/Global/Global";
 import Website from "./Components/Website/Website";
 import PrivateAuth from "./Components/PrivateAuth/PrivateAuth";
+import AddFaq from "./Components/AddFaq/AddFaq";
+import ViewFaq from "./Components/ViewFaq/ViewFaq";
+import AddPage from "./Components/AddPage/AddPage";
+import ViewPage from "./Components/ViewPage/ViewPage";
+import LanguageZone from "./Components/LanguageZone/LanguageZone";
+import FaqZone from "./Components/FaqZone/FaqZone";
+import PagesZone from "./Components/PagesZone/PagesZone";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -178,6 +185,40 @@ function App() {
                   }
                 />
                 <Route
+                  path="/addfaq"
+                  element={<AddFaqWithLayout isOpen={isOpen} toggle={toggle} />}
+                />
+                <Route
+                  path="/viewfaq/:id"
+                  element={
+                    <ViewFaqWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/editfaq/:id"
+                  element={
+                    <ViewFaqWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/addpage"
+                  element={
+                    <AddPageWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/viewpage/:id"
+                  element={
+                    <ViewPageWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
+                  path="/editpage/:id"
+                  element={
+                    <ViewPageWithLayout isOpen={isOpen} toggle={toggle} />
+                  }
+                />
+                <Route
                   path="/coupons"
                   element={<CouponWithLayout isOpen={isOpen} toggle={toggle} />}
                 />
@@ -216,7 +257,11 @@ function App() {
                 <Route
                   path="/globalsetting"
                   element={<GlobalWithLayout isOpen={isOpen} toggle={toggle} />}
-                />
+                >
+                  <Route path="/globalsetting" element={<LanguageZone />} />
+                  <Route path="/globalsetting/faq" element={<FaqZone />} />
+                  <Route path="/globalsetting/pages" element={<PagesZone />} />
+                </Route>
                 <Route
                   path="/websitesetting"
                   element={
@@ -401,6 +446,34 @@ const GlobalWithLayout = ({ isOpen, toggle }) => {
   return (
     <WithLayout isOpen={isOpen} toggle={toggle}>
       <Global />
+    </WithLayout>
+  );
+};
+const AddFaqWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <AddFaq />
+    </WithLayout>
+  );
+};
+const AddPageWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <AddPage />
+    </WithLayout>
+  );
+};
+const ViewFaqWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <ViewFaq />
+    </WithLayout>
+  );
+};
+const ViewPageWithLayout = ({ isOpen, toggle }) => {
+  return (
+    <WithLayout isOpen={isOpen} toggle={toggle}>
+      <ViewPage />
     </WithLayout>
   );
 };

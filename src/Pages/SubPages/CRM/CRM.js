@@ -131,6 +131,12 @@ const CRM = ({
   const handleAddNotification = () => {
     navigate("/addnotification");
   };
+  const handleAddFaq = () => {
+    navigate("/addfaq");
+  };
+  const handleAddPage = () => {
+    navigate("/addpage");
+  };
   const handleDeleteCategory = async (id) => {
     try {
       const accessToken = `Token ${localStorage.getItem("getToken")}`;
@@ -259,7 +265,38 @@ const CRM = ({
       console.error(error);
     }
   };
-  const handleDeletefaq = () => {};
+  const handleDeletefaq = async (id) => {
+    try {
+      const accessToken = `Token ${localStorage.getItem("getToken")}`;
+      const shouldDelete = window.confirm("Do You Want to Delete?");
+
+      if (shouldDelete) {
+        const response = await axios.delete(
+          `https://secom.privateyebd.com/api/v1/utility/admin/faq/${id}/`,
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+
+        console.log(response);
+        alert("Deleted Succesfully");
+        const newCategory = await axios.get(
+          "https://secom.privateyebd.com/api/v1/utility/admin/faq/",
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        setRecords(newCategory.data);
+        navigate("/globalsetting/faq");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const handleDeletePage = () => {};
 
   return (
@@ -326,13 +363,13 @@ const CRM = ({
                 {buttonName5}
               </button>
               <button
-                onClick={handleAddNotification}
+                onClick={handleAddFaq}
                 className="px-3 py-2 rounded mt-4 mb-2 add-faq-button d-none"
               >
                 {buttonName6}
               </button>
               <button
-                onClick={handleAddNotification}
+                onClick={handleAddPage}
                 className="px-3 py-2 rounded mt-4 mb-2 add-page-button d-none"
               >
                 {buttonName7}
@@ -481,7 +518,7 @@ const CRM = ({
                             </NavLink>
                             <NavLink
                               className="view-faq d-none"
-                              to={`/viewfaq/${d.id}`}
+                              to={`/editfaq/${d.id}`}
                             >
                               <GrEdit />
                             </NavLink>
