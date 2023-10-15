@@ -8,18 +8,9 @@ import "./ViewUser.css";
 const ViewUser = () => {
   const navigate = useNavigate();
   const userRef = useRef();
-  const [image, setImage] = useState(null);
-  const [imageId, setImageId] = useState(null);
-  const [userDetails, setUserdetails] = useState({
-    first_name: "",
-    last_name: "",
-    gender: "",
-    dob: "",
-    bio: "",
-    image: imageId,
-    email: "",
-    mobile: "",
-  });
+  const [image, setImage] = useState();
+  const [imageId, setImageId] = useState();
+  const [userDetails, setUserdetails] = useState({});
   const { id } = useParams();
   console.log(userDetails);
   useEffect(() => {
@@ -79,11 +70,26 @@ const ViewUser = () => {
   const editRoute = window.location.pathname.includes("/edituser");
   const handleUserUpdate = async (e) => {
     e.preventDefault();
+    const form = e.target;
+    const first_name = form.firstName.value;
+    const last_name = form.lastName.value;
+    const gender = userDetails.gender;
+    const dob = userDetails.dob;
+    const bio = userDetails.bio;
+    const image = imageId;
+    const userForm = {
+      first_name,
+      last_name,
+      gender,
+      dob,
+      bio,
+      image,
+    };
     const accessToken = `Token ${localStorage.getItem("getToken")}`;
     try {
       const response = await axios.put(
         `https://secom.privateyebd.com/api/v1/auth/admin/user/${id}/`,
-        userDetails,
+        userForm,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -99,12 +105,12 @@ const ViewUser = () => {
       console.log(error.response.data);
     }
   };
-  console.log(image);
+  console.log(imageId);
 
   return (
     <section>
-      <div className="project-container">
-        <div className="card view-user-content">
+      <div className="project-container my-5">
+        <div className="card view-user-content ">
           <form onSubmit={handleUserUpdate}>
             <div className="view-user-image mb-3">
               <label>User Image</label> <br />
@@ -114,6 +120,7 @@ const ViewUser = () => {
                 hidden
                 ref={userRef}
                 onChange={handleSelectImage}
+                disabled={!editRoute}
               />
               <img
                 onClick={handleUserImage}
@@ -128,8 +135,8 @@ const ViewUser = () => {
               <input
                 className="w-100 px-2 py-2 rounded"
                 type="text"
-                value={userDetails.id}
-                onChange={(e) => setUserdetails(e.target.value)}
+                defaultValue={userDetails.id}
+                name="idName"
                 disabled={!editRoute}
               />
             </div>
@@ -138,15 +145,9 @@ const ViewUser = () => {
               <input
                 className="w-100 px-2 py-2 rounded"
                 type="text"
-                value={userDetails.first_name}
-                name="first_name"
+                defaultValue={userDetails.first_name}
+                name="firstName"
                 disabled={!editRoute}
-                onChange={(e) =>
-                  setUserdetails({
-                    ...userDetails,
-                    [e.target.name]: e.target.value,
-                  })
-                }
               />
             </div>
             <div className="view-user-lname mb-3">
@@ -154,31 +155,19 @@ const ViewUser = () => {
               <input
                 className="w-100 px-2 py-2 rounded"
                 type="text"
-                value={userDetails.last_name}
-                name="last_name"
+                defaultValue={userDetails.last_name}
+                name="lastName"
                 disabled={!editRoute}
-                onChange={(e) =>
-                  setUserdetails({
-                    ...userDetails,
-                    [e.target.name]: e.target.value,
-                  })
-                }
               />
             </div>
             <div className="view-user-email mb-3">
               <label>User Email</label> <br />
               <input
                 className="w-100 px-2 py-2 rounded"
-                type="email"
-                value={userDetails.email}
-                name="email"
+                type="text"
+                defaultValue={userDetails.email}
+                name="emailName"
                 disabled={!editRoute}
-                onChange={(e) =>
-                  setUserdetails({
-                    ...userDetails,
-                    [e.target.name]: e.target.value,
-                  })
-                }
               />
             </div>
             <div className="view-user-mobile mb-3">
@@ -186,15 +175,9 @@ const ViewUser = () => {
               <input
                 className="w-100 px-2 py-2 rounded"
                 type="text"
-                value={userDetails.mobile}
-                name="mobile"
+                defaultValue={userDetails.mobile}
+                name="mobileName"
                 disabled={!editRoute}
-                onChange={(e) =>
-                  setUserdetails({
-                    ...userDetails,
-                    [e.target.name]: e.target.value,
-                  })
-                }
               />
             </div>
             <div className="user-update-button my-3">

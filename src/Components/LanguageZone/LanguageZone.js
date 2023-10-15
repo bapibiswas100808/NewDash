@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import GetApi from "../GetApi/GetApi";
+import "./LanguageZone.css";
+
 const LanguageZone = () => {
-  const [global, setGlobal] = useState({});
-  const handleGlobal = (apidata) => {
-    setGlobal(apidata.data);
+  const [currency, setCurrency] = useState([]);
+  const [country, setCountry] = useState([]);
+  const handleCurrency = (apidata) => {
+    setCurrency(apidata.data);
   };
-  console.log(global);
+  const handleCountry = (apidata) => {
+    setCountry(apidata.data.results);
+  };
+  console.log(country);
   return (
-    <section>
+    <section className="language-area">
       <GetApi
-        api="https://secom.privateyebd.com/api/v1/utility/admin/globalsettings"
-        onDataFetched={handleGlobal}
+        api="https://secom.privateyebd.com/api/v1/utility/admin/currency/"
+        onDataFetched={handleCurrency}
+      />
+      <GetApi
+        api="https://secom.privateyebd.com/api/v1/auth/country/"
+        onDataFetched={handleCountry}
       />
       <div>
         <div className="global-language mt-5">
@@ -19,13 +29,21 @@ const LanguageZone = () => {
             <form>
               <div className="global-language-lang mb-3">
                 <label className="mb-2">Language</label>
-                <input type="text " className="w-100 px=3 py-2 rounded" />
+                <select className="w-100 form-select">
+                  {country &&
+                    country.map((d, id) => <option key={id}>{d.name}</option>)}
+                </select>
               </div>
               <div className="global-language-currency">
                 <label className="mb-2">Currency</label>
-                <input type="text " className="w-100 px=3 py-2 rounded" />
+                <select className="w-100 form-select">
+                  {currency &&
+                    currency.map((d, id) => (
+                      <option key={id}>{d.currency_name}</option>
+                    ))}
+                </select>
               </div>
-              <button className="px-3 py-2 rounded w-100 my-4">
+              <button disabled className="px-3 py-2 rounded w-100 my-4">
                 Save Changes
               </button>
             </form>

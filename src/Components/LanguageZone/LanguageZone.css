@@ -1,0 +1,8 @@
+.language-area {
+  min-height: 100vh;
+}
+.language-area button {
+  color: #ffffff;
+  border: none;
+  background-color: rgb(173, 173, 172);
+}

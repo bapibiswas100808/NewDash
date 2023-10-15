@@ -299,7 +299,6 @@ const ViewProduct = () => {
           <div className="view-product-image">
             <input
               defaultValue={viewProduct?.image_id}
-              className="ms-2 rounded"
               type="file"
               hidden
               ref={inputRefp}
