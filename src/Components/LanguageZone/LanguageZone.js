@@ -1,14 +1,18 @@
-import React from "react";
-const LanguageZone = ({ toogleState }) => {
+import React, { useState } from "react";
+import GetApi from "../GetApi/GetApi";
+const LanguageZone = () => {
+  const [global, setGlobal] = useState({});
+  const handleGlobal = (apidata) => {
+    setGlobal(apidata.data);
+  };
+  console.log(global);
   return (
     <section>
-      <div
-        className={
-          toogleState === 1
-            ? "global-content global-active-content"
-            : "global-content"
-        }
-      >
+      <GetApi
+        api="https://secom.privateyebd.com/api/v1/utility/admin/globalsettings"
+        onDataFetched={handleGlobal}
+      />
+      <div>
         <div className="global-language mt-5">
           <div className="global-language-content card">
             <h3 className="fs-5">Language & Currencies Settings</h3>

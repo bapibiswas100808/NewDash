@@ -1,0 +1,13 @@
+.web-setting-area .site-logo img {
+  height: 100px;
+  width: 100px;
+  border: 1px solid #5389a5;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+.web-setting-area button {
+  color: #ffffff;
+  border: none;
+  background-color: rgb(184, 181, 178);
+}
