@@ -1,0 +1,10 @@
+.add-page-area button {
+  color: #ffffff;
+  border: none;
+  background-color: #23b7e5;
+}
+.add-page-area button:hover {
+  color: #ffffff;
+  border: none;
+  background-color: #8f69e1;
+}

@@ -1,0 +1,18 @@
+.view-page-area {
+  min-height: 100vh;
+}
+
+.view-page-image img {
+  height: 100px;
+  width: 100px;
+}
+.view-page-area button {
+  color: #ffffff;
+  border: none;
+  background-color: #23b7e5;
+}
+.view-page-area button:hover {
+  color: #ffffff;
+  border: none;
+  background-color: #8f69e1;
+}

@@ -297,7 +297,38 @@ const CRM = ({
       console.error(error);
     }
   };
-  const handleDeletePage = () => {};
+  const handleDeletePage = async (id) => {
+    try {
+      const accessToken = `Token ${localStorage.getItem("getToken")}`;
+      const shouldDelete = window.confirm("Do You Want to Delete?");
+
+      if (shouldDelete) {
+        const response = await axios.delete(
+          `https://secom.privateyebd.com/api/v1/utility/admin/page/${id}/`,
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+
+        console.log(response);
+        alert("Deleted Succesfully");
+        const newCategory = await axios.get(
+          "https://secom.privateyebd.com/api/v1/utility/admin/page/",
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        setRecords(newCategory.data);
+        navigate("/globalsetting/pages");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="orders-area">
@@ -524,7 +555,7 @@ const CRM = ({
                             </NavLink>
                             <NavLink
                               className="view-page d-none"
-                              to={`/viewpage/${d.id}`}
+                              to={`/editpage/${d.id}`}
                             >
                               <GrEdit />
                             </NavLink>
