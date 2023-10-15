@@ -3,7 +3,6 @@ import { BsChevronDoubleRight } from "react-icons/bs";
 import "./Global.css";
 import { Col, Row } from "react-bootstrap";
 import GetApi from "../GetApi/GetApi";
-import CRM from "../../Pages/SubPages/CRM/CRM";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 const Global = () => {
