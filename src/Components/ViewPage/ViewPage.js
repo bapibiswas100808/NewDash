@@ -36,8 +36,7 @@ const ViewPage = () => {
       }
     };
     fetchData();
-    // eslint-disable-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     const imageForm = new FormData();
     files.forEach((file) => {

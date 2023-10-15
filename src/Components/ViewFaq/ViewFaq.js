@@ -26,8 +26,7 @@ const ViewFaq = () => {
       .catch((err) => {
         console.log(err);
       });
-    // eslint-disable-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const handleFaqSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
