@@ -45,7 +45,7 @@ import FaqZone from "./Components/FaqZone/FaqZone";
 import PagesZone from "./Components/PagesZone/PagesZone";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState("light");
   const toggle = () => setIsOpen(!isOpen);
 
