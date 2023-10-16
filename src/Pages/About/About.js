@@ -166,8 +166,8 @@ const About = () => {
                             padding: "2px",
                           }}
                         >
-                          <i className="text-white">
-                            <GrEdit />
+                          <i className="">
+                            <GrEdit className="text-white" />
                           </i>
                         </Link>
                       </div>

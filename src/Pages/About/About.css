@@ -4,6 +4,11 @@
 }
 .update-button {
   background-color: #845adf;
+  color: #ffffff;
+}
+.view-button-div .view-button {
+  background-color: #23b7e5;
+  color: #ffffff;
 }
 .add-button button {
   background-color: #845adf;

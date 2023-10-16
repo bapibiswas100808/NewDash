@@ -505,10 +505,10 @@ const ViewProduct = () => {
             </div>
             <div className="is-active mt-3">
               <Row>
-                <Col lg={4}>
+                <Col md={4} sm={4} lg={4}>
                   <span>Is Active?</span>
                 </Col>
-                <Col lg={8}>
+                <Col md={8} sm={8} lg={8}>
                   <div className=" d-flex align-items-center">
                     <input
                       className="py-2"
@@ -523,11 +523,11 @@ const ViewProduct = () => {
             </div>
             <div className="is-featured mt-3">
               <Row>
-                <Col lg={4}>
+                <Col md={4} sm={4} lg={4}>
                   <span>Is Featured?</span>
                 </Col>
-                <Col lg={8}>
-                  <div className=" d-flex align-items-center">
+                <Col md={8} sm={4} lg={8}>
+                  <div className="align-items-center">
                     <input
                       className="py-2"
                       type="checkbox"

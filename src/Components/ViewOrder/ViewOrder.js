@@ -150,7 +150,7 @@ const ViewOrder = () => {
   return (
     <section className="view-order-zone">
       <div className="project-container view-order-area">
-        <h2 className="fs-5 my-3">Order Details</h2>
+        <h2 className="fs-5 my-4">Order Details</h2>
         <div className="view-order-content card">
           <Row>
             <Col lg={6}>

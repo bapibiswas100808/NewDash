@@ -47,7 +47,7 @@ const Profile = () => {
   const image = data?.data?.image_url || "";
   return (
     <div className="profile-area">
-      <div className="project-container ">
+      <div className="project-container">
         <div className=" profile-heading py-3 d-lg-flex justify-content-between align-items-center ">
           <div className="profile-heading-text">
             <span>Profile</span>
@@ -115,7 +115,7 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-            <div className="bio-area pt-4 mb-4 bg-white project-container">
+            <div className="bio-area pt-4 mb-4 card">
               <div className="bio-content pb-4">
                 <div className="bio-heading">
                   <h2 className="fs-6">Professional Bio :</h2>
@@ -317,13 +317,13 @@ const Profile = () => {
               </div>
             </div>
           </Col>
-          <Col xxl={8} lg={12}>
+          {/* <Col xxl={8} lg={12}>
             <div className="profile-content-area">
-              <div className="project-container profile-content-zone">
+              <div className="project-container profile-content-zone card">
                 <h2 className="pt-4">Profile Content here</h2>
               </div>
             </div>
-          </Col>
+          </Col> */}
         </Row>
       </div>
     </div>

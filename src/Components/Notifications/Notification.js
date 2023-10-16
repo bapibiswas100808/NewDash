@@ -4,7 +4,7 @@ const Notification = () => {
   return (
     <div className="notification-area">
       <div className="project-container">
-        <h2 className="my-4">Notification Area</h2>
+        <h2 className="my-4 fs-4">Notification</h2>
         <div className="card">
           <CRM
             pageApi="https://secom.privateyebd.com/api/v1/notification/admin/notification/"

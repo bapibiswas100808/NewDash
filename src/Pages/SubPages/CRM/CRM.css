@@ -49,7 +49,7 @@
   border-radius: 5px;
   text-align: center;
 }
-.pagi-list li {
+/* .pagi-list li {
   color: #23b7e5;
   cursor: pointer;
   background-color: #ffffff;
@@ -72,14 +72,13 @@
 .pagi-list li:hover {
   background-color: #23b7e5;
   color: #ffffff;
-}
+} */
 .active-page {
   background-color: #23b7e5 !important;
   color: #ffffff !important;
 }
 .show-button a {
   background-color: #8f69e1;
-  padding: 5px 10px;
   border-radius: 10px;
   color: white !important;
 }

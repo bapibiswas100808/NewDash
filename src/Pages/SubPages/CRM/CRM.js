@@ -6,7 +6,7 @@ import {
   AiFillDelete,
 } from "react-icons/ai";
 import { BsDot, BsFillEyeFill } from "react-icons/bs";
-import { GrEdit } from "react-icons/gr";
+import { AiOutlineEdit } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -333,8 +333,8 @@ const CRM = ({
   return (
     <div className="orders-area">
       <div className="orders-content project-container py-3 ">
-        <div className="orders-top d-flex align-items-top justify-content-between">
-          <div className="orders-heading">
+        <div className="orders-top d-flex align-items-center justify-content-between">
+          <div className="orders-heading my-3">
             <h4>{heading}</h4>
           </div>
           <div className="">
@@ -527,37 +527,37 @@ const CRM = ({
                               className="view-category"
                               to={`/editcategory/${d.id}`}
                             >
-                              <GrEdit />
+                              <AiOutlineEdit />
                             </NavLink>
                             <NavLink
                               className="view-brand"
                               to={`/editbrand/${d.id}`}
                             >
-                              <GrEdit />
+                              <AiOutlineEdit />
                             </NavLink>
                             <NavLink
                               className="view-product"
                               to={`/editproduct/${d.id}`}
                             >
-                              <GrEdit />
+                              <AiOutlineEdit />
                             </NavLink>
                             <NavLink
                               className="view-coupon"
                               to={`/editcoupon/${d.id}`}
                             >
-                              <GrEdit />
+                              <AiOutlineEdit />
                             </NavLink>
                             <NavLink
                               className="view-faq d-none"
                               to={`/editfaq/${d.id}`}
                             >
-                              <GrEdit />
+                              <AiOutlineEdit />
                             </NavLink>
                             <NavLink
                               className="view-page d-none"
                               to={`/editpage/${d.id}`}
                             >
-                              <GrEdit />
+                              <AiOutlineEdit />
                             </NavLink>
                           </div>
                           <div className="delete-button action-button">

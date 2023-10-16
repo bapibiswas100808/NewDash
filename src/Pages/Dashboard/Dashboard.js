@@ -293,12 +293,12 @@ const Dashboard = () => {
                     <div className="stats-title">
                       <h5 className="card-heading">Deals Statistics</h5>
                     </div>
-                    <div className="stats-search-sort d-flex align-items-top">
+                    <div className="stats-search-sort d-flex align-items-center">
                       <div className="stats-search pe-2">
                         <input
                           placeholder="Search Here"
                           type="text"
-                          className="stats-input py-2 rounded"
+                          className="stats-input py-2 rounded form-control"
                         />
                       </div>
                       <div className="crm-stats-btn">

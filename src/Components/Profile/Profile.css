@@ -46,9 +46,9 @@
   color: black;
   font-weight: 500;
 }
-.bio-area {
-  border-radius: 0px 0px 6px 6px;
-}
+/* .bio-area .card {
+  border-radius: 0px 0px 6px 6px !important;
+} */
 .bio-heading h2 {
   font-size: 15px;
 }

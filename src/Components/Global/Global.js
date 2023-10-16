@@ -23,17 +23,19 @@ const Global = () => {
       />
       <div className="project-container">
         <div className="global-settings-content">
-          <div className=" global-settings-heading py-3 d-lg-flex justify-content-between align-items-center ">
+          <div className=" global-settings-heading py-3 d-flex justify-content-between align-items-center ">
             <div className="global-settings-heading-text">
               <span>Global Settings</span>
             </div>
             <div className="settings-heading-nav">
               <nav>
                 <ol className="list-unstyled d-flex">
-                  <li className="me-2 text-primary">Pages</li>
+                  <li className="me-2 text-primary">Settings</li>
                   <li>
-                    <BsChevronDoubleRight className="me-2" />
-                    Global Settings
+                    <span>
+                      <BsChevronDoubleRight className="me-2" />
+                      Global Settings
+                    </span>
                   </li>
                 </ol>
               </nav>

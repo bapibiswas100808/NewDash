@@ -180,11 +180,11 @@ const ViewUser = () => {
                 disabled={!editRoute}
               />
             </div>
-            <div className="user-update-button my-3">
+            <div className="user-update-button my-5">
               <button
                 style={{ display: editRoute ? "block" : "none" }}
                 type="submit"
-                className="px-3 py-1 rounded"
+                className="px-3 py-1 rounded w-100 py-2"
               >
                 Update
               </button>

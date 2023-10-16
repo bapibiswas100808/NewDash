@@ -154,8 +154,10 @@ const Settings = () => {
               <ol className="list-unstyled d-flex">
                 <li className="me-2 text-primary">Pages</li>
                 <li>
-                  <BsChevronDoubleRight className="me-2" />
-                  Settings
+                  <span>
+                    <BsChevronDoubleRight className="me-2" />
+                    Settings
+                  </span>
                 </li>
               </ol>
             </nav>
@@ -172,13 +174,13 @@ const Settings = () => {
                       toogleState === 1 ? "tabs active-tabs me-4" : "tabs me-4"
                     }
                   >
-                    Update Infornation
+                    <span>Update Infornation</span>
                   </div>
                   <div
                     onClick={() => toogleTab(2)}
                     className={toogleState === 2 ? "tabs active-tabs" : "tabs"}
                   >
-                    Change Password
+                    <span>Change Password</span>
                   </div>
                 </div>
                 <div className="tab-contents">
@@ -243,7 +245,7 @@ const Settings = () => {
                               defaultValue={bioValue}
                               name="bioInput"
                             />
-                            <button type="submit" className="">
+                            <button type="submit" className="px-3 py-2 w-100">
                               Submit
                             </button>
                           </form>
@@ -278,7 +280,7 @@ const Settings = () => {
                             />
                             <button
                               type="submit"
-                              className="change-password-button"
+                              className="change-password-button px-3 py-2 w-100"
                             >
                               Change Password
                             </button>

@@ -172,7 +172,7 @@ const Header = ({ onClick, isOpen }) => {
           <div className="d-none d-lg-block">
             <div className="ps-4 d-flex align-items-center">
               <div className="search-input">
-                <input className="px-4 py-1 ps-5" />
+                <input className="px-4 py-1 ps-5 form-control" />
               </div>
               <div className="ms-3 search-icon position-absolute">
                 <i>

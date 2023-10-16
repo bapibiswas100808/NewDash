@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import "./AddNotification.css";
 import Select from "react-select";
 
 const AddNotification = () => {

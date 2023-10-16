@@ -22,12 +22,13 @@ p {
   --var-main-color: #f0f1f7;
   --var-header-bg: #ffffff;
   --var-bar-bg: #252729;
-  --var-text-color: #8c99bc;
+  /* --var-text-color: #8c99bc; */
   --var-heading-color: #333335;
   --var-card-bg: #ffffff;
   --bs-table-text-color: #333335;
   --bs-top-bg-sidebar: #111c43;
   --bs-footer-color: #ffffff;
+  --bs-link-color: #111c43;
 }
 .dark {
   --var-main-color: #252729;
@@ -42,6 +43,8 @@ p {
   --bs-table-text-color: #ffffff;
   --bs-footer-color: #1a1c1e;
   --bs-top-bg-sidebar: #1a1c1e;
+  --bs-label-color: #f5556db7;
+  --bs-link-color: #46c36cb7;
 }
 
 main {
@@ -61,7 +64,7 @@ h5 {
   color: var(--var-heading-color) !important;
 }
 p {
-  color: var(--var-text-color) !important;
+  color: var(--var-text-color);
 }
 
 .sidebar {
@@ -89,6 +92,16 @@ th,
 td {
   color: var(--bs-table-text-color) !important;
 }
+label {
+  color: var(--bs-label-color) !important;
+}
+span {
+  color: var(--bs-label-color) !important;
+}
+a {
+  color: var(--bs-link-color) !important;
+}
+
 @media (max-width: 991px) {
   .crm-container {
     padding: 0 15px !important;

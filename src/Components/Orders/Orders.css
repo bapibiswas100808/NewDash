@@ -1,4 +1,4 @@
-.orders-area{
+.orders-area {
   min-height: 100vh;
 }
 .orders-top button {
@@ -54,18 +54,18 @@
   margin-right: 10px;
 }
 .pagi-list li:first-child {
-  background-color: #8f69e1;
+  background-color: #1d284d;
   color: white;
 }
 .pagi-list li:first-child:hover {
-  background-color: #23b7e5;
+  background-color: #8f69e1;
 }
 .pagi-list li:last-child {
-  background-color: #8f69e1;
+  background-color: #1d284d;
   color: white;
 }
 .pagi-list li:last-child:hover {
-  background-color: #23b7e5;
+  background-color: #8f69e1;
 }
 .pagi-list li:hover {
   background-color: #23b7e5;
@@ -77,4 +77,8 @@
 }
 .show-button {
   cursor: pointer;
+  background-color: #8f69e1;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 10px;
 }
