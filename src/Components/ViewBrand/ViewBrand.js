@@ -119,6 +119,7 @@ const ViewBrand = () => {
           </div>
           <form onSubmit={handleBrandViewUpdate}>
             <div className="view-brand-name my-4">
+              <label>Brand Name</label>
               <input
                 className="px-3 py-2 w-100 rounded"
                 type="text"

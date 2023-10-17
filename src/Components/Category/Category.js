@@ -7,6 +7,7 @@ const Category = () => {
     <div className="category-area">
       <CRM
         pageApi="https://secom.privateyebd.com/api/v1/inventory/admin/categories/"
+        // patchApi="https://secom.privateyebd.com/api/v1/inventory/admin/categories/"
         heading="Categories"
         pages="Pages"
         pageName="Categories"

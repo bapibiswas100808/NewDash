@@ -329,6 +329,46 @@ const CRM = ({
       console.error(error);
     }
   };
+  const handleData4Click = async (id) => {
+    try {
+      const accessToken = `Token ${localStorage.getItem("getToken")}`;
+      const patchForm = {
+        is_active: !id[data4],
+      };
+      const response = await axios.patch(`${pageApi}${id.id}/`, patchForm, {
+        headers: {
+          Authorization: accessToken,
+        },
+      });
+      setRecords((prevRecords) =>
+        prevRecords.map((record) =>
+          record.id === id.id ? { ...record, [data4]: !record[data4] } : record
+        )
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleData5Click = async (id) => {
+    try {
+      const accessToken = `Token ${localStorage.getItem("getToken")}`;
+      const patchForm = {
+        is_menu: !id[data5],
+      };
+      const response = await axios.patch(`${pageApi}${id.id}/`, patchForm, {
+        headers: {
+          Authorization: accessToken,
+        },
+      });
+      setRecords((prevRecords) =>
+        prevRecords.map((record) =>
+          record.id === id.id ? { ...record, [data5]: !record[data5] } : record
+        )
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="orders-area">
@@ -446,8 +486,8 @@ const CRM = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {record.map((d, i) => (
-                    <tr className="w-100 text-center my-2" key={i}>
+                  {record.map((d, id) => (
+                    <tr className="w-100 text-center my-2" key={id}>
                       <td>
                         <input className="form-check-input" type="checkbox" />
                       </td>
@@ -457,7 +497,7 @@ const CRM = ({
                       <td className="td2">{d[data2]}</td>
                       <td className="td3">{d[data3]}</td>
                       {showActiveColumn && (
-                        <td className="td4">
+                        <td className="td4" onClick={() => handleData4Click(d)}>
                           {d[data4] ? "Active " : "Inactive "}
                           <BsDot
                             className="fs-2"
@@ -468,7 +508,7 @@ const CRM = ({
                         </td>
                       )}
                       {showActiveMenu && (
-                        <td className="td5">
+                        <td className="td5" onClick={() => handleData5Click(d)}>
                           {d[data5] ? "Yes" : "No"}
                           <BsDot
                             className="fs-3"
@@ -610,27 +650,29 @@ const CRM = ({
                 </tbody>
               </table>
             </div>
-            <nav className="mt-2">
-              <ul className="pagination pagi-list">
-                <li className="page-link" onClick={prePage}>
-                  Prev
-                </li>
-                {numbers.map((n, i) => (
-                  <li
-                    className={`page-link ${
-                      currentPage === n ? "active-page" : ""
-                    }`}
-                    key={i}
-                    onClick={() => changePage(n)}
-                  >
-                    {n}
+            {records.length > 10 && (
+              <nav className="mt-2">
+                <ul className="pagination pagi-list">
+                  <li className="page-link" onClick={prePage}>
+                    Prev
                   </li>
-                ))}
-                <li className="page-link" onClick={nextPage}>
-                  Next
-                </li>
-              </ul>
-            </nav>
+                  {numbers.map((n, i) => (
+                    <li
+                      className={`page-link ${
+                        currentPage === n ? "active-page" : ""
+                      }`}
+                      key={i}
+                      onClick={() => changePage(n)}
+                    >
+                      {n}
+                    </li>
+                  ))}
+                  <li className="page-link" onClick={nextPage}>
+                    Next
+                  </li>
+                </ul>
+              </nav>
+            )}
           </div>
         </div>
       </div>

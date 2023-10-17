@@ -201,27 +201,29 @@ const Orders = () => {
               </table>
             </div>
 
-            <nav className="mt-2">
-              <ul className="pagination pagi-list">
-                <li className="page-link" onClick={prePage}>
-                  Prev
-                </li>
-                {numbers.map((n, i) => (
-                  <li
-                    className={`page-link ${
-                      currentPage === n ? "active-page" : ""
-                    }`}
-                    key={i}
-                    onClick={() => changePage(n)}
-                  >
-                    {n}
+            {records.length > 10 && (
+              <nav className="mt-2">
+                <ul className="pagination pagi-list">
+                  <li className="page-link" onClick={prePage}>
+                    Prev
                   </li>
-                ))}
-                <li className="page-link" onClick={nextPage}>
-                  Next
-                </li>
-              </ul>
-            </nav>
+                  {numbers.map((n, i) => (
+                    <li
+                      className={`page-link ${
+                        currentPage === n ? "active-page" : ""
+                      }`}
+                      key={i}
+                      onClick={() => changePage(n)}
+                    >
+                      {n}
+                    </li>
+                  ))}
+                  <li className="page-link" onClick={nextPage}>
+                    Next
+                  </li>
+                </ul>
+              </nav>
+            )}
           </div>
         </div>
       </div>
