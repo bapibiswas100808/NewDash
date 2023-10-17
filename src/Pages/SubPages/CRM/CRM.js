@@ -335,7 +335,7 @@ const CRM = ({
       const patchForm = {
         is_active: !id[data4],
       };
-      const response = await axios.patch(`${pageApi}${id.id}/`, patchForm, {
+      await axios.patch(`${pageApi}${id.id}/`, patchForm, {
         headers: {
           Authorization: accessToken,
         },
@@ -355,7 +355,7 @@ const CRM = ({
       const patchForm = {
         is_menu: !id[data5],
       };
-      const response = await axios.patch(`${pageApi}${id.id}/`, patchForm, {
+      await axios.patch(`${pageApi}${id.id}/`, patchForm, {
         headers: {
           Authorization: accessToken,
         },
